@@ -17,7 +17,7 @@
 如果你手机恰好没什么电，需要充电，又要调试软件，因为笔记本USB口的电压很低，那么很有可能，在调试软件的过程中，电量会持续下降。">
 <meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wificonnect.png">
 <meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wifi-plugin.png">
-<meta property="og:updated_time" content="2015-12-08T08:07:47.297Z">
+<meta property="og:updated_time" content="2015-12-08T11:48:08.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过wifi连接进行应用调试（Android Studio）">
 <meta name="twitter:description" content="为什么通过USB连接手机和笔记本虽然速度很快，但有时候也会很不方便，比如：
@@ -215,19 +215,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="u4E3A_u4EC0_u4E48"><a href="#u4E3A_u4EC0_u4E48" class="headerlink" title="为什么"></a>为什么</h2><p>通过USB连接手机和笔记本虽然<em>速度很快</em>，但有时候也会很不方便，比如：</p>
+        <h3 id="u4E3A_u4EC0_u4E48"><a href="#u4E3A_u4EC0_u4E48" class="headerlink" title="为什么"></a>为什么</h3><p>通过USB连接手机和笔记本虽然<em>速度很快</em>，但有时候也会很不方便，比如：</p>
 <blockquote>
 <p>如果你手机恰好没什么电，需要充电，又要调试软件，因为笔记本USB口的电压很低，那么很有可能，在调试软件的过程中，电量会持续下降。<br><a id="more"></a>   </p>
 </blockquote>
 <hr>
-<h2 id="u5177_u4F53_u64CD_u4F5C"><a href="#u5177_u4F53_u64CD_u4F5C" class="headerlink" title="具体操作"></a>具体操作</h2><p>这时候，通过wifi连接进行软件调试就显得很方便了，具体该怎么做呢？<br>看看<a href="http://developer.android.com/intl/zh-cn/tools/help/adb.html" target="_blank" rel="external">开发者文档</a>怎么说：</p>
+<h3 id="u5177_u4F53_u64CD_u4F5C"><a href="#u5177_u4F53_u64CD_u4F5C" class="headerlink" title="具体操作"></a>具体操作</h3><p>这时候，通过wifi连接进行软件调试就显得很方便了，具体该怎么做呢？<br>看看<a href="http://developer.android.com/intl/zh-cn/tools/help/adb.html" target="_blank" rel="external">开发者文档</a>怎么说：</p>
 <blockquote>
 <p><img src="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wificonnect.png" alt="adb wireless usage">  </p>
 </blockquote>
 <hr>
 <p>简单来说就是先保证手机和电脑在一个wifi网络下，然后，再用USB连接该手机和该电脑，接着设置tcpip连接监听5555端口，之后断开USB连接，查看手机连接的wifi的ip地址<em>（在手机的Setting-Wifi-Advanced最底部就能看到MAC address和IP address）</em>，接着用adb connect命令连接该ip地址，最后可以用adb device命令查看是否连接成功。  </p>
 <hr>
-<h2 id="u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F"><a href="#u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F" class="headerlink" title="怎么更方便？"></a>怎么更方便？</h2><p>其实这么做，还是挺麻烦的，已经有人做好了插件<strong>ADB WIFI</strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wifi-plugin.png" alt="ADB WIFI"><br>所以，现在只需要保证手机电脑在同一个wifi下，然后先USB连接，接着到Tool-android-ADB WIFI-ADB USB to WIFI就可以了，此时已经通过wifi连接，可以断开USB，随便run一个项目，选择该手机，看看是不是连接成功了。</p>
+<h3 id="u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F"><a href="#u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F" class="headerlink" title="怎么更方便？"></a>怎么更方便？</h3><p>其实这么做，还是挺麻烦的，已经有人做好了插件<strong>ADB WIFI</strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wifi-plugin.png" alt="ADB WIFI"><br>所以，现在只需要保证手机电脑在同一个wifi下，然后先USB连接，接着到Tool-android-ADB WIFI-ADB USB to WIFI就可以了，此时已经通过wifi连接，可以断开USB，随便run一个项目，选择该手机，看看是不是连接成功了。</p>
 
       
     </div>
