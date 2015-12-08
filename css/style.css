@@ -149,7 +149,7 @@ h3 {
   display: block;
 }
 h1 {
-  font-size: 1.7em;
+  font-size: 1.5em;
 }
 h2 {
   font-size: 1.3em;
@@ -764,7 +764,7 @@ a {
 }
 .archives .archive-article-title {
   font-size: 16px;
-  color: #144;
+  color: #333;
   -webkit-transition: color 0.3s;
   -moz-transition: color 0.3s;
   -ms-transition: color 0.3s;
@@ -1374,7 +1374,7 @@ a {
 }
 .archives .archive-article-title {
   font-size: 16px;
-  color: #144;
+  color: #333;
   -webkit-transition: color 0.3s;
   -moz-transition: color 0.3s;
   -ms-transition: color 0.3s;
