@@ -199,30 +199,7 @@
       
         <p>Android5.0之后出现的。被认为是ListView和GridView等的替代方案。</p>
 <h2 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h2><blockquote>
-<p>1.不关心Item是否显示在正确的位置，如何显示<em>（LayoutManager）</em><br>2.不关心Item间如何间隔，不关心<em>（ItemDecoration）</em><br>3.不关心Item增加和删除的动画效果<em>（ItemAnimator）</em><br><strong>4.仅仅关注如何回收和复用View</strong>  </p>
-</blockquote>
-<h2 id="u4E3E_u4F8B"><a href="#u4E3E_u4F8B" class="headerlink" title="举例"></a>举例</h2><ul>
-<li>那如何控制具体的显示风格呢？那就是通过RecyclerView的setLayoutManager方法传入LayoutManager的实例来进行</li>
-</ul>
-<pre><code class="java"><span class="function"><span class="keyword">void</span>    <span class="title">setLayoutManager</span><span class="params">(RecyclerView.LayoutManager layout)</span>
-<span class="comment">/*Set the RecyclerView.LayoutManager that this RecyclerView will use.*/</span></span>
-</code></pre>
-<h2 id="RecyclerView_u76F8_u5173_u7C7B"><a href="#RecyclerView_u76F8_u5173_u7C7B" class="headerlink" title="RecyclerView相关类"></a>RecyclerView相关类</h2><blockquote>
-<ul>
-<li>Adapter  </li>
-<li>ViewHolder  </li>
-<li>LayoutManager  </li>
-<li>ItemDecoreation  </li>
-<li>ItemAnimation  </li>
-</ul>
-</blockquote>
-<h2 id="RecyclerView_u5177_u4F53_u80FD_u5E72_u4EC0_u4E48"><a href="#RecyclerView_u5177_u4F53_u80FD_u5E72_u4EC0_u4E48" class="headerlink" title="RecyclerView具体能干什么"></a>RecyclerView具体能干什么</h2><blockquote>
-<p>实现ListView，GridView，并且能设置横向或者纵向显示，可以定制瀑布流，定制Item的增删动画效果</p>
-</blockquote>
-<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<p>可以看出来，RecyclerView体现的是一个插件式的架构，通过几个嵌套类，设置Item的<em>显示风格，间隔和增删动画效果</em></p>
-</blockquote>
-<h2 id="u6155_u8BFE_u8BFE_u7A0B_u89C6_u9891_u5730_u5740"><a href="#u6155_u8BFE_u8BFE_u7A0B_u89C6_u9891_u5730_u5740" class="headerlink" title="<a href=" http:="" www.imooc.com="" learn="" 424"="">慕课课程视频地址</a>"><a href="http://www.imooc.com/learn/424" target="_blank" rel="external">慕课课程视频地址</a></h2>
+<p>1.不关心Item是否显示在正确的位置，如何显示<em>（LayoutManager）</em><br>2.不关心Item间如何间隔，不关心<em>（ItemDecoration）</em><br>3.不关心Item增加和删除的动画效果<em>（ItemAnimator）</em><br><strong>4.仅仅关注如何回收和复用View</strong><br>
       
     </div>
     
@@ -235,6 +212,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/08/RecycleView-note/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -280,16 +261,7 @@
 <blockquote>
 <p>如果你手机恰好没什么电，需要充电，又要调试软件，因为笔记本USB口的电压很低，那么很有可能，在调试软件的过程中，电量会持续下降。  </p>
 </blockquote>
-<hr>
-<h2 id="u5177_u4F53_u64CD_u4F5C"><a href="#u5177_u4F53_u64CD_u4F5C" class="headerlink" title="具体操作"></a>具体操作</h2><p>这时候，通过wifi连接进行软件调试就显得很方便了，具体该怎么做呢？<br>看看<a href="http://developer.android.com/intl/zh-cn/tools/help/adb.html" target="_blank" rel="external">开发者文档</a>怎么说：</p>
-<blockquote>
-<p><img src="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wificonnect.png" alt="adb wireless usage">  </p>
-</blockquote>
-<hr>
-<p>简单来说就是先保证手机和电脑在一个wifi网络下，然后，再用USB连接该手机和该电脑，接着设置tcpip连接监听5555端口，之后断开USB连接，查看手机连接的wifi的ip地址<em>（在手机的Setting-Wifi-Advanced最底部就能看到MAC address和IP address）</em>，接着用adb connect命令连接该ip地址，最后可以用adb device命令查看是否连接成功。  </p>
-<hr>
-<h2 id="u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F"><a href="#u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F" class="headerlink" title="怎么更方便？"></a>怎么更方便？</h2><p>其实这么做，还是挺麻烦的，已经有人做好了插件<strong>ADB WIFI</strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wifi-plugin.png" alt="ADB WIFI"><br>所以，现在只需要保证手机电脑在同一个wifi下，然后先USB连接，接着到Tool-android-ADB WIFI-ADB USB to WIFI就可以了，此时已经通过wifi连接，可以断开USB，随便run一个项目，选择该手机，看看是不是连接成功了。</p>
-
+<h2 id="3C_21-more-_3E"><a href="#3C_21-more-_3E" class="headerlink" title="
       
     </div>
     
@@ -302,6 +274,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/08/wifi-app-debug/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
