@@ -860,6 +860,9 @@ a {
   border: 1px solid #ddd;
   background: #fff;
   -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }
 .article.show {
   visibility: visible;
@@ -1191,6 +1194,52 @@ a {
 }
 #article-nav #article-nav-older {
   float: right;
+}
+@media (max-width: 1099px) {
+  #toc {
+    display: none;
+  }
+}
+@media (min-width: 1100px) {
+  #toc {
+    background-color: #fff;
+    padding: 0 1em;
+    border: 1px solid #ddd;
+    position: fixed;
+    top: 100px;
+    right: -180px;
+    -webkit-transition: right 0.5s ease-in;
+    -moz-transition: right 0.5s ease-in;
+    -ms-transition: right 0.5s ease-in;
+    transition: right 0.5s ease-in;
+    width: 150px;
+    line-height: 1.3em;
+    font-size: 0.8em;
+    float: right;
+  }
+  #toc h2 {
+    margin-bottom: 10px;
+  }
+  #toc ol {
+    padding-left: 0 !important;
+  }
+  #toc .toc {
+    padding: 0;
+  }
+  #toc .toc li {
+    list-style-type: none;
+    margin: 0.5em 0 0.5em;
+  }
+  #toc .toc li ol {
+    margin: 0.5em 0 0.5em 1em;
+  }
+  .article2 {
+    margin-right: 211px;
+    -webkit-transition: margin-right 0.5s ease-in;
+    -moz-transition: margin-right 0.5s ease-in;
+    -ms-transition: margin-right 0.5s ease-in;
+    transition: margin-right 0.5s ease-in;
+  }
 }
 @-moz-keyframes cd-bounce-1 {
   0% {

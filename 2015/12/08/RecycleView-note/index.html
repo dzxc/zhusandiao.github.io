@@ -198,21 +198,35 @@
   
 
       </header>
-      
-      <div class="article-info article-info-post">
-        
+   	  
+   	  	<div class="article-info article-info-post">
+   	  	  
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
 	</div>
 
-        
+   	  	  
 
-        <div class="clearfix"></div>
-      </div>
+   	  	  <div class="clearfix"></div>
+   	  	</div>
       
     
     <div class="article-entry" itemprop="articleBody">
       
+      	
+                      
+            <div id="toc" class="article-toc">
+            <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u7279_u70B9"><span class="toc-number">1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3E_u4F8B"><span class="toc-number">2.</span> <span class="toc-text">举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RecyclerView_u76F8_u5173_u7C7B"><span class="toc-number">3.</span> <span class="toc-text">RecyclerView相关类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RecyclerView_u5177_u4F53_u80FD_u5E72_u4EC0_u4E48"><span class="toc-number">4.</span> <span class="toc-text">RecyclerView具体能干什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFE_u7A0B_u5730_u5740"><span class="toc-number">6.</span> <span class="toc-text">课程地址</span></a></li></ol>  
+            </div>
+            <script type="text/javascript">
+              var _article = document.getElementsByClassName('article')[0];
+              <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+              setTimeout("_article.className += ' article2'",0); 
+              setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+            </script>
+          
+        
         <p>Android5.0之后出现的。被认为是ListView和GridView等的替代方案。</p>
 <h3 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h3><blockquote>
 <p>1.不关心Item是否显示在正确的位置，如何显示<em>（LayoutManager）</em><br>2.不关心Item间如何间隔，不关心<em>（ItemDecoration）</em><br>3.不关心Item增加和删除的动画效果<em>（ItemAnimator）</em><br><strong>4.仅仅关注如何回收和复用View</strong><br><a id="more"></a></p>
@@ -287,9 +301,11 @@
       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
+    $
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </section>
+ 
 
 </div>
       <footer id="footer">
