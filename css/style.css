@@ -1233,13 +1233,23 @@ a {
   #toc .toc li ol {
     margin: 0.5em 0 0.5em 1em;
   }
+  #toc .toc .toc-number {
+    display: block;
+    float: left;
+  }
+  #toc .toc .toc-text {
+    display: block;
+    padding-left: 30px;
+  }
   .article2 {
     margin-right: 211px;
-    -webkit-transition: margin-right 0.5s ease-in;
-    -moz-transition: margin-right 0.5s ease-in;
-    -ms-transition: margin-right 0.5s ease-in;
-    transition: margin-right 0.5s ease-in;
   }
+}
+.toc-item span {
+  display: table-cell;
+}
+span.toc-text {
+  padding-left: 3px;
 }
 @-moz-keyframes cd-bounce-1 {
   0% {
