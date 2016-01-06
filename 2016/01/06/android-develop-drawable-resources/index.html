@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016/1 | zhusandiao</title>
+  <title>Android开发中的Drawable Resources | zhusandiao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhusandiao">
-<meta property="og:url" content="http://yoursite.com/archives/2016/01/index.html">
+  <meta name="description" content="Drawable ResourcesA drawable resource is a general concept for a graphic that can be drawn to the screen and which you can retrieve with APIs such as getDrawable(int) or apply to another XML resource">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发中的Drawable Resources">
+<meta property="og:url" content="http://yoursite.com/2016/01/06/android-develop-drawable-resources/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description">
+<meta property="og:description" content="Drawable ResourcesA drawable resource is a general concept for a graphic that can be drawn to the screen and which you can retrieve with APIs such as getDrawable(int) or apply to another XML resource">
+<meta property="og:updated_time" content="2016-01-06T05:53:41.233Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhusandiao">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Android开发中的Drawable Resources">
+<meta name="twitter:description" content="Drawable ResourcesA drawable resource is a general concept for a graphic that can be drawn to the screen and which you can retrieve with APIs such as getDrawable(int) or apply to another XML resource">
   
     <link rel="alternative" href="/atom.xml" title="zhusandiao" type="application/atom+xml">
   
@@ -169,84 +170,109 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-android-develop-drawable-resources" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/06/android-develop-drawable-resources/" class="archive-article-date">
-  	<time datetime="2016-01-06T05:24:22.000Z" itemprop="datePublished">1月 6</time>
+    <div class="article-meta">
+      <a href="/2016/01/06/android-develop-drawable-resources/" class="article-date">
+  	<time datetime="2016-01-06T05:24:22.000Z" itemprop="datePublished">2016-01-06</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/06/android-develop-drawable-resources/">Android开发中的Drawable Resources</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android开发中的Drawable Resources
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+   	  
+   	  	<div class="article-info article-info-post">
+   	  	  
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
 	</div>
 
-          
+   	  	  
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+   	  	  <div class="clearfix"></div>
+   	  	</div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      	
+                      
+            <div id="toc" class="article-toc">
+            <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Drawable_Resources"><span class="toc-number">1.</span> <span class="toc-text">Drawable Resources</span></a></li></ol>  
+            </div>
+            <script type="text/javascript">
+              var _article = document.getElementsByClassName('article')[0];
+              <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+              setTimeout("_article.className += ' article2'",0); 
+              setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+            </script>
+          
+        
+        <h3 id="Drawable_Resources"><a href="#Drawable_Resources" class="headerlink" title="Drawable Resources"></a>Drawable Resources</h3><p>A drawable resource is a general concept for a graphic that can be drawn to the screen and which you can retrieve with APIs such as getDrawable(int) or apply to another XML resource with attributes such as android:drawable and android:icon. There are several different types of drawables:<br><code>drawable resource</code> 概念上来说就是以一种可以被绘制到屏幕上的图形，可以通过如 getDrawable(int)这样的API获取或者是通过如 android:drawable 和 android:icon 这样的属性应用到另一个 XML 资源上。有以下几种不同类型的 drawables:  </p>
+<blockquote>
+<ol>
+<li>Bitmap File: 一个位图格式的文件，生成<code>BitmapDrawable</code>  </li>
+<li>Nina-atch File: 一种带有课伸缩区域的PNG格式的图片，可以基于内容改变图片尺寸，后缀名是<code>.9.png</code>，生成<code>NinePatchDrawable</code>  </li>
+<li>Layer List: 可以管理一个其它Drawable组成数组的Drawable，这些 Drawable 资源按照数组顺序绘制，所以索引值最大的在顶部绘制，生成<code>LayerDrawable</code>  </li>
+<li>State List: 一种XML文件，用来在不同状态指向不同的位图图形（例如，当 button 被按下的时候，使用不同的图片），生成<code>StateListDrawable</code>  </li>
+<li>Level List: </li>
+</ol>
+</blockquote>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/05/And-Then-There-Were-None/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《无人生还》读书笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/05/And-Then-There-Were-None/" class="archive-article-date">
-  	<time datetime="2016-01-05T12:57:47.000Z" itemprop="datePublished">1月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/05/And-Then-There-Were-None/">《无人生还》读书笔记</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhusandiao'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    $
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+ 
 
 </div>
       <footer id="footer">
@@ -272,8 +298,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
