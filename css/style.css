@@ -1033,7 +1033,7 @@ a {
 .article-entry h2 {
   margin-top: 20px;
   font-weight: 300;
-  color: #574c4c;
+  color: #000;
   padding-bottom: 5px;
   border-bottom: 1px solid #ddd;
 }
@@ -1043,7 +1043,7 @@ a {
 .article-entry h6 {
   margin-top: 20px;
   font-weight: 300;
-  color: #574c4c;
+  color: #000;
   padding-bottom: 5px;
   border-bottom: 1px solid #ddd;
 }
