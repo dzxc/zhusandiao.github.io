@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>通过githug游戏学习git（下） | zhusandiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="之前两篇通过githug游戏学习git（上）通过githug游戏学习git（中）  
+最后的36~54关36. delete_branch删除某个分支git  branch -d [branch_name]  
+37. push_branch推送指定分支到远程仓库中git push &amp;lt;远程主机名&amp;gt; &amp;lt;本地分支名&amp;gt;:&amp;lt;远程分支名&amp;gt;该关卡中远程主机名为 origin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过githug游戏学习git（下）">
+<meta property="og:url" content="http://yoursite.com/2016/01/20/git-learning-last/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="之前两篇通过githug游戏学习git（上）通过githug游戏学习git（中）  
+最后的36~54关36. delete_branch删除某个分支git  branch -d [branch_name]  
+37. push_branch推送指定分支到远程仓库中git push &amp;lt;远程主机名&amp;gt; &amp;lt;本地分支名&amp;gt;:&amp;lt;远程分支名&amp;gt;该关卡中远程主机名为 origin">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2336-delete_brach.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2337-push_branch.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2338-merge.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2339-fetch.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-master-log.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-feature-log.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-afater.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2341-repack.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-log.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-set.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2343-grep.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2344-rename_commit.png">
+<meta property="og:updated_time" content="2016-01-20T12:30:56.526Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过githug游戏学习git（下）">
+<meta name="twitter:description" content="之前两篇通过githug游戏学习git（上）通过githug游戏学习git（中）  
+最后的36~54关36. delete_branch删除某个分支git  branch -d [branch_name]  
+37. push_branch推送指定分支到远程仓库中git push &amp;lt;远程主机名&amp;gt; &amp;lt;本地分支名&amp;gt;:&amp;lt;远程分支名&amp;gt;该关卡中远程主机名为 origin">
+  
+    <link rel="alternative" href="/atom.xml" title="zhusandiao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7fva1q.com1.z0.glb.clouddn.com/weibo-icon-1-tiny.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">zhusandiao</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">stay angry sometimes naive</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhusandiao" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/zhusandiao" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="http://7fva1q.com1.z0.glb.clouddn.com/gmail-address.png" title="mail">mail</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/zhusandiao" title="twitter">twitter</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">伪文艺中复兴</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">zhusandiao</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7fva1q.com1.z0.glb.clouddn.com/weibo-icon-1-tiny.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">zhusandiao</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">stay angry sometimes naive</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhusandiao" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/zhusandiao" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="http://7fva1q.com1.z0.glb.clouddn.com/gmail-address.png" title="mail">mail</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/zhusandiao" title="twitter">twitter</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-git-learning-last" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/20/git-learning-last/" class="article-date">
+  	<time datetime="2016-01-20T12:27:37.000Z" itemprop="datePublished">2016-01-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      通过githug游戏学习git（下）
+    </h1>
+  
+
+      </header>
+   	  
+   	  	<div class="article-info article-info-post">
+   	  	  
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+	</div>
+
+   	  	  
+
+   	  	  <div class="clearfix"></div>
+   	  	</div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      	
+                      
+            <div id="toc" class="article-toc">
+            <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#u4E4B_u524D_u4E24_u7BC7"><span class="toc-number">1.</span> <span class="toc-text">之前两篇</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6700_u540E_u768436_7E54_u5173"><span class="toc-number">2.</span> <span class="toc-text">最后的36~54关</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#36-_delete_branch"><span class="toc-number">2.1.</span> <span class="toc-text">36. delete_branch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#37-_push_branch"><span class="toc-number">2.2.</span> <span class="toc-text">37. push_branch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#38-_merge"><span class="toc-number">2.3.</span> <span class="toc-text">38. merge</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#39-_fetch"><span class="toc-number">2.4.</span> <span class="toc-text">39. fetch</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#40-_rebase"><span class="toc-number">2.5.</span> <span class="toc-text">40. rebase</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#41-_repack"><span class="toc-number">2.6.</span> <span class="toc-text">41. repack</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#42-_cherry-pick"><span class="toc-number">2.7.</span> <span class="toc-text">42. cherry-pick</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#43-_grep"><span class="toc-number">2.8.</span> <span class="toc-text">43. grep</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#44-_rename_commit"><span class="toc-number">2.9.</span> <span class="toc-text">44. rename_commit</span></a></li></ol></li></ol>  
+            </div>
+            <script type="text/javascript">
+              var _article = document.getElementsByClassName('article')[0];
+              <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+              setTimeout("_article.className += ' article2'",0); 
+              setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+            </script>
+          
+        
+        <h4 id="u4E4B_u524D_u4E24_u7BC7"><a href="#u4E4B_u524D_u4E24_u7BC7" class="headerlink" title="之前两篇"></a>之前两篇</h4><p><a href="http://zhusandiao.com/2016/01/15/git-learing/" target="_blank" rel="external">通过githug游戏学习git（上）</a><br><a href="http://zhusandiao.com/2016/01/15/git-learing-next/" target="_blank" rel="external">通过githug游戏学习git（中）</a>  </p>
+<h4 id="u6700_u540E_u768436_7E54_u5173"><a href="#u6700_u540E_u768436_7E54_u5173" class="headerlink" title="最后的36~54关"></a>最后的36~54关</h4><h5 id="36-_delete_branch"><a href="#36-_delete_branch" class="headerlink" title="36. delete_branch"></a>36. delete_branch</h5><p><strong>删除某个分支</strong><br><strong><code>git  branch -d [branch_name]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2336-delete_brach.png" alt="delete_branch">  </p>
+<h5 id="37-_push_branch"><a href="#37-_push_branch" class="headerlink" title="37. push_branch"></a>37. push_branch</h5><p><strong>推送指定分支到远程仓库中</strong><br><strong><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code></strong><br>该关卡中远程主机名为 origin 因为不想合并到主分支中，直接推送到 test_branch 中 ，<br>所以<code>git push origin test_branch:test_branch</code><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2337-push_branch.png" alt="push_branch">  </p>
+<h5 id="38-_merge"><a href="#38-_merge" class="headerlink" title="38. merge"></a>38. merge</h5><p><strong>合并指定分支内容到当前分支</strong><br><strong><code>git merge [branch_name]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2338-merge.png" alt="merge">  </p>
+<h5 id="39-_fetch"><a href="#39-_fetch" class="headerlink" title="39. fetch"></a>39. fetch</h5><p><strong>获取远程仓库的修改，但是不合并到当前分支</strong><br><strong><code>git fetch [远程主机名]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2339-fetch.png" alt="fetch">  </p>
+<h5 id="40-_rebase"><a href="#40-_rebase" class="headerlink" title="40. rebase"></a>40. rebase</h5><p><strong>这个命令，我还不怎么理解</strong>，本关卡中，有两个分支 master 和 feature 。<br>先查看 master 的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-master-log.png" alt="rebase-master-log"><br>然后查看 feature 的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-feature-log.png" alt="rebase-feature-log"><br>接着<strong><code>git rebase master feature</code></strong><br>再查看 master 分支的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-afater.png" alt="rebase-after"><br>似乎是将 feature 分支的提交记录合并了  </p>
+<h5 id="41-_repack"><a href="#41-_repack" class="headerlink" title="41. repack"></a>41. repack</h5><p><strong>将仓库中冗余的打包文件移除</strong><br><strong><code>git rebase</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2341-repack.png" alt="repack"><br>查看<a href="http://gitbook.liuhui998.com/7_1.html" target="_blank" rel="external">Git 是如何存储对象的</a>  </p>
+<h5 id="42-_cherry-pick"><a href="#42-_cherry-pick" class="headerlink" title="42. cherry-pick"></a>42. cherry-pick</h5><p><strong>cherry-pick命令”复制”一个提交节点并在当前分支做一次完全一样的新提交</strong><br><strong><code>git checkout-pick [某个commit的hash值]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick.png" alt="cherry-pick"><br>在本关卡中，先查看所有的提交记录 <code>git log -all</code><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-log.png" alt="checkout-pick-log"><br>记录 <code>Filled in REASME.md with proper input</code> 这次 commit 的 hash 值<br>接着 <strong><code>git checkout-pick ca3236</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-set.png" alt="cherry-pick-set">  </p>
+<h5 id="43-_grep"><a href="#43-_grep" class="headerlink" title="43. grep"></a>43. grep</h5><p><strong>grep 在 linux 中就是一个强大的搜索命令，支持文本、正则等方式</strong><br>本关卡中<strong><code>git grep TODO</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2343-grep.png" alt="grep">  </p>
+<h5 id="44-_rename_commit"><a href="#44-_rename_commit" class="headerlink" title="44. rename_commit"></a>44. rename_commit</h5><p><strong>重命名某次提交</strong><br>先<strong><code>git log</code></strong>，查看提交信息，记录有输入错误的 commit 的前一次 commit 的 hash 值<br>然后<strong><code>git rebase -i hash值</code></strong><br>接着会出现两次默认编辑器窗口，第一次是修改 .git/rebase-merge/git-rebase-todo ，将出错的那行 pick 改成 reword ，同时修改后面的错误，保存之后<br>又会出来一个窗口，这次修改的是 .git/COMMIT_EDITMSG 手动修改提交信息中的错误，再保存就可以了<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2344-rename_commit.png" alt="rename_commit">  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/20/git-learning-next/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">通过githug游戏学习git（中）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhusandiao'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    $
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+ 
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 zhusandiao
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
