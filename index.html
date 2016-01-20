@@ -197,18 +197,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-      	
-        <h4 id="u4E4B_u524D_u4E24_u7BC7"><a href="#u4E4B_u524D_u4E24_u7BC7" class="headerlink" title="之前两篇"></a>之前两篇</h4><p><a href="http://zhusandiao.com/2016/01/15/git-learing/" target="_blank" rel="external">通过githug游戏学习git（上）</a><br><a href="http://zhusandiao.com/2016/01/15/git-learing-next/" target="_blank" rel="external">通过githug游戏学习git（中）</a>  </p>
+        <h4 id="u4E4B_u524D_u4E24_u7BC7"><a href="#u4E4B_u524D_u4E24_u7BC7" class="headerlink" title="之前两篇"></a>之前两篇</h4><p><a href="http://zhusandiao.com/2016/01/15/git-learing/">通过githug游戏学习git（上）</a><br><a href="http://zhusandiao.com/2016/01/15/git-learing-next/">通过githug游戏学习git（中）</a>  </p>
 <h4 id="u6700_u540E_u768436_7E54_u5173"><a href="#u6700_u540E_u768436_7E54_u5173" class="headerlink" title="最后的36~54关"></a>最后的36~54关</h4><h5 id="36-_delete_branch"><a href="#36-_delete_branch" class="headerlink" title="36. delete_branch"></a>36. delete_branch</h5><p><strong>删除某个分支</strong><br><strong><code>git  branch -d [branch_name]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2336-delete_brach.png" alt="delete_branch">  </p>
 <h5 id="37-_push_branch"><a href="#37-_push_branch" class="headerlink" title="37. push_branch"></a>37. push_branch</h5><p><strong>推送指定分支到远程仓库中</strong><br><strong><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code></strong><br>该关卡中远程主机名为 origin 因为不想合并到主分支中，直接推送到 test_branch 中 ，<br>所以<code>git push origin test_branch:test_branch</code><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2337-push_branch.png" alt="push_branch">  </p>
 <h5 id="38-_merge"><a href="#38-_merge" class="headerlink" title="38. merge"></a>38. merge</h5><p><strong>合并指定分支内容到当前分支</strong><br><strong><code>git merge [branch_name]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2338-merge.png" alt="merge">  </p>
 <h5 id="39-_fetch"><a href="#39-_fetch" class="headerlink" title="39. fetch"></a>39. fetch</h5><p><strong>获取远程仓库的修改，但是不合并到当前分支</strong><br><strong><code>git fetch [远程主机名]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2339-fetch.png" alt="fetch">  </p>
-<h5 id="40-_rebase"><a href="#40-_rebase" class="headerlink" title="40. rebase"></a>40. rebase</h5><p><strong>这个命令，我还不怎么理解</strong>，本关卡中，有两个分支 master 和 feature 。<br>先查看 master 的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-master-log.png" alt="rebase-master-log"><br>然后查看 feature 的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-feature-log.png" alt="rebase-feature-log"><br>接着<strong><code>git rebase master feature</code></strong><br>再查看 master 分支的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-afater.png" alt="rebase-after"><br>似乎是将 feature 分支的提交记录合并了  </p>
-<h5 id="41-_repack"><a href="#41-_repack" class="headerlink" title="41. repack"></a>41. repack</h5><p><strong>将仓库中冗余的打包文件移除</strong><br><strong><code>git rebase</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2341-repack.png" alt="repack"><br>查看<a href="http://gitbook.liuhui998.com/7_1.html" target="_blank" rel="external">Git 是如何存储对象的</a>  </p>
-<h5 id="42-_cherry-pick"><a href="#42-_cherry-pick" class="headerlink" title="42. cherry-pick"></a>42. cherry-pick</h5><p><strong>cherry-pick命令”复制”一个提交节点并在当前分支做一次完全一样的新提交</strong><br><strong><code>git checkout-pick [某个commit的hash值]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick.png" alt="cherry-pick"><br>在本关卡中，先查看所有的提交记录 <code>git log -all</code><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-log.png" alt="checkout-pick-log"><br>记录 <code>Filled in REASME.md with proper input</code> 这次 commit 的 hash 值<br>接着 <strong><code>git checkout-pick ca3236</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-set.png" alt="cherry-pick-set">  </p>
-<h5 id="43-_grep"><a href="#43-_grep" class="headerlink" title="43. grep"></a>43. grep</h5><p><strong>grep 在 linux 中就是一个强大的搜索命令，支持文本、正则等方式</strong><br>本关卡中<strong><code>git grep TODO</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2343-grep.png" alt="grep">  </p>
-<h5 id="44-_rename_commit"><a href="#44-_rename_commit" class="headerlink" title="44. rename_commit"></a>44. rename_commit</h5><p><strong>重命名某次提交</strong><br>先<strong><code>git log</code></strong>，查看提交信息，记录有输入错误的 commit 的前一次 commit 的 hash 值<br>然后<strong><code>git rebase -i hash值</code></strong><br>接着会出现两次默认编辑器窗口，第一次是修改 .git/rebase-merge/git-rebase-todo ，将出错的那行 pick 改成 reword ，同时修改后面的错误，保存之后<br>又会出来一个窗口，这次修改的是 .git/COMMIT_EDITMSG 手动修改提交信息中的错误，再保存就可以了<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2344-rename_commit.png" alt="rename_commit">  </p>
-
+<h5 id="40-_rebase"><a href="#40-_rebase" class="headerlink" title="40. rebase"></a>40. rebase</h5><p><strong>这个命令，我还不怎么理解</strong>，本关卡中，有两个分支 master 和 feature 。<br>先查看 master 的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-master-log.png" alt="rebase-master-log"><br>然后查看 feature 的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-feature-log.png" alt="rebase-feature-log"><br>
       
     </div>
     
@@ -221,6 +215,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/20/git-learning-last/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -263,30 +261,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-      	
-        <h4 id="u4E0A_u4E00_u7BC7"><a href="#u4E0A_u4E00_u7BC7" class="headerlink" title="上一篇"></a>上一篇</h4><p><a href="http://zhusandiao.com/2016/01/15/git-learing/" target="_blank" rel="external">通过githug游戏学习git（上）</a>  </p>
+        <h4 id="u4E0A_u4E00_u7BC7"><a href="#u4E0A_u4E00_u7BC7" class="headerlink" title="上一篇"></a>上一篇</h4><p><a href="http://zhusandiao.com/2016/01/15/git-learing/">通过githug游戏学习git（上）</a>  </p>
 <h4 id="u4E0B_u9762_u662F16_7E35_u5173"><a href="#u4E0B_u9762_u662F16_7E35_u5173" class="headerlink" title="下面是16~35关"></a>下面是16~35关</h4><h5 id="16-_log"><a href="#16-_log" class="headerlink" title="16. log"></a>16. log</h5><p><strong>查看提交日志</strong><br><strong><code>git log</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2316-log.png" alt="log">  </p>
 <h5 id="17-_tag"><a href="#17-_tag" class="headerlink" title="17. tag"></a>17. tag</h5><p><strong>为最近的一次 commit 打上标签</strong><br><strong><code>git tag 标签名</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2317-tag.png" alt="tag">  </p>
 <h5 id="18-_push_tags"><a href="#18-_push_tags" class="headerlink" title="18. push_tags"></a>18. push_tags</h5><p><strong>把一些标签推送到远程仓库</strong><br><strong><code>git push tags</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2318-push_tags.png" alt="push_tags">  </p>
-<h5 id="19-_commit_amend"><a href="#19-_commit_amend" class="headerlink" title="19. commit_amend"></a>19. commit_amend</h5><p><strong>修改上一次的提交，加入一个新的文件</strong><br><strong><code>git add forgotten_file.rb</code></strong> ，先将文件存入暂存区，然后 <strong><code>git commit amend</code></strong> ，使用一次新的提交，替代上一次的提交<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2319-commit_amend.png" alt="commit_amend">  </p>
-<h5 id="20-_commit_in_future"><a href="#20-_commit_in_future" class="headerlink" title="20. commit_in_future"></a>20. commit_in_future</h5><p><strong>为一次提交指定一个未来的时间</strong><br><strong><code>git commit --date=12.06.2016T15:00:00</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2320-commit_in_future.png" alt="commit_in_future">  </p>
-<h5 id="21-_reset"><a href="#21-_reset" class="headerlink" title="21. reset"></a>21. reset</h5><p><strong>把某个文件撤出暂存区</strong><br><strong><code>git reset HEAD 要撤出的文件</code></strong><br><strong><code>git reset HEAD to_commit_second.rb</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2321-reset.png" alt="reset">  </p>
-<h5 id="22-_reset_soft"><a href="#22-_reset_soft" class="headerlink" title="22. reset_soft"></a>22. reset_soft</h5><p><strong>只撤销上次的提交信息，工作区和暂存区内容不变</strong><br><strong><code>git reset --soft HEAD^1</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2322-reset_soft.png" alt="reset_soft">  </p>
-<h5 id="23-_checkout_file"><a href="#23-_checkout_file" class="headerlink" title="23. checkout_file"></a>23. checkout_file</h5><p><strong>丢弃工作区某个文件的改动，用上次提交覆盖工作区</strong><br><strong><code>git checkout [commit] [file]</code></strong><br><strong><code>git checkou con*</code></strong><br>注：图中的这个实际上是用暂存区的文件覆盖，实际上 checkout 还有几种，以及需要和 git reset 命令进行区分，这些留待以后说<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2323-checkout_file.png" alt="checkout_file">  </p>
-<h5 id="24-_remote"><a href="#24-_remote" class="headerlink" title="24. remote"></a>24. remote</h5><p><strong>查看远程仓库</strong><br><strong><code>git remote</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2324-remote.png" alt="remote">  </p>
-<h5 id="25-_remote_url"><a href="#25-_remote_url" class="headerlink" title="25. remote_url"></a>25. remote_url</h5><p><strong>查看远程仓库以及地址</strong><br><strong><code>git remote -v</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2325-remote_url.png" alt="remote_url">  </p>
-<h5 id="26-_pull"><a href="#26-_pull" class="headerlink" title="26. pull"></a>26. pull</h5><p><strong>从（远程）仓库取回变动，并与本地分支合并</strong><br><strong><code>git pull [remote] [branch]</code></strong><br><strong><code>git pull origin master</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2326-pull.png" alt="pull">  </p>
-<h5 id="27-_remote_add"><a href="#27-_remote_add" class="headerlink" title="27. remote_add"></a>27. remote_add</h5><p><strong>添加一个远程仓库，同时命名</strong>，<strong>git remote add [shortname] [url]</strong><br><strong><code>git remote add origin https://githug.com/githug/githug</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2327-remote_add.png" alt="remote_add">  </p>
-<h5 id="28-_push"><a href="#28-_push" class="headerlink" title="28. push"></a>28. push</h5><p><strong>推送本地修改到远程仓库中</strong>，<strong>这个例子里，远程的仓库和分支是 origin/master ，本地主机的分支是master，先 <code>git rebase origin/master</code> ，在当前分支上，合并 origin/master ，然后通过 <code>git push origin master</code> 推送本地修改到这个远程仓库</strong>  </p>
-<p><strong><code>git push [remote] [branch]</code></strong>，上传本地指定分支到远程仓库<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2328-push.png" alt="push">  </p>
-<h5 id="29-_diff"><a href="#29-_diff" class="headerlink" title="29. diff"></a>29. diff</h5><p><strong>显示暂存区和工作区的差异</strong><br><strong><code>git diff</code></strong>，注：diff信息读取也值得一讲，也留待以后细说<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2329-diff.png" alt="diff">  </p>
-<h5 id="30-_Blame"><a href="#30-_Blame" class="headerlink" title="30. Blame"></a>30. Blame</h5><p><strong>显示指定文件是什么人在什么时间修改过</strong><br><strong><code>git blame [file]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2330-blame.png" alt="blame">  </p>
-<h5 id="31-_branch"><a href="#31-_branch" class="headerlink" title="31. branch"></a>31. branch</h5><p><strong>创建分支</strong><br><strong><code>git  branch [branch_name]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2331-branch.png" alt="branch">  </p>
-<h5 id="32-_checkout"><a href="#32-_checkout" class="headerlink" title="32. checkout"></a>32. checkout</h5><p><strong>创建并切换分支</strong><br><strong><code>git  branch my_branch</code></strong> 先创建一个名为 my_branch 的分支，接着 <strong><code>git checkout my_branch</code></strong> ，通过 <code>git checkout</code> 命令切换到该分支<br><strong>实际上，开发中一般直接使用<code>git checkout -b [branch_name]</code>，直接创建分支并且切换过去</strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2332-checkout.png" alt="branch">  </p>
-<h5 id="33-_checkout_tag"><a href="#33-_checkout_tag" class="headerlink" title="33. checkout_tag"></a>33. checkout_tag</h5><p><strong>切换到指定 tag </strong><br><strong><code>git checkout tag_name</code></strong>，可以先<code>git tag</code> 查看所有的tag ，发现有 v1.2，然后<code>git checkout v1.2</code>，切换过去<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2333-checkout_tags.png" alt="checkout_tag">  </p>
-<h5 id="34-_checkout_tags_over_branch"><a href="#34-_checkout_tags_over_branch" class="headerlink" title="34. checkout_tags_over_branch"></a>34. checkout_tags_over_branch</h5><p><strong>切换到指定 tag ，但这个 tag 和 branch 重名了</strong><br><strong><code>git checkout tags/tag_name</code></strong>，还是先<code>git tag</code> 查看所有的tag，接着<code>git checkout tags/v1.2</code>直接切换<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2334-checkout_tags_over_branch.png" alt="checkout_tags_over_branch">  </p>
-<h5 id="35-_branch_at"><a href="#35-_branch_at" class="headerlink" title="35. branch_at"></a>35. branch_at</h5><p><strong>根据一个特定提交创建一个分支</strong><br>该关卡的要求是在上一次的提交前创建新分支，<strong><code>git branch test_branch HEAD^1</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2335-branch-at.png" alt="branch_at">  </p>
-
+<h5 id="19-_commit_amend"><a href="#19-_commit_amend" class="headerlink" title="19. commit_amend"></a>19. commit_amend</h5><p><strong>修改上一次的提交，加入一个新的文件</strong><br><strong><code>git add forgotten_file.rb</code></strong> ，先将文件存入暂存区，然后 <strong><code>git commit amend</code></strong> ，使用一次新的提交，替代上一次的提交<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2319-commit_amend.png" alt="commit_amend"><br>
       
     </div>
     
@@ -299,6 +278,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/20/git-learning-next/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
