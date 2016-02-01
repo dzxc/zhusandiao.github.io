@@ -188,7 +188,7 @@ body {
   font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 14px;
   line-height: 2;
-  color: #555;
+  color: #222;
   background: #fff;
 }
 @media (max-width: 767px) {
@@ -748,7 +748,7 @@ pre .javascript .function {
   font-size: 14px;
   color: #fff;
   background: #222;
-  border: 2px solid #555;
+  border: 2px solid #222;
   text-decoration: none;
   border-radius: 0;
   transition-property: background-color;
@@ -766,7 +766,7 @@ pre .javascript .function {
   display: block;
   width: 22px;
   height: 2px;
-  background: #555;
+  background: #222;
   border-radius: 1px;
 }
 .btn-bar+.btn-bar {
@@ -1032,7 +1032,7 @@ pre .javascript .function {
   margin: 10px auto 15px;
   text-align: center;
   font-size: 14px;
-  color: #999;
+  color: $black;
   font-weight: bold;
   line-height: 1;
 }
@@ -1294,7 +1294,7 @@ pre .javascript .function {
   margin-top: 50px;
 }
 .post-more-link .btn {
-  color: #555;
+  color: #222;
   font-size: 14px;
   background: #fff;
   border-radius: 2px;
@@ -1529,7 +1529,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #50ad5c;
+  background: #aa121b;
 }
 .sidebar-nav {
   margin: 0 0 20px;
@@ -2240,7 +2240,7 @@ body {
 .sidebar-inner {
   box-sizing: border-box;
   width: 240px;
-  color: #555;
+  color: #222;
   background: #fff;
 }
 .sidebar-inner.affix {
