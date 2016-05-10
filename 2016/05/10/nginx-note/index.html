@@ -64,7 +64,8 @@
 负载均衡
 
 安装brew install nginx
-查看版本-v```：查看版本  123456789101112131415161718192021222324252627```nginx -V```：查看版本和配置信息#### 运行nginx -s relo">
+查看版本nginx -v ：查看版本nginx -V ：查看版本和配置信息  
+运行nginx -s reload    #重新加载配置nginx -s reopen    #重启nginx -s stop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx笔记">
 <meta property="og:url" content="http://yoursite.com/2016/05/10/nginx-note/index.html">
@@ -76,10 +77,11 @@
 负载均衡
 
 安装brew install nginx
-查看版本-v```：查看版本  123456789101112131415161718192021222324252627```nginx -V```：查看版本和配置信息#### 运行nginx -s relo">
+查看版本nginx -v ：查看版本nginx -V ：查看版本和配置信息  
+运行nginx -s reload    #重新加载配置nginx -s reopen    #重启nginx -s stop">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/92c4e634gw1f3pjfcs5rmj20760213yc.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/92c4e634gw1f3pji3mvp7j20hz01mwf1.jpg">
-<meta property="og:updated_time" content="2016-05-10T09:28:01.270Z">
+<meta property="og:updated_time" content="2016-05-10T09:39:21.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx笔记">
 <meta name="twitter:description" content="nginx高性能的HTTP和反向代理服务器  
@@ -89,7 +91,8 @@
 负载均衡
 
 安装brew install nginx
-查看版本-v```：查看版本  123456789101112131415161718192021222324252627```nginx -V```：查看版本和配置信息#### 运行nginx -s relo">
+查看版本nginx -v ：查看版本nginx -V ：查看版本和配置信息  
+运行nginx -s reload    #重新加载配置nginx -s reopen    #重启nginx -s stop">
 
 
 
@@ -297,9 +300,20 @@
 <li>高并发，非阻塞（最高支持50000个并发）</li>
 <li>负载均衡</li>
 </ol>
-<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>brew install nginx</p>
-<h4 id="u67E5_u770B_u7248_u672C"><a href="#u67E5_u770B_u7248_u672C" class="headerlink" title="查看版本"></a>查看版本</h4><figure class="highlight"><figcaption><span>-v```：查看版本  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">```nginx -V```：查看版本和配置信息</span><br><span class="line"></span><br><span class="line">#### 运行</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nginx -s reload	#重新加载配置</span><br><span class="line">nginx -s reopen	#重启</span><br><span class="line">nginx -s stop	#停止</span><br><span class="line">nginx -s quit  	#退出</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 配置文件  </span><br><span class="line"></span><br><span class="line">- 我本机的 nginx 目录：```/usr/local/etc/nginx```  </span><br><span class="line">- 配置文件为：```/usr/local/etc/nginx/nginx.conf```  </span><br><span class="line"></span><br><span class="line">- 技巧：  </span><br><span class="line">可以在 zsh 里安装 jump 插件，直接在手动切换到过 nginx 目录后 ，可以直接```j nginx``` ，就能直接跳转到 nginx 目录下。</span><br><span class="line"></span><br><span class="line">#### 测试配置是否有错误  </span><br><span class="line"></span><br><span class="line">```nginx -t   #测试配置是否有错误```  </span><br><span class="line"> </span><br><span class="line">如果没有错误，则会提示：</span><br></pre></td></tr></table></figure>
-<p>nginx: the configuration file /usr/local/etc/nginx/nginx.conf syntax is ok<br>nginx: configuration file /usr/local/etc/nginx/nginx.conf test is successful<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="header">#### 日志文件（log）</span></span><br><span class="line"></span><br><span class="line">我本机的 nginx 目录为 ：  </span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span><span class="code">```</span>/usr/local/etc/nginx<span class="code">```</span>  </span><br><span class="line"></span><br><span class="line">但是nginx的日志文件目录为：  </span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span><span class="code">```</span>/usr/local/Cellar/nginx/1.8.1/logs<span class="code">```</span>  </span><br><span class="line"></span><br><span class="line">nginx日志文件下有三个文件：  </span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>access.log:  </span><br><span class="line">ngingx 的访问日志，记录客户端访问 nginx 的每一个请求。</span><br><span class="line">![<span class="link_label">本机nginx-access_log</span>](<span class="link_url">http://ww4.sinaimg.cn/large/92c4e634gw1f3pjs0g9tjj20su0dlqg1.jpg</span>)  </span><br><span class="line">其中一条：</span><br></pre></td></tr></table></figure></p>
+<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p><code>brew install nginx</code></p>
+<h4 id="u67E5_u770B_u7248_u672C"><a href="#u67E5_u770B_u7248_u672C" class="headerlink" title="查看版本"></a>查看版本</h4><p><code>nginx -v</code> ：查看版本<br><code>nginx -V</code> ：查看版本和配置信息  </p>
+<h4 id="u8FD0_u884C"><a href="#u8FD0_u884C" class="headerlink" title="运行"></a>运行</h4><p><code>nginx -s reload</code>    #重新加载配置<br><code>nginx -s reopen</code>    #重启<br><code>nginx -s stop</code>    #停止<br><code>nginx -s quit</code>      #退出</p>
+<a id="more"></a>
+<h4 id="u914D_u7F6E_u6587_u4EF6"><a href="#u914D_u7F6E_u6587_u4EF6" class="headerlink" title="配置文件"></a>配置文件</h4><ul>
+<li>我本机的 nginx 目录：<code>/usr/local/etc/nginx</code>  </li>
+<li><p>配置文件为：<code>/usr/local/etc/nginx/nginx.conf</code>  </p>
+</li>
+<li><p>技巧：<br>可以在 zsh 里安装 jump 插件，直接在手动切换到过 nginx 目录后 ，可以直接<code>j nginx</code> ，就能直接跳转到 nginx 目录下。</p>
+</li>
+</ul>
+<h4 id="u6D4B_u8BD5_u914D_u7F6E_u662F_u5426_u6709_u9519_u8BEF"><a href="#u6D4B_u8BD5_u914D_u7F6E_u662F_u5426_u6709_u9519_u8BEF" class="headerlink" title="测试配置是否有错误"></a>测试配置是否有错误</h4><p><code>nginx -t   #测试配置是否有错误</code>  </p>
+<p>如果没有错误，则会提示：</p>
+<p>`<br>nginx: the configuration file /usr/local/etc/nginx/nginx.conf syntax is ok<br>nginx: configuration file /usr/local/etc/nginx/nginx.conf test is successful<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="header">#### 日志文件（log）</span></span><br><span class="line"></span><br><span class="line">我本机的 nginx 目录为 ：  </span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span><span class="code">```</span>/usr/local/etc/nginx<span class="code">```</span>  </span><br><span class="line"></span><br><span class="line">但是nginx的日志文件目录为：  </span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span><span class="code">```</span>/usr/local/Cellar/nginx/1.8.1/logs<span class="code">```</span>  </span><br><span class="line"></span><br><span class="line">nginx日志文件下有三个文件：  </span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>access.log:  </span><br><span class="line">ngingx 的访问日志，记录客户端访问 nginx 的每一个请求。</span><br><span class="line">![<span class="link_label">本机nginx-access_log</span>](<span class="link_url">http://ww4.sinaimg.cn/large/92c4e634gw1f3pjs0g9tjj20su0dlqg1.jpg</span>)  </span><br><span class="line">其中一条：</span><br></pre></td></tr></table></figure></p>
 <p>127.0.0.1 - - [09/May/2016:22:24:13 +0800] “GET /src/js/browser.min.js HTTP/1.1” 200 1333640 “<a href="http://localhost:8091/src/index.html" target="_blank" rel="external">http://localhost:8091/src/index.html</a>“ “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36”<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">- </span>erros.log：</span><br><span class="line">错误日志，记录客户端访问 nginx 出错时的信息。  </span><br><span class="line">![<span class="link_label">nginx-erros_log</span>](<span class="link_url">http://ww3.sinaimg.cn/large/92c4e634gw1f3pjuis73xj20sx0b5ajo.jpg</span>)  </span><br><span class="line">其中一条：</span><br></pre></td></tr></table></figure></p>
 <p>2016/05/09 22:22:10 [error] 9539#0: *5 open() “/Users/abc/project/xyt/50x.html” failed (2: No such file or directory), client: 127.0.0.1, server: localhost, request: “GET / HTTP/1.1”, upstream: “fastcgi://127.0.0.1:9000”, host: “localhost:8088”</p>
 <pre><code>
@@ -500,7 +514,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx"><span class="nav-number">1.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7279_u70B9"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5B89_u88C5"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u67E5_u770B_u7248_u672C"><span class="nav-number">4.</span> <span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5178_u578Bnginx_u914D_u7F6E"><span class="nav-number">5.</span> <span class="nav-text">典型nginx配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u672C_u673A_u914D_u7F6E_uFF1A"><span class="nav-number">6.</span> <span class="nav-text">本机配置：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx"><span class="nav-number">1.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7279_u70B9"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5B89_u88C5"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u67E5_u770B_u7248_u672C"><span class="nav-number">4.</span> <span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8FD0_u884C"><span class="nav-number">5.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u914D_u7F6E_u6587_u4EF6"><span class="nav-number">6.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6D4B_u8BD5_u914D_u7F6E_u662F_u5426_u6709_u9519_u8BEF"><span class="nav-number">7.</span> <span class="nav-text">测试配置是否有错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5178_u578Bnginx_u914D_u7F6E"><span class="nav-number">8.</span> <span class="nav-text">典型nginx配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u672C_u673A_u914D_u7F6E_uFF1A"><span class="nav-number">9.</span> <span class="nav-text">本机配置：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
