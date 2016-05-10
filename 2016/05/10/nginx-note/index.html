@@ -81,7 +81,8 @@
 运行nginx -s reload    #重新加载配置nginx -s reopen    #重启nginx -s stop">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/92c4e634gw1f3pjs0g9tjj20su0dlqg1.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/92c4e634gw1f3pjuis73xj20sx0b5ajo.jpg">
-<meta property="og:updated_time" content="2016-05-10T09:51:51.210Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/92c4e634gw1f3pjfcs5rmj20760213yc.jpg">
+<meta property="og:updated_time" content="2016-05-10T09:53:40.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx笔记">
 <meta name="twitter:description" content="nginx高性能的HTTP和反向代理服务器  
@@ -337,7 +338,7 @@
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span>/<span class="number">05</span>/<span class="number">09</span> <span class="number">22</span>:<span class="number">22</span>:<span class="number">10</span> [error] <span class="number">9539</span><span class="preprocessor">#<span class="number">0</span>: *<span class="number">5</span> open() <span class="string">"/Users/abc/project/xyt/50x.html"</span> failed (<span class="number">2</span>: No such file or directory), client: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>, server: localhost, request: <span class="string">"GET / HTTP/1.1"</span>, upstream: <span class="string">"fastcgi://127.0.0.1:9000"</span>, host: <span class="string">"localhost:8088"</span></span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>nginx.pid<br>记录了 nginx 的主进程号，很简单的一行，例如，我本机的 nginx.pid 文件内容为： <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![nginx.pid](http://ww1.sinaimg.cn/large/92c4e634gw1f3pjfcs5rmj20760213yc.jpg)  &#10;&#32456;&#31471;&#19979;&#65292;&#36890;&#36807;&#21629;&#20196;```ps -ef|grep nginx```&#65292;&#26597;&#30475;&#19979; nginx &#30340;&#36827;&#31243;&#65306;&#10;![nginx-master_progress](http://ww2.sinaimg.cn/large/92c4e634gw1f3pji3mvp7j20hz01mwf1.jpg)  &#10;&#10;&#26041;&#20415;&#36890;&#36807; pid&#25991;&#20214; ```kill &#8211;QUIT `cat nginx.pid&#25991;&#20214;&#30446;&#24405;```` &#23558;nginx &#30340;&#20572;&#27490;&#65292;&#19981;&#29992;&#20877;&#21435;&#26597;&#35810; nginx &#30340;pid&#12290;&#10;&#10;#### &#20856;&#22411;nginx&#37197;&#32622;</span><br></pre></td></tr></table></figure></li>
+<li>nginx.pid<br>记录了 nginx 的主进程号，很简单的一行，例如，我本机的 nginx.pid 文件内容为： <code>9538</code><br><img src="http://ww1.sinaimg.cn/large/92c4e634gw1f3pjfcs5rmj20760213yc.jpg" alt="nginx.pid"><br>终端下，通过命令<figure class="highlight ps"><figcaption><span>-ef|grep nginx```，查看下 nginx 的进程：</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">![nginx-master_progress](http://ww2.sinaimg.cn/large/<span class="number">92</span>c4e634gw1f3pji3mvp7j20hz01mwf1.jpg)  </span><br><span class="line"></span><br><span class="line">方便通过 pid文件 ```kill –QUIT `cat nginx.pid文件目录```` 将nginx 的停止，不用再去查询 nginx 的pid。</span><br><span class="line"></span><br><span class="line"><span class="comment">#### 典型nginx配置</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>#用户和组信息<br>user  www www;</p>
 <p>#工作进程<br>worker_processes  2;</p>
