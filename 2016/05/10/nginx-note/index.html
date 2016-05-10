@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="编程，前端," />
+  <meta name="keywords" content="前端," />
 
 
 
@@ -81,7 +81,7 @@
 运行nginx -s reload    #重新加载配置nginx -s reopen    #重启nginx -s stop">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/92c4e634gw1f3pjs0g9tjj20su0dlqg1.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/92c4e634gw1f3pjuis73xj20sx0b5ajo.jpg">
-<meta property="og:updated_time" content="2016-05-10T09:47:02.405Z">
+<meta property="og:updated_time" content="2016-05-10T09:51:51.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx笔记">
 <meta name="twitter:description" content="nginx高性能的HTTP和反向代理服务器  
@@ -313,15 +313,19 @@
 </ul>
 <h4 id="u6D4B_u8BD5_u914D_u7F6E_u662F_u5426_u6709_u9519_u8BEF"><a href="#u6D4B_u8BD5_u914D_u7F6E_u662F_u5426_u6709_u9519_u8BEF" class="headerlink" title="测试配置是否有错误"></a>测试配置是否有错误</h4><p><code>nginx -t   #测试配置是否有错误</code>  </p>
 <p>如果没有错误，则会提示：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx: the configuration <span class="keyword">file</span> /usr/<span class="keyword">local</span>/etc/nginx/nginx.<span class="keyword">conf</span> <span class="keyword">syntax</span> is ok</span><br></pre></td></tr></table></figure>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx: configuration <span class="keyword">file</span> /usr/<span class="keyword">local</span>/etc/nginx/nginx.<span class="keyword">conf</span> <span class="keyword">test</span> is successful</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>nginx: the configuration file /usr/local/etc/nginx/nginx.conf syntax is ok  </p>
+</li>
+<li><p>nginx: configuration file /usr/local/etc/nginx/nginx.conf test is successful</p>
+</li>
+</ul>
 <h4 id="u65E5_u5FD7_u6587_u4EF6_uFF08log_uFF09"><a href="#u65E5_u5FD7_u6587_u4EF6_uFF08log_uFF09" class="headerlink" title="日志文件（log）"></a>日志文件（log）</h4><p>我本机的 nginx 目录为 ：  </p>
 <ul>
-<li><code>/usr/local/etc/nginx</code>  </li>
+<li>/usr/local/etc/nginx  </li>
 </ul>
 <p>但是nginx的日志文件目录为：  </p>
 <ul>
-<li><code>/usr/local/Cellar/nginx/1.8.1/logs</code>  </li>
+<li>/usr/local/Cellar/nginx/1.8.1/logs  </li>
 </ul>
 <p>nginx日志文件下有三个文件：  </p>
 <ul>
@@ -520,7 +524,7 @@ server {
       
         <div class="post-tags">
           
-            <a href="/tags/编程，前端/" rel="tag">#编程，前端</a>
+            <a href="/tags/前端/" rel="tag">#前端</a>
           
         </div>
       
