@@ -68,7 +68,7 @@
 
 引用相关文件因为许多步骤已经被封装好了，所以，先调用两个文件，一个是配置文件config.">
 <meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/xiuyetang-his-API%E5%88%86%E8%A7%A3.png">
-<meta property="og:updated_time" content="2016-05-24T15:47:09.738Z">
+<meta property="og:updated_time" content="2016-05-24T15:48:59.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php-api笔记">
 <meta name="twitter:description" content="先用文字描述整个过程客户端先发起一个请求，这个请求有具体的地址，还带了相关的参数，服务器接受到这个请求，然后找到了请求的这个文件，发现还需要引入其他两个文件，引入之后，接受了传过来的数据，然后，生成 sql 查询语句，再调用封装好的返回数据的方法，到相关数据库中查询数据，查询到之后，再转换数据格式后返回。
@@ -283,8 +283,10 @@
 <li>接受相关数据<br>通过 PHP 的 $_REQUEST 方法，获取通过 post 过来的数据</li>
 </ol>
 <ol>
-<li><p>生成 sql 查询语句<br>通过拼接的方式，生成 sql 的查询语句</p>
-</li>
+<li>生成 sql 查询语句<br>通过拼接的方式，生成 sql 的查询语句</li>
+</ol>
+<a id="more"></a>
+<ol>
 <li><p>利用引入的 <code>class_base.php</code> 文件中封装好的操作数据库的方法，把上面拼接好的 sql 查询语句，传入，查询。</p>
 </li>
 <li><p>返回查询的结果，这里可以做个判断，没有查询符合的数据，返回一个提示，如果查到了数据，通过 <code>json_encode</code> 方法转换成 可以传输的 json 格式，然后再返回。</p>
