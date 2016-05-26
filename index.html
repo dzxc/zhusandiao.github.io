@@ -279,8 +279,7 @@
 
       
         
-          
-            <h4 id="u4E0A_u4E00_u7BC7"><a href="#u4E0A_u4E00_u7BC7" class="headerlink" title="上一篇"></a>上一篇</h4><p><a href="http://zhusandiao.com/2016/05/24/php-api/" target="_blank" rel="external">php-api笔记</a></p>
+          <h4 id="u4E0A_u4E00_u7BC7"><a href="#u4E0A_u4E00_u7BC7" class="headerlink" title="上一篇"></a>上一篇</h4><p><a href="http://zhusandiao.com/2016/05/24/php-api/">php-api笔记</a></p>
 <h4 id="api__u7F16_u5199_u8FC7_u7A0B_u9519_u8BEF_u603B_u7ED3"><a href="#api__u7F16_u5199_u8FC7_u7A0B_u9519_u8BEF_u603B_u7ED3" class="headerlink" title="api 编写过程错误总结"></a>api 编写过程错误总结</h4><ul>
 <li>数据库连接失败<br>提示：数据库不可用，同时打印出 sql 语句</li>
 <li>传值失败<br><del>select * from <code>zzl_odr_tbl</code> where <code>odr_id</code> =;</del><br>select * from <code>zzl_odr_tbl</code> where <code>odr_id</code> = 11;  </li>
@@ -288,55 +287,11 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update zzl_odr_tbl set pat_id = <span class="string">''</span>, dep_id = <span class="string">''</span>, doc_id = <span class="string">''</span>, h_id = <span class="string">''</span>, odr_cost = <span class="string">'10000'</span>, odr_time = <span class="string">'2016-03-12 11:06:08.177'</span>, odr_timeto = <span class="string">'2016-03-12 11:06:08.177'</span>, odr_pay = <span class="string">'2'</span>, odr_desc = <span class="string">'眼部不适'</span> where odr_id =</span><br></pre></td></tr></table></figure>
 <p>原因：<code>his_route.php</code> 中，参数错误<code>$params[&#39;ord_id&#39;]     = $_REQUEST[&#39;odr_id&#39;];</code>，应该是<code>$params[&#39;odr_id&#39;]     = $_REQUEST[&#39;odr_id&#39;];</code></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from zzl_dep_tbl where dep_id =</span><br></pre></td></tr></table></figure>
-<p>原因：<br><code>$query_dep = &quot;dep_id = $dep_id&quot;;
-         $sql       = &quot;select * from zzl_dep_tbl where &quot;.$query_dep;</code><br>其中的 <code>&quot;dep_id = $dep_id&quot;;</code> <code>dep_id</code>写成了<code>id</code>  </p>
-<ul>
-<li><p>sql 语句拼接错误<br>字段和数据库不匹配：<br>select * from <code>zzl_doc_tbl</code> where <code>dep_id</code> = 1000  </p>
-</li>
-<li><p>sql 语句错误<br><del>update from <code>zzl_dep_tbl</code></del><br>应该是：update <code>zzl_dep_tbl</code>  </p>
-</li>
-</ul>
-<p>总结：<br>这次 api 编写过程中，错误产生的原因有三点：  </p>
-<ol>
-<li>sql 语句不熟悉，编写 sql 语句比较慢，还容易写错  </li>
-<li>传值错误，主要是参数名称写错  </li>
-<li>数据库没有连接成功</li>
-</ol>
-<h4 id="u7F16_u7A0B_u6280_u5DE7_u7684_u63D0_u9AD8"><a href="#u7F16_u7A0B_u6280_u5DE7_u7684_u63D0_u9AD8" class="headerlink" title="编程技巧的提高"></a>编程技巧的提高</h4><ul>
-<li>Sublime Text 快捷键： <ul>
-<li><code>command + x</code>，删除光标当前所在行，并且同时复制到剪贴板  </li>
-</ul>
-</li>
-<li><p>Sublime Text 中 Snippets 的使用（需要提前定义）：  </p>
-<ul>
-<li><p>比如 php 函数模板快捷键 <code>phpfun</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">/**</span><br><span class="line"> * 作者：秀野堂主 </span><br><span class="line"> * 建立时间：xxx</span><br><span class="line"> * 最后一次更新时间：xxx</span><br><span class="line">**/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">xxx</span><span class="params">(<span class="variable">$params</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">     <span class="comment">//代码片段</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后 <code>tab</code> 切换需要更改的地方</p>
-</li>
-</ul>
-</li>
-<li><p>Sublime Text 插件的使用–Alignment  </p>
-<ul>
-<li>这个插件主要是格式化代码，使代码看上去更清晰  </li>
-<li>贴两张格式化前后的代码对比：</li>
-<li><img src="http://7fva1q.com1.z0.glb.clouddn.com/xiuyetang-%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%89%8D.png" alt="格式化前">  </li>
-<li><img src="http://7fva1q.com1.z0.glb.clouddn.com/xiuyetang-%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%90%8E.png" alt="格式化后"></li>
-</ul>
-</li>
-<li><p>有时候代码中会有很多重复的部分，这时候先仔细观察一遍，然后通过 <code>command + d</code> 选取这些重复的部分，同时操作，能极大的提高代码编写速度。（这个主要是针对有重复代码快捷操作）  </p>
-</li>
-<li>多光标生成，按住 <code>command</code> ，然后，使光标落在需要操作的不同位置，然后就能在代码的多个位置进行修改。（这个主要针对无重复代码的快捷操作）</li>
-<li>某些函数需要传入多个参数，这个时候可以考虑，通过传入数组的方式，减少代码的编写，并且能够使代码看上去更清晰，更易阅读<br>将数组作为参数传递<br><code>his_route.php</code> 中</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$params</span>               = <span class="keyword">array</span>();</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'pat_id'</span>]     = <span class="variable">$_REQUEST</span>[<span class="string">'pat_id'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'dep_id'</span>]     = <span class="variable">$_REQUEST</span>[<span class="string">'dep_id'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'doc_id'</span>]     = <span class="variable">$_REQUEST</span>[<span class="string">'doc_id'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'h_id'</span>]       = <span class="variable">$_REQUEST</span>[<span class="string">'h_id'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'odr_cost'</span>]   = <span class="variable">$_REQUEST</span>[<span class="string">'odr_cost'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'odr_time'</span>]   = <span class="variable">$_REQUEST</span>[<span class="string">'odr_time'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'odr_timeto'</span>] = <span class="variable">$_REQUEST</span>[<span class="string">'odr_timeto'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'odr_pay'</span>]    = <span class="variable">$_REQUEST</span>[<span class="string">'odr_pay'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'odr_desc'</span>]   = <span class="variable">$_REQUEST</span>[<span class="string">'odr_desc'</span>];</span><br><span class="line"><span class="variable">$params</span>[<span class="string">'odr_id'</span>]     = <span class="variable">$_REQUEST</span>[<span class="string">'odr_id'</span>];</span><br><span class="line"><span class="keyword">echo</span> json_encode(HIS::odr_update_info(<span class="variable">$params</span>));</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">`class_his.php` 中</span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line"><span class="variable">$update_odr</span> = <span class="string">"pat_id = '"</span>.<span class="variable">$params</span>[<span class="string">'pat_id'</span>].<span class="string">"', dep_id = '"</span>.<span class="variable">$params</span>[<span class="string">'dep_id'</span>].<span class="string">"', doc_id = '"</span>.<span class="variable">$params</span>[<span class="string">'doc_id'</span>].<span class="string">"', h_id  = '"</span>.<span class="variable">$params</span>[<span class="string">'h_id'</span>].<span class="string">"', odr_cost = '"</span>.<span class="variable">$params</span>[<span class="string">'odr_cost'</span>].<span class="string">"', odr_time = '"</span>.<span class="variable">$params</span>[<span class="string">'odr_time'</span>].<span class="string">"', odr_timeto = '"</span>.<span class="variable">$params</span>[<span class="string">'odr_timeto'</span>].<span class="string">"', odr_pay = '"</span>.<span class="variable">$params</span>[<span class="string">'odr_pay'</span>].<span class="string">"', odr_desc = '"</span>.<span class="variable">$params</span>[<span class="string">'odr_desc'</span>].<span class="string">"' where odr_id = '"</span>.<span class="variable">$params</span>[<span class="string">'odr_id'</span>].<span class="string">"'"</span>;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">---  </span><br><span class="line"></span><br><span class="line"><span class="comment">#### api 编写过程的多次思考</span></span><br><span class="line"></span><br><span class="line">**一开始的做法：**  </span><br><span class="line">将不同的 api 放在不同的文件中，分别调用，比如对科室表的增删改查，分别放在 `dep_get_info.php`,`dep_delete_info.php`,`dep_update_info.php`,`dep_insert_info.php` 中，调用的时候，传入不同的参数。  </span><br><span class="line">**这样做的问题：**  </span><br><span class="line">每次调用，都会产生一次 IO 请求，代码中会重复引入 `class_base.php`,`config.php`  </span><br><span class="line"></span><br><span class="line">**修改后的做法：**  </span><br><span class="line">将不同的调用方法都放在一个文件 `class_his.php` 中，然后在 `his_route.php` 中，通过 <span class="keyword">switch</span> 方法 管理不同的调用，这个时候，对于不同文件的请求，变成了一个 `method` 参数的传递，比如对于某科室的查询，从对 `dep_get_info.php` 的请求，变成了 </span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line"><span class="keyword">switch</span> (<span class="variable">$method</span>) &#123;</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 *科室</span><br><span class="line">	**/</span></span><br><span class="line">	<span class="keyword">case</span> <span class="string">'dep_get_info'</span>:</span><br><span class="line">		<span class="keyword">echo</span> json_encode(HIS::dep_get_info(<span class="variable">$_REQUEST</span>[<span class="string">'dep_id'</span>]));</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="comment"># code...</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这时候，只要传入 <code>method</code> 和 <code>dep_id</code>  </p>
-<ul>
-<li><img src="http://7fva1q.com1.z0.glb.clouddn.com/dep_get_info.png" alt="传参数">  </li>
-<li><img src="http://7fva1q.com1.z0.glb.clouddn.com/get_dep_success.png" alt="返回成功">  </li>
-</ul>
-<h5 id="u53C2_u6570_u7684_u4F20_u9012_uFF1A"><a href="#u53C2_u6570_u7684_u4F20_u9012_uFF1A" class="headerlink" title="参数的传递："></a>参数的传递：</h5><p>在上一段编程技巧的提高中，也写了将多个参数，作为一个参数数组进行传递，这样做，主要的目的是提高代码的可阅读性，方便后期的维护。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/27/php-api-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
