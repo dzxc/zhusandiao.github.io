@@ -57,7 +57,7 @@
 
 
 
-<meta name="description" content="是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
+<meta name="description" content="PHP基础是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
 
 PHP文件能够包含文本、HTML、CSS、PHP 代码  
 
@@ -67,12 +67,12 @@ PHP代码在服务器中执行，而结果以纯文本返回浏览器
 
 
 能做什么？
-生成动态页面">
+生成动态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP笔记">
 <meta property="og:url" content="http://yoursite.com/2016/05/28/PHP-note/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
+<meta property="og:description" content="PHP基础是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
 
 PHP文件能够包含文本、HTML、CSS、PHP 代码  
 
@@ -82,11 +82,11 @@ PHP代码在服务器中执行，而结果以纯文本返回浏览器
 
 
 能做什么？
-生成动态页面">
-<meta property="og:updated_time" content="2016-05-28T15:46:07.675Z">
+生成动态">
+<meta property="og:updated_time" content="2016-05-28T17:15:20.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP笔记">
-<meta name="twitter:description" content="是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
+<meta name="twitter:description" content="PHP基础是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
 
 PHP文件能够包含文本、HTML、CSS、PHP 代码  
 
@@ -96,7 +96,7 @@ PHP代码在服务器中执行，而结果以纯文本返回浏览器
 
 
 能做什么？
-生成动态页面">
+生成动态">
 
 
 
@@ -298,7 +298,7 @@ PHP代码在服务器中执行，而结果以纯文本返回浏览器
       
 
       
-        <h4 id="u662F_u4EC0_u4E48_uFF1F"><a href="#u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="是什么？"></a>是什么？</h4><p>服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。</p>
+        <h3 id="PHP_u57FA_u7840"><a href="#PHP_u57FA_u7840" class="headerlink" title="PHP基础"></a>PHP基础</h3><h4 id="u662F_u4EC0_u4E48_uFF1F"><a href="#u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="是什么？"></a>是什么？</h4><p>服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。</p>
 <ul>
 <li><p>PHP文件能够包含文本、HTML、CSS、PHP 代码  </p>
 </li>
@@ -566,6 +566,33 @@ PHP代码在服务器中执行，而结果以纯文本返回浏览器
 </ul>
 </li>
 </ul>
+<h4 id="include__u548C_require"><a href="#include__u548C_require" class="headerlink" title="include 和 require"></a>include 和 require</h4><p>include （或 require）语句会<strong>获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中</strong>。</p>
+<ul>
+<li><p>include 和 require 语句是相同的，<strong>除了错误处理</strong>方面：</p>
+<ul>
+<li>require 会生成致命错误（E_COMPILE_ERROR）并停止脚本</li>
+<li>include 只生成警告（E_WARNING），并且脚本会继续</li>
+</ul>
+</li>
+<li><p><code>include(_once)</code>与<code>require(_once)</code></p>
+<ul>
+<li>使用带_once的函数，那么php就会检查你的代码有没有重复包含，避免出现函数或变量重复定义</li>
+</ul>
+</li>
+</ul>
+<h3 id="PHP_u64CD_u4F5CMySQL"><a href="#PHP_u64CD_u4F5CMySQL" class="headerlink" title="PHP操作MySQL"></a>PHP操作MySQL</h3><h4 id="u8FDE_u63A5MySQL"><a href="#u8FDE_u63A5MySQL" class="headerlink" title="连接MySQL"></a>连接MySQL</h4><p>通过 <code>mysql_connect();</code>函数<br><code>mysql_connect(servername,username,password);</code>  </p>
+<pre><code>- 一般只需要这三个参数：  
+- servername  可选。规定要连接的服务器。默认是 &quot;localhost:3306&quot;。
+- username    可选。规定登录所使用的用户名。默认值是拥有服务器进程的用户的名称。
+- password    可选。规定登录所用的密码。默认是 &quot;&quot;。
+</code></pre><h4 id="u7ED3_u675F_u8FDE_u63A5"><a href="#u7ED3_u675F_u8FDE_u63A5" class="headerlink" title="结束连接"></a>结束连接</h4><p>脚本一结束，就会关闭连接。<br>如需提前关闭连接，请使用<code>mysql_close()</code>函数。  </p>
+<p><code>$con = mysql_connect(&quot;localhost&quot;,&quot;peter&quot;,&quot;abc123&quot;);</code><br><code>mysql_close($con);</code>  </p>
+<h4 id="mysql_query"><a href="#mysql_query" class="headerlink" title="mysql_query"></a>mysql_query</h4><p><code>mysql_query(query,connection)</code>:执行一条 MySQL 查询</p>
+<ul>
+<li>query    必需。规定<strong>要发送的 SQL 查询</strong>。注释：<strong>查询字符串不应以分号结束</strong>。</li>
+<li>connection 可选。规定 SQL 连接标识符。如果未规定，则使用上一个打开的连接。</li>
+<li>注：如果没有打开的连接，本函数会尝试无参数调用 <code>mysql_connect()</code> 函数来建立一个连接并使用之。</li>
+</ul>
 
       
     </div>
@@ -743,7 +770,7 @@ PHP代码在服务器中执行，而结果以纯文本返回浏览器
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u662F_u4EC0_u4E48_uFF1F"><span class="nav-number">1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u80FD_u505A_u4EC0_u4E48_uFF1F"><span class="nav-number">2.</span> <span class="nav-text">能做什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4F7F_u7528"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5199_u6CD5"><span class="nav-number">4.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u91CA"><span class="nav-number">5.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5927_u5C0F_u5199_u654F_u611F_uFF1F"><span class="nav-number">6.</span> <span class="nav-text">大小写敏感？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5E38_u91CF"><span class="nav-number">7.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u53D8_u91CF"><span class="nav-number">8.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8F93_u51FA_u8BED_u53E5"><span class="nav-number">9.</span> <span class="nav-text">输出语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6570_u636E_u7C7B_u578B"><span class="nav-number">10.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5B57_u7B26_u4E32_u51FD_u6570"><span class="nav-number">11.</span> <span class="nav-text">字符串函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8FD0_u7B97_u7B26"><span class="nav-number">12.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u51FD_u6570"><span class="nav-number">13.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6570_u7EC4"><span class="nav-number">14.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8D85_u5168_u5C40_u53D8_u91CF"><span class="nav-number">15.</span> <span class="nav-text">超全局变量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP_u57FA_u7840"><span class="nav-number">1.</span> <span class="nav-text">PHP基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u662F_u4EC0_u4E48_uFF1F"><span class="nav-number">1.1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u80FD_u505A_u4EC0_u4E48_uFF1F"><span class="nav-number">1.2.</span> <span class="nav-text">能做什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4F7F_u7528"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5199_u6CD5"><span class="nav-number">1.4.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u91CA"><span class="nav-number">1.5.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5927_u5C0F_u5199_u654F_u611F_uFF1F"><span class="nav-number">1.6.</span> <span class="nav-text">大小写敏感？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5E38_u91CF"><span class="nav-number">1.7.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u53D8_u91CF"><span class="nav-number">1.8.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8F93_u51FA_u8BED_u53E5"><span class="nav-number">1.9.</span> <span class="nav-text">输出语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6570_u636E_u7C7B_u578B"><span class="nav-number">1.10.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5B57_u7B26_u4E32_u51FD_u6570"><span class="nav-number">1.11.</span> <span class="nav-text">字符串函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8FD0_u7B97_u7B26"><span class="nav-number">1.12.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u51FD_u6570"><span class="nav-number">1.13.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6570_u7EC4"><span class="nav-number">1.14.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8D85_u5168_u5C40_u53D8_u91CF"><span class="nav-number">1.15.</span> <span class="nav-text">超全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#include__u548C_require"><span class="nav-number">1.16.</span> <span class="nav-text">include 和 require</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP_u64CD_u4F5CMySQL"><span class="nav-number">2.</span> <span class="nav-text">PHP操作MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u8FDE_u63A5MySQL"><span class="nav-number">2.1.</span> <span class="nav-text">连接MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7ED3_u675F_u8FDE_u63A5"><span class="nav-number">2.2.</span> <span class="nav-text">结束连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql_query"><span class="nav-number">2.3.</span> <span class="nav-text">mysql_query</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
