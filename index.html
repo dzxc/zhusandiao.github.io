@@ -287,10 +287,7 @@
 <li>获取记录集（单个 or 多个）</li>
 <li>判断记录集，执行下一步操作</li>
 </ol>
-<h3 id="u5177_u4F53_u6B65_u9AA4"><a href="#u5177_u4F53_u6B65_u9AA4" class="headerlink" title="具体步骤"></a>具体步骤</h3><ol>
-<li>与数据库建立连接</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_connect(servername,username,password);</span><br></pre></td></tr></table></figure>
+<h3 id="u5177_u4F53_u6B65_u9AA4"><a href="#u5177_u4F53_u6B65_u9AA4" class="headerlink" title="具体步骤"></a>具体步骤</h3><h4 id="u4E0E_u6570_u636E_u5E93_u5EFA_u7ACB_u8FDE_u63A5"><a href="#u4E0E_u6570_u636E_u5E93_u5EFA_u7ACB_u8FDE_u63A5" class="headerlink" title="与数据库建立连接"></a>与数据库建立连接</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_connect(servername,username,password);</span><br></pre></td></tr></table></figure>
 <p>注：<br>这里的连接是非持久的，脚本执行完，到服务器的连接就被关闭，如果需要持久连接，需要使用<code>mysql_pconnect()</code> 函数  </p>
 <p>对应的提前关闭非持久连接的函数：<br><code>mysql_close(link_identifier)</code><br>本函数关闭指定的连接标识所关联非持久连接。如果没有指定 <code>link_identifier</code>，则关闭上一个打开的连接。另外，<strong>通常不需要使用 <code>mysql_close()</code>，因为已打开的非持久连接会在脚本执行完毕后自动关闭</strong>。</p>
           <div class="post-more-link text-center">
