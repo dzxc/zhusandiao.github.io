@@ -231,6 +231,112 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/02/php-mysql/" itemprop="url">
+                  PHP操作MySQL
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-02T20:26:04+08:00" content="2016-07-02">
+              2016-07-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/02/php-mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/02/php-mysql/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="u64CD_u4F5C_u6570_u636E_u5E93_u7684_u6B65_u9AA4"><a href="#u64CD_u4F5C_u6570_u636E_u5E93_u7684_u6B65_u9AA4" class="headerlink" title="操作数据库的步骤"></a>操作数据库的步骤</h4><ol>
+<li>与数据库建立连接</li>
+<li>选择要操作的数据表</li>
+<li>拼接 SQL 语句</li>
+<li>执行 SQL 语句</li>
+<li>获取记录集（单个 or 多个）</li>
+<li>判断记录集，执行下一步操作</li>
+</ol>
+<h3 id="u5177_u4F53_u6B65_u9AA4"><a href="#u5177_u4F53_u6B65_u9AA4" class="headerlink" title="具体步骤"></a>具体步骤</h3><ol>
+<li>与数据库建立连接</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_connect(servername,username,password);</span><br></pre></td></tr></table></figure>
+<p>注：<br>这里的连接是非持久的，脚本执行完，到服务器的连接就被关闭，如果需要持久连接，需要使用<code>mysql_pconnect()</code> 函数  </p>
+<p>对应的提前关闭非持久连接的函数：<br><code>mysql_close(link_identifier)</code><br>本函数关闭指定的连接标识所关联非持久连接。如果没有指定 <code>link_identifier</code>，则关闭上一个打开的连接。另外，<strong>通常不需要使用 <code>mysql_close()</code>，因为已打开的非持久连接会在脚本执行完毕后自动关闭</strong>。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/02/php-mysql/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/01/sql-note/" itemprop="url">
                   sql笔记
                 </a>
@@ -1130,104 +1236,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/22/android-develop-tips/" itemprop="url">
-                  android 开发 Tips
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-22T20:23:13+08:00" content="2016-01-22">
-              2016-01-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/22/android-develop-tips/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/22/android-develop-tips/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>希望把一些学习过程中的要点记录下来  </p>
-<h4 id="u5982_u4F55_u66F4_u6539_activity__u7684_title"><a href="#u5982_u4F55_u66F4_u6539_activity__u7684_title" class="headerlink" title="如何更改 activity 的 title"></a>如何更改 activity 的 title</h4><blockquote>
-<p><a href="http://stackoverflow.com/questions/2198410/how-to-change-title-of-activity-in-android">stackoverflow 上的回答</a><br>个人看法：首先创建项目的时候，会先设置 MainActivity 的Title  </p>
-</blockquote>
-<h4 id="u66F4_u6539_u7EC4_u4EF6_text__u7684_u9ED8_u8BA4_u5927_u5199_u663E_u793A"><a href="#u66F4_u6539_u7EC4_u4EF6_text__u7684_u9ED8_u8BA4_u5927_u5199_u663E_u793A" class="headerlink" title="更改组件 text 的默认大写显示"></a>更改组件 text 的默认大写显示</h4><blockquote>
-<p>在组件中添加 <code>android:textAllCaps=&quot;false&quot;</code>，这样组件中的 text 就不会默认都是大写了<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/22/android-develop-tips/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1274,7 +1282,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
