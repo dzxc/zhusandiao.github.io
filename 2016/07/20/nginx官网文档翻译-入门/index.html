@@ -1,0 +1,849 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="后端,nginx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="nginx进程nginx 有一个主进程和一些工作进程  
+这里说了下 nginx 中主进程的职责：主要是读取配置文件，维持好工作进程  
+那些实际的请求处理就交给工作进程  
+nginx 实现了 基于事件的模型和依赖于操作系统的机制来有效地在各个工作进程之间分发请求  
+工作进程的数量是在配置文件中定义的，并且有可能由配置文件安排或者由可用的 CPU 核心数来自动调整。具体可以看一看（worker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx官网文档翻译--入门">
+<meta property="og:url" content="http://yoursite.com/2016/07/20/nginx官网文档翻译-入门/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="nginx进程nginx 有一个主进程和一些工作进程  
+这里说了下 nginx 中主进程的职责：主要是读取配置文件，维持好工作进程  
+那些实际的请求处理就交给工作进程  
+nginx 实现了 基于事件的模型和依赖于操作系统的机制来有效地在各个工作进程之间分发请求  
+工作进程的数量是在配置文件中定义的，并且有可能由配置文件安排或者由可用的 CPU 核心数来自动调整。具体可以看一看（worker">
+<meta property="og:updated_time" content="2016-07-20T15:19:32.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx官网文档翻译--入门">
+<meta name="twitter:description" content="nginx进程nginx 有一个主进程和一些工作进程  
+这里说了下 nginx 中主进程的职责：主要是读取配置文件，维持好工作进程  
+那些实际的请求处理就交给工作进程  
+nginx 实现了 基于事件的模型和依赖于操作系统的机制来有效地在各个工作进程之间分发请求  
+工作进程的数量是在配置文件中定义的，并且有可能由配置文件安排或者由可用的 CPU 核心数来自动调整。具体可以看一看（worker">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> nginx官网文档翻译--入门 | zhusandiao </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-73199972-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhusandiao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I`m angry sometimes naive</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                nginx官网文档翻译--入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T22:59:18+08:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/20/nginx官网文档翻译-入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/20/nginx官网文档翻译-入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="nginx_u8FDB_u7A0B"><a href="#nginx_u8FDB_u7A0B" class="headerlink" title="nginx进程"></a>nginx进程</h4><p>nginx 有一个主进程和一些工作进程  </p>
+<p>这里说了下 nginx 中主进程的职责：主要是读取配置文件，维持好工作进程  </p>
+<p>那些实际的请求处理就交给工作进程  </p>
+<p>nginx 实现了 基于事件的模型和依赖于操作系统的机制来有效地在各个工作进程之间分发请求  </p>
+<p>工作进程的数量是在配置文件中定义的，并且有可能由配置文件安排或者由可用的 CPU 核心数来自动调整。具体可以看一看（<a href="https://nginx.org/en/docs/ngx_core_module.html#worker_processes" target="_blank" rel="external">worker_processes</a>）  </p>
+<p>配置文件决定了 nginx 及其模块的工作方式。默认情况下，配置文件名为 nginx.conf，并且放在下面几个目录中的其中一个：<code>/usr/local/nginx/conf</code>, <code>/etc/nginx</code>, <code>/usr/local/etc/nginx</code>。  </p>
+<h4 id="nginx__u7684_u542F_u52A8_uFF0C_u505C_u6B62_uFF0C_u91CD_u8F7D"><a href="#nginx__u7684_u542F_u52A8_uFF0C_u505C_u6B62_uFF0C_u91CD_u8F7D" class="headerlink" title="nginx 的启动，停止，重载"></a>nginx 的启动，停止，重载</h4><p>一开始启动 nginx ，需要运行可执行文件，一旦 nginx 启动之后，就可以使用 <code>nginx -s 参数</code> 来控制，具体的命令为：  </p>
+<blockquote>
+<p>nginx -s signal  </p>
+</blockquote>
+<p>其中 signal 可以是下面几个中的任意一个：  </p>
+<a id="more"></a>
+<ul>
+<li>stop——立即停止</li>
+<li>quit——正常停止（与 stop 的区别下面会讲到）</li>
+<li>reload——重载配置文件</li>
+<li>reopen——重新打开日志文件</li>
+</ul>
+<p>举例来说，如果需要等待工作进程完成当前请求的处理后才停止 nginx ，那么就用 quit，具体命令如下：  </p>
+<blockquote>
+<p>nginx -s quit<br>只能在启动 nginx 的用户下执行这个命令才有效</p>
+</blockquote>
+<p>配置文件中的变化并不会立刻生效，除非两种情况：  </p>
+<ol>
+<li>向 nginx 发送了重载配置的指令</li>
+<li>nginx restart 了</li>
+</ol>
+<p>重载配置文件的命令是：  </p>
+<blockquote>
+<p> nginx -s reload  </p>
+</blockquote>
+<p>一旦主进程接收到了重载配置的信号，那么主进程就会检查新配置文件的有效性，并且尝试应用这些配置。<br>如果以上两步都成功了，主进程就会开启一个新的工作进程，并且向旧的工作进程发送一个信号，要求他们停止。<br>如果上面两步没有成功，主进程就会回滚配置文件中的变化并且继续使用旧的配置文件。<br>旧的工作进程会收到进程停止指令，在进程停止之前不再接收新的连接而且会将当前所有请求处理完毕，这些完成之后，旧的工作进程退出。  </p>
+<p>也可以用 Unix 的工具(比如 kill )发送信号到 nginx 进程，在这个例子中，一个带有给定的进程ID 的信号会被直接发送给这个进程。<br>默认情况下，nginx 主进程的进程ID会被写入 <code>/usr/local/nginx/logs</code>或是<code>/var/run</code>目录下的 nginx.pid。举例来说，主进程的ID为1628，可以执行以下的退出信号来正常关闭 nginx：  </p>
+<blockquote>
+<p>kill -s QUIT 1628</p>
+</blockquote>
+<p>可以使用 ps 命令获取正在运行的 nginx 的进程列表：  </p>
+<blockquote>
+<p>ps -ax | grep nginx</p>
+</blockquote>
+<p>获取更多关于发送信号到 nginx 的信息，请查看<a href="https://nginx.org/en/docs/control.html" target="_blank" rel="external">Controlling nginx</a>。  </p>
+<h4 id="u914D_u7F6E_u6587_u4EF6_u7ED3_u6784"><a href="#u914D_u7F6E_u6587_u4EF6_u7ED3_u6784" class="headerlink" title="配置文件结构"></a>配置文件结构</h4><p>nginx 由配置文件中指定指令控制的模块组成。<br>指令分成简单指令和块指令。  </p>
+<ul>
+<li>简单指令由用空格隔开以分号结尾的名称和参数组成。  </li>
+<li>块指令和简单指令结构一样，但是它不是用分号而是用花括号包裹的一系列指令结尾。<br>如果一个块指令在花括号中有其他的指令，那么它就可以被称为 context（例如：<a href="https://nginx.org/en/docs/ngx_core_module.html#events" target="_blank" rel="external">events</a>, <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#http" target="_blank" rel="external">http</a>, <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#server" target="_blank" rel="external">server</a>, and <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#location" target="_blank" rel="external">location</a>).  </li>
+</ul>
+<p>配置文件中不属于任何 context 的指令属于 main context。events 和 http 指令属于 main context，server 属于 http，location 属于 server。  </p>
+<p>结构为：  </p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">main context  </span><br><span class="line">	<span class="string">|————events  </span></span><br><span class="line">http  </span><br><span class="line">	<span class="string">|————server  </span></span><br><span class="line">		<span class="string">|————location</span></span><br></pre></td></tr></table></figure>
+<p><code>#</code> 号开头的一行为注释  </p>
+<h4 id="u670D_u52A1_u9759_u6001_u5185_u5BB9"><a href="#u670D_u52A1_u9759_u6001_u5185_u5BB9" class="headerlink" title="服务静态内容"></a>服务静态内容</h4><p>web 服务器的一个重要任务是分发文件（例如图片或者是静态 HTML页面）。你将根据请求实现一个例子，文件可以从本地的各种目录请求到，例如：<code>/data/www</code> (可能包含 HTML 文件) 、<code>/data/images</code> (包含图片)。<br>这可能需要在配置文件的 http 块指令下配置一个包含两个 location 块指令的 server 块指令。  </p>
+<p>First, create the /data/www directory and put an index.html file with any text content into it and create the /data/images directory and place some images in it.</p>
+<p>首先，建立一个 <code>/data/www</code> 目录，在其中放一个包含一些内容的 index.html 文件，再建一个 <code>/data/images</code> 目录，并且在其中放一些图片。  </p>
+<p>接下来，打开配置文件，默认的配置文件已经包含一些 server 块指令的例子，多数情况下是被注释的。现在，注释掉所有块指令，重写一个新的 server 块指令。  </p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">http</span> &#123;</span><br><span class="line">	<span class="tag">server</span> &#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一般来说，配置文件已经包含一些通过<strong>监听的端口和服务器名</strong>来区分的 server 块。一旦 nginx 决定了哪个服务器处理一个请求，它将测试在请求头中（通过 server 块指令中定义的 location 指令的参数）所指定的 URI。  </p>
+<p>Add the following location block to the server block:</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/ &#123;</span><br><span class="line">	root</span> /data/www;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 server 块指令中添加下面的 location 块指令  </p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/ &#123;</span><br><span class="line">	root</span> /data/www;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>location 块指令指定了 <code>/</code> 前缀，来和请求中的 URI对比。URI 会被添加到 root 指令中指定的路径，来和请求匹配，也就是说，指向<code>/data/www</code>，构成指向请求文件（在本地文件系统中）的路径。如果同时有几个相匹配的 location 块指令，nginx 会选择前缀最长的那个。上面的那个 location 块指令只有一个长度的最短的前缀，只有在所有的 location 块指令都不能匹配时，上面这个 location 块指令才会起作用。（有点像 switch 中的 default ）  </p>
+<p>再接下来，添加第二个 location 块：  </p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/images</span>/ &#123;</span><br><span class="line">	root /data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个块指令将匹配以 <code>/images/</code>开头的请求（location <code>/</code> 也会匹配这样的请求，不过，它只有最短的前缀，所以不会起作用）  </p>
+<p>现在，server 块指令应该看起来像这样：  </p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    <span class="keyword">location</span> <span class="title">/ &#123;</span><br><span class="line">        root</span> /data/www;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">location</span> <span class="title">/images</span>/ &#123;</span><br><span class="line">        root /data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认情况下，已经有一个工作状态的服务器配置，监听标准的 80 端口，并且在本机上，可以通过 <code>http://localhost/</code> 查看。为了响应以 <code>/images/</code>开头的 URI 的请求，服务器将会从 <code>/data/images</code> 目录发送文件。举例来说，为了响应指向 <code>http://localhost/images/example.png</code>的请求，nginx 将会 发送 <code>/data/images/example.png</code> 文件。<br>如果请求的文件不存在，nginx 将会发送一个指示 404 错误的响应。<br>如果，不是以<code>/images/</code>开头的 URI 的请求，将会被指向 <code>/data/www</code> 目录。<br>举例来说，为了响应指向 <code>http://localhost/some/example.html</code> 的请求， nginx 将会发送 <code>/data/www/some/example.html</code>文件。  </p>
+<p>为了应用新的配置，首先如果 nginx 还没有启动，先启动它。如果已经启动，那么向 nginx 主进程发送重载信号。  </p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx <span class="attribute">-s</span> reload  </span><br><span class="line"></span><br><span class="line">你可能需要从 /usr/<span class="built_in">local</span>/nginx/logs 或是 /<span class="built_in">var</span>/<span class="keyword">log</span>/nginx 目录下的连接日志文件 access<span class="built_in">.</span><span class="keyword">log</span> 和 错误日志文件中寻找没有得到预期结果的原因。</span><br></pre></td></tr></table></figure>
+<h4 id="u914D_u7F6E_u7B80_u5355_u7684_u4EE3_u7406_u670D_u52A1_u5668"><a href="#u914D_u7F6E_u7B80_u5355_u7684_u4EE3_u7406_u670D_u52A1_u5668" class="headerlink" title="配置简单的代理服务器"></a>配置简单的代理服务器</h4><p>nginx 的最常用用法之一就是配置一个代理服务器。这意味着，一个服务器接收请求，向代理服务器传递请求，从代理服务器中接收响应，向客户端发送响应。  </p>
+<p>接下来，我们将配置一个最基本的代理服务器，这个代理服务器将只处理对本地文件系统中的图片请求，并将所有的其他请求发送到代理服务器。在这个例子里，两个服务器会被定义在同一个 nginx 例子中。</p>
+<p>首先，通过向 nginx 配置文件中添加更多的 server 块指令来定义这个代理服务器。  </p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">8080</span>;</span><br><span class="line">    <span class="title">root</span> /data/up1;</span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个监听8080端口的服务器（在这之前，从标准的80端口被使用，监听指令还没有被特别指定过），并且把所有的请求映射到本地文件目录中的 <code>/data/up1</code>。  </p>
+<p>建立这个目录，并将 index.html 文件放在这个目录下。<br>root 指令被放在 server context 中。<br>像这样的 root 指令会在（被选为处理一个请求）的location 块指令（而这个 location 块指令又没有自己的 root 指令）使用。  </p>
+<p>下面，使用先前章节中的服务器配置，并把它修改成一个代理服务器的配置。在第一个 location 块指令中，写入含有（协议、参数中指定了名称和端口的代理服务器：在这个例子中为：<a href="http://localhost:8080）的" target="_blank" rel="external">http://localhost:8080）的</a> <code>proxy_pass</code> 指令：  </p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    <span class="keyword">location</span> <span class="title">/ &#123;</span><br><span class="line">        proxy_pass</span> http://localhost:<span class="number">8080</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">location</span> <span class="title">/images</span>/ &#123;</span><br><span class="line">        root /data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们将修改第二个 location 块指令中，当前这个块指令会将所有带有 <code>/images</code> 前缀的请求映射到在 <code>/data/images</code>目录下的文件。  </p>
+<p>为了使之匹配带有典型文件扩展的图片请求。修改后的 location 块指令看上去就像下面这样：  </p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">~ .(gif</span>|jpg|png)$ &#123;</span><br><span class="line">    root /data/images;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个参数正则表达式用来匹配所有以 <code>.git</code>，<code>.jpg</code>,<code>.png</code> 结尾的 URI。正则表达式之前，应该有 <code>~</code>。与之相符的请求将会被映射到 <code>/data/images</code>目录下。  </p>
+<p>当 nginx 选中了一个 location 块指令去处理一个请求时，它首先会检查指定了前缀的 location 指令，然后会记住  带有最长前缀的 location 指令，这之后，会检查正则。<br>如果有一个匹配了正则，nginx 会选择这个 location 指令，不然就会选择之前记住的那个（带有最长前缀的 location）。  </p>
+<p>一个代理服务器的配置看上去会像这样：  </p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_pass</span> <span class="url">http://localhost:8080/</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> <span class="regexp">~ .(gif|jpg|png)$</span> &#123;</span><br><span class="line">        <span class="title">root</span> /data/images;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>服务器会过滤以<code>.git</code>，<code>.jpg</code>,<code>.png</code> 结尾的请求，并且映射到 <code>/data/images</code> （通过将 URI 添加到 root 指令的参数中），同时会将所有其他请求传递到上面配置的代理服务器。  </p>
+<p>重载配置，使之生效。  </p>
+<p>有更多的指令可以进一步配置一个代理连接。  </p>
+<h4 id="u914D_u7F6E_u4E00_u4E2A_FastCGI__u4EE3_u7406"><a href="#u914D_u7F6E_u4E00_u4E2A_FastCGI__u4EE3_u7406" class="headerlink" title="配置一个 FastCGI 代理"></a>配置一个 FastCGI 代理</h4><p>nginx 可以用来将请求路由到 FastCGI 服务器（这个服务器运行着各种框架和编程语言构建的应用）。  </p>
+<p>一个（与 FastCGI 服务器 配合的最基本的） nginx 配置使用 <code>fastcgi_pass</code> 指令而不是 <code>proxy_pass</code> 指令，而 <code>fastcgi_param</code> 指令用来设置向 FastCGI 服务器传递的参数。<br>假设 FastCGI 服务器在 <code>localhost:9000</code> ，以之前章节的配置文件为基础，用 <code>fastcgi_pass</code> 指令替代 <code>proxy_pass</code> 指令，并且将参数改为 <code>localhost:9000</code>。在 PHP 中 <code>SCRIPT_FILENAME</code>作为脚本名，<code>QUERY_STRING</code> 用来传递请求参数，最终的配置文件如下：  </p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    location / &#123;</span><br><span class="line">        fastcgi_pass  localhost:<span class="number">9000</span>;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME <span class="variable">$document</span>_root<span class="variable">$fastcgi</span>_script_name;</span><br><span class="line">        fastcgi_param QUERY_STRING    <span class="variable">$query</span>_string;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ .(gif|jpg|png)$ &#123;</span><br><span class="line">        root /data/images;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/后端-nginx/" rel="tag">#后端,nginx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/02/php-mysql/" rel="next" title="PHP操作MySQL">
+                <i class="fa fa-chevron-left"></i> PHP操作MySQL
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7fva1q.com1.z0.glb.clouddn.com/avatar-icon.png"
+               alt="zhusandiao" />
+          <p class="site-author-name" itemprop="name">zhusandiao</p>
+          <p class="site-description motion-element" itemprop="description">伪文艺中复兴</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://gist.github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Gist
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.xiuyetang.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> xiuyetang
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx_u8FDB_u7A0B"><span class="nav-number">1.</span> <span class="nav-text">nginx进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx__u7684_u542F_u52A8_uFF0C_u505C_u6B62_uFF0C_u91CD_u8F7D"><span class="nav-number">2.</span> <span class="nav-text">nginx 的启动，停止，重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u914D_u7F6E_u6587_u4EF6_u7ED3_u6784"><span class="nav-number">3.</span> <span class="nav-text">配置文件结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u670D_u52A1_u9759_u6001_u5185_u5BB9"><span class="nav-number">4.</span> <span class="nav-text">服务静态内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u914D_u7F6E_u7B80_u5355_u7684_u4EE3_u7406_u670D_u52A1_u5668"><span class="nav-number">5.</span> <span class="nav-text">配置简单的代理服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u914D_u7F6E_u4E00_u4E2A_FastCGI__u4EE3_u7406"><span class="nav-number">6.</span> <span class="nav-text">配置一个 FastCGI 代理</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhusandiao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'zhusandiao';
+      var disqus_identifier = '2016/07/20/nginx官网文档翻译-入门/';
+      var disqus_title = 'nginx官网文档翻译--入门';
+      var disqus_url = 'http://yoursite.com/2016/07/20/nginx官网文档翻译-入门/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>

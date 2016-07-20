@@ -231,6 +231,109 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/20/nginx官网文档翻译-入门/" itemprop="url">
+                  nginx官网文档翻译--入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T22:59:18+08:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/20/nginx官网文档翻译-入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/20/nginx官网文档翻译-入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="nginx_u8FDB_u7A0B"><a href="#nginx_u8FDB_u7A0B" class="headerlink" title="nginx进程"></a>nginx进程</h4><p>nginx 有一个主进程和一些工作进程  </p>
+<p>这里说了下 nginx 中主进程的职责：主要是读取配置文件，维持好工作进程  </p>
+<p>那些实际的请求处理就交给工作进程  </p>
+<p>nginx 实现了 基于事件的模型和依赖于操作系统的机制来有效地在各个工作进程之间分发请求  </p>
+<p>工作进程的数量是在配置文件中定义的，并且有可能由配置文件安排或者由可用的 CPU 核心数来自动调整。具体可以看一看（<a href="https://nginx.org/en/docs/ngx_core_module.html#worker_processes">worker_processes</a>）  </p>
+<p>配置文件决定了 nginx 及其模块的工作方式。默认情况下，配置文件名为 nginx.conf，并且放在下面几个目录中的其中一个：<code>/usr/local/nginx/conf</code>, <code>/etc/nginx</code>, <code>/usr/local/etc/nginx</code>。  </p>
+<h4 id="nginx__u7684_u542F_u52A8_uFF0C_u505C_u6B62_uFF0C_u91CD_u8F7D"><a href="#nginx__u7684_u542F_u52A8_uFF0C_u505C_u6B62_uFF0C_u91CD_u8F7D" class="headerlink" title="nginx 的启动，停止，重载"></a>nginx 的启动，停止，重载</h4><p>一开始启动 nginx ，需要运行可执行文件，一旦 nginx 启动之后，就可以使用 <code>nginx -s 参数</code> 来控制，具体的命令为：  </p>
+<blockquote>
+<p>nginx -s signal  </p>
+</blockquote>
+<p>其中 signal 可以是下面几个中的任意一个：  </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/20/nginx官网文档翻译-入门/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/02/php-mysql/" itemprop="url">
                   PHP操作MySQL
                 </a>
@@ -1139,100 +1242,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/31/something-about-zhis-blog/" itemprop="url">
-                  something about zhis blog
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-31T18:48:46+08:00" content="2016-01-31">
-              2016-01-31
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/31/something-about-zhis-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/31/something-about-zhis-blog/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="u5728_u6709_u72EC_u7ACB_u57DF_u540D_u4E4B_u524D"><a href="#u5728_u6709_u72EC_u7ACB_u57DF_u540D_u4E4B_u524D" class="headerlink" title="在有独立域名之前"></a>在有独立域名之前</h4><p>拥有独立域名之前，写的东西零零散散的落在各个平台，幸好那些大都是不足观的。  </p>
-<h4 id="Godaddy__u4E0A_u4E70_u4E86_u57DF_u540D"><a href="#Godaddy__u4E0A_u4E70_u4E86_u57DF_u540D" class="headerlink" title="Godaddy 上买了域名"></a>Godaddy 上买了域名</h4><p>14年年底，在狗爹上买了域名，<code>.com</code> 的，最近又在想或许当初应该买个 <code>.me</code> 的， <code>.com</code> 有点太正式了，<code>.me</code> 稍显文艺点，也活泼些。一开始，把域名绑在了 farbox 平台，对于当时的我来说，这算是最简单的了。但 farbox 有几个问题，一是流量有限制，二是编辑器不纯粹不方便，三是定制性不高，最起码对于我这种没有前端知识的人来说，最多套个模板，几乎不能修改。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/31/something-about-zhis-blog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1279,7 +1288,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1289,7 +1298,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
