@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="后端,php," />
 
 
 
@@ -57,24 +57,16 @@
 
 
 
-<meta name="description" content="为什么通过USB连接手机和笔记本虽然传输速度很快，但有时候也会很不方便，比如：
-
-如果你手机恰好需要充电，同时需要调试软件，因为笔记本USB口的电压很低，那么很有可能，在调试软件的过程中，手机的电量会不增反降。">
+<meta name="description" content="PHP offers three different APIs to connect to MySQL. Below we show the APIs provided by the mysql, mysqli, and PDO extensions. Each code snippet creates a connection to a MySQL server running on “exam">
 <meta property="og:type" content="article">
-<meta property="og:title" content="通过wifi连接进行应用调试（Android Studio）">
-<meta property="og:url" content="http://yoursite.com/2015/12/08/wifi-app-debug/index.html">
+<meta property="og:title" content="PHP连接MySQL的三种方式">
+<meta property="og:url" content="http://yoursite.com/2016/07/20/PHP连接MySQL的三种方式/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="为什么通过USB连接手机和笔记本虽然传输速度很快，但有时候也会很不方便，比如：
-
-如果你手机恰好需要充电，同时需要调试软件，因为笔记本USB口的电压很低，那么很有可能，在调试软件的过程中，手机的电量会不增反降。">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wificonnect.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wifi-plugin.png">
-<meta property="og:updated_time" content="2016-01-07T06:03:48.289Z">
+<meta property="og:description" content="PHP offers three different APIs to connect to MySQL. Below we show the APIs provided by the mysql, mysqli, and PDO extensions. Each code snippet creates a connection to a MySQL server running on “exam">
+<meta property="og:updated_time" content="2016-07-20T15:30:04.996Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="通过wifi连接进行应用调试（Android Studio）">
-<meta name="twitter:description" content="为什么通过USB连接手机和笔记本虽然传输速度很快，但有时候也会很不方便，比如：
-
-如果你手机恰好需要充电，同时需要调试软件，因为笔记本USB口的电压很低，那么很有可能，在调试软件的过程中，手机的电量会不增反降。">
+<meta name="twitter:title" content="PHP连接MySQL的三种方式">
+<meta name="twitter:description" content="PHP offers three different APIs to connect to MySQL. Below we show the APIs provided by the mysql, mysqli, and PDO extensions. Each code snippet creates a connection to a MySQL server running on “exam">
 
 
 
@@ -92,7 +84,7 @@
   };
 </script>
 
-  <title> 通过wifi连接进行应用调试（Android Studio） | zhusandiao </title>
+  <title> PHP连接MySQL的三种方式 | zhusandiao </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -231,7 +223,7 @@
             
             
               
-                通过wifi连接进行应用调试（Android Studio）
+                PHP连接MySQL的三种方式
               
             
           </h1>
@@ -243,8 +235,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-08T12:20:39+08:00" content="2015-12-08">
-              2015-12-08
+            <time itemprop="dateCreated" datetime="2016-07-20T23:28:13+08:00" content="2016-07-20">
+              2016-07-20
             </time>
           </span>
 
@@ -254,8 +246,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/08/wifi-app-debug/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/08/wifi-app-debug/" itemprop="commentsCount"></span>
+                <a href="/2016/07/20/PHP连接MySQL的三种方式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/20/PHP连接MySQL的三种方式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -276,21 +268,17 @@
       
 
       
-        <h4 id="u4E3A_u4EC0_u4E48"><a href="#u4E3A_u4EC0_u4E48" class="headerlink" title="为什么"></a>为什么</h4><p>通过USB连接手机和笔记本虽然传输<em>速度很快</em>，但有时候也会很不方便，比如：</p>
-<blockquote>
-<p>如果你手机恰好需要充电，同时需要调试软件，因为笔记本USB口的电压很低，那么很有可能，在调试软件的过程中，手机的电量会不增反降。<br><a id="more"></a>   </p>
-</blockquote>
-<hr>
-<h4 id="u5177_u4F53_u64CD_u4F5C"><a href="#u5177_u4F53_u64CD_u4F5C" class="headerlink" title="具体操作"></a>具体操作</h4><p>这时候，通过wifi连接进行，一边充电一边通过wifi连接进行软件调试就显得很方便了，具体该怎么做呢？<br>看看<a href="http://developer.android.com/intl/zh-cn/tools/help/adb.html" target="_blank" rel="external">开发者文档</a>怎么说：</p>
-<blockquote>
-<p><img src="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wificonnect.png" alt="adb wireless usage">  </p>
-</blockquote>
-<hr>
-<p>简单来说就是先保证手机和电脑在一个wifi网络下，然后，再用USB连接该手机和该电脑，接着设置<code>tcpip</code>连接监听<code>5555</code>端口，之后断开USB连接，查看手机连接的wifi的ip地址<em>（在手机的<code>Setting-Wifi-Advanced</code>最底部就能看到<code>MAC address</code>和<code>IP address</code>）</em>，接着用<code>adb connect</code>命令连接该ip地址，最后可以用<code>adb device</code>命令查看是否连接成功。  </p>
-<hr>
-<h4 id="u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F"><a href="#u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F" class="headerlink" title="怎么更方便？"></a>怎么更方便？</h4><blockquote>
-<p>其实这么做，还是挺麻烦的，已经有人做好了插件<strong><code>ADB WIFI</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/androiddevelopadb-wifi-plugin.png" alt="ADB WIFI"><br>所以，现在只需要保证手机电脑在同一个wifi下，然后先USB连接，接着到<code>Tool--&gt;Android--&gt;ADB WIFI--&gt;ADB USB to WIFI</code>就可以了，此时已经通过wifi连接，可以断开USB，随便run一个项目，选择该手机，看看是不是连接成功了。</p>
-</blockquote>
+        <p>PHP offers three different APIs to connect to MySQL. Below we show the APIs provided by the mysql, mysqli, and PDO extensions. Each code snippet creates a connection to a MySQL server running on “example.com” using the username “user” and the password “password”. And a query is run to greet the user.</p>
+<p>PHP 提供了三种 API 来连接 Mysql 数据库，下面展示的就是由三种扩展（1.mysql; 2.mysqli; 3.PDO）提供的 连接API。  </p>
+<p>每一个代码片段都创建了一个到服务器的连接，域名为”example.com”,用户名为”user”，密码”password”，每一个执行都向用户打了一声招呼。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// mysqli</span><br><span class="line"><span class="variable">$mysqli</span> = new mysqli(<span class="string">"example.com"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>, <span class="string">"database"</span>);</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$mysqli-</span>&gt;query(<span class="string">"SELECT 'Hello, dear MySQL user!' AS _message FROM DUAL"</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$result-</span>&gt;fetch_assoc();</span><br><span class="line">echo htmlentities(<span class="variable">$row</span>[<span class="string">'_message'</span>]);</span><br><span class="line"></span><br><span class="line">// PDO</span><br><span class="line"><span class="variable">$pdo</span> = new PDO(<span class="string">'mysql:host=example.com;dbname=database'</span>, <span class="string">'user'</span>, <span class="string">'password'</span>);</span><br><span class="line"><span class="variable">$statement</span> = <span class="variable">$pdo-</span>&gt;query(<span class="string">"SELECT 'Hello, dear MySQL user!' AS _message FROM DUAL"</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$statement-</span>&gt;fetch(PDO::FETCH_ASSOC);</span><br><span class="line">echo htmlentities(<span class="variable">$row</span>[<span class="string">'_message'</span>]);</span><br><span class="line"></span><br><span class="line">// mysql</span><br><span class="line"><span class="variable">$c</span> = mysql_connect(<span class="string">"example.com"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span><br><span class="line">mysql_select_db(<span class="string">"database"</span>);</span><br><span class="line"><span class="variable">$result</span> = mysql_query(<span class="string">"SELECT 'Hello, dear MySQL user!' AS _message FROM DUAL"</span>);</span><br><span class="line"><span class="variable">$row</span> = mysql_fetch_assoc(<span class="variable">$result</span>);</span><br><span class="line">echo htmlentities(<span class="variable">$row</span>[<span class="string">'_message'</span>]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>官网建议：  </p>
+<p>Recommended API</p>
+<p>It is recommended to use either the mysqli or PDO_MySQL extensions. It is not recommended to use the old mysql extension for new development, as it was deprecated in PHP 5.5.0 and was removed in PHP 7. A detailed feature comparison matrix is provided below. The overall performance of all three extensions is considered to be about the same. Although the performance of the extension contributes only a fraction of the total run time of a PHP web request. Often, the impact is as low as 0.1%.</p>
+<p>推荐的使用的 API </p>
+<p>推荐使用 mysqli 或者是 PDO_MySQL 扩展。对于新开发的项目来说，不推荐使用旧的 mysql 扩展，因为其在 PHP 的5.5.0 版中，已经被弃用了，而在 PHP7 中直接被移除了。下面提供了一个详细的功能对比表格。三个扩展的总体性能都差不多。在一个 PHP web 请求的运行时间内，扩展所占的影响只有非常小的一部分，差不多为 0.1%。  </p>
+<p><a href="http://dev.mysql.com/doc/apis-php/en/apis-php-mysqlinfo.api.choosing.html" target="_blank" rel="external">官网说明</a></p>
 
       
     </div>
@@ -299,7 +287,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag">#android</a>
+            <a href="/tags/后端-php/" rel="tag">#后端,php</a>
           
         </div>
       
@@ -308,13 +296,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/07/20/nginx官网文档翻译-重定向/" rel="next" title="nginx官网文档翻译-重定向">
+                <i class="fa fa-chevron-left"></i> nginx官网文档翻译-重定向
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/08/RecycleView-note/" rel="prev" title="RecycleView笔记">
-                RecycleView笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -474,7 +462,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E3A_u4EC0_u4E48"><span class="nav-number">1.</span> <span class="nav-text">为什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5177_u4F53_u64CD_u4F5C"><span class="nav-number">2.</span> <span class="nav-text">具体操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u600E_u4E48_u66F4_u65B9_u4FBF_uFF1F"><span class="nav-number">3.</span> <span class="nav-text">怎么更方便？</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -739,9 +727,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'zhusandiao';
-      var disqus_identifier = '2015/12/08/wifi-app-debug/';
-      var disqus_title = '通过wifi连接进行应用调试（Android Studio）';
-      var disqus_url = 'http://yoursite.com/2015/12/08/wifi-app-debug/';
+      var disqus_identifier = '2016/07/20/PHP连接MySQL的三种方式/';
+      var disqus_title = 'PHP连接MySQL的三种方式';
+      var disqus_url = 'http://yoursite.com/2016/07/20/PHP连接MySQL的三种方式/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

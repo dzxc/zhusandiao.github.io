@@ -231,6 +231,102 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/20/PHP连接MySQL的三种方式/" itemprop="url">
+                  PHP连接MySQL的三种方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T23:28:13+08:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/20/PHP连接MySQL的三种方式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/20/PHP连接MySQL的三种方式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>PHP offers three different APIs to connect to MySQL. Below we show the APIs provided by the mysql, mysqli, and PDO extensions. Each code snippet creates a connection to a MySQL server running on “example.com” using the username “user” and the password “password”. And a query is run to greet the user.</p>
+<p>PHP 提供了三种 API 来连接 Mysql 数据库，下面展示的就是由三种扩展（1.mysql; 2.mysqli; 3.PDO）提供的 连接API。  </p>
+<p>每一个代码片段都创建了一个到服务器的连接，域名为”example.com”,用户名为”user”，密码”password”，每一个执行都向用户打了一声招呼。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// mysqli</span><br><span class="line"><span class="variable">$mysqli</span> = new mysqli(<span class="string">"example.com"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>, <span class="string">"database"</span>);</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$mysqli-</span>&gt;query(<span class="string">"SELECT 'Hello, dear MySQL user!' AS _message FROM DUAL"</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$result-</span>&gt;fetch_assoc();</span><br><span class="line">echo htmlentities(<span class="variable">$row</span>[<span class="string">'_message'</span>]);</span><br><span class="line"></span><br><span class="line">// PDO</span><br><span class="line"><span class="variable">$pdo</span> = new PDO(<span class="string">'mysql:host=example.com;dbname=database'</span>, <span class="string">'user'</span>, <span class="string">'password'</span>);</span><br><span class="line"><span class="variable">$statement</span> = <span class="variable">$pdo-</span>&gt;query(<span class="string">"SELECT 'Hello, dear MySQL user!' AS _message FROM DUAL"</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="variable">$statement-</span>&gt;fetch(PDO::FETCH_ASSOC);</span><br><span class="line">echo htmlentities(<span class="variable">$row</span>[<span class="string">'_message'</span>]);</span><br><span class="line"></span><br><span class="line">// mysql</span><br><span class="line"><span class="variable">$c</span> = mysql_connect(<span class="string">"example.com"</span>, <span class="string">"user"</span>, <span class="string">"password"</span>);</span><br><span class="line">mysql_select_db(<span class="string">"database"</span>);</span><br><span class="line"><span class="variable">$result</span> = mysql_query(<span class="string">"SELECT 'Hello, dear MySQL user!' AS _message FROM DUAL"</span>);</span><br><span class="line"><span class="variable">$row</span> = mysql_fetch_assoc(<span class="variable">$result</span>);</span><br><span class="line">echo htmlentities(<span class="variable">$row</span>[<span class="string">'_message'</span>]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/20/PHP连接MySQL的三种方式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/20/nginx官网文档翻译-重定向/" itemprop="url">
                   nginx官网文档翻译-重定向
                 </a>
@@ -1156,109 +1252,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/10/React-demo-GoogleMap/" itemprop="url">
-                  React.js案例--GoogleMap
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-10T18:42:47+08:00" content="2016-05-10">
-              2016-05-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/10/React-demo-GoogleMap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/10/React-demo-GoogleMap/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="u9879_u76EE_u5730_u5740"><a href="#u9879_u76EE_u5730_u5740" class="headerlink" title="项目地址"></a>项目地址</h3><ul>
-<li><a href="https://github.com/TommyHili/React-GoogleMap">React-GoogleMap</a>  </li>
-</ul>
-<h3 id="u7B2C_u4E00_u6B65_clone__u9879_u76EE_u5230_u672C_u5730"><a href="#u7B2C_u4E00_u6B65_clone__u9879_u76EE_u5230_u672C_u5730" class="headerlink" title="第一步 clone 项目到本地"></a>第一步 clone 项目到本地</h3><ol>
-<li>选择一个本地目录，我的目录是：<code>/Users/abc/project/React/src/</code>  </li>
-<li><code>git clone https://github.com/TommyHili/React-GoogleMap.git</code>  </li>
-</ol>
-<h3 id="u7B2C_u4E8C_u6B65__u67E5_u770B_u9879_u76EE_u6587_u4EF6"><a href="#u7B2C_u4E8C_u6B65__u67E5_u770B_u9879_u76EE_u6587_u4EF6" class="headerlink" title="第二步 查看项目文件"></a>第二步 查看项目文件</h3><ol>
-<li>clone 完了之后，切换到该目录下：<code>cd React-GoogleMap</code>  </li>
-<li><code>ls -1</code>查看该目录下的文件列表，发现有以下几个：<code>README.md , build , gulp , gulpfile.js , node_modules , package.json , src</code><br><img src="http://ww2.sinaimg.cn/large/92c4e634gw1f3lx7sbcxdj209e04iq3c.jpg" alt="">  </li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/10/React-demo-GoogleMap/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1305,7 +1298,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1315,7 +1308,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
