@@ -1,0 +1,953 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Redis,后端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Redis的简单介绍
+特点
+
+是键值型的数据库
+支持数据的持久化，可以将内存中的数据保存在磁盘中。
+支持多种数据结构的存储
+支持数据的备份
+
+
+优势：
+
+性能极高：读110000次/s，写的速度是81000次/s
+操作是原子性的
+
+
+
+Redis支持数据结构Redis 支持 5 种数据类型：  
+
+string（字符串）
+hash（哈希）
+list（列表）
+set（集合）
+zset(sorted">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis 入门">
+<meta property="og:url" content="http://yoursite.com/2016/07/29/Redis-入门/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="Redis的简单介绍
+特点
+
+是键值型的数据库
+支持数据的持久化，可以将内存中的数据保存在磁盘中。
+支持多种数据结构的存储
+支持数据的备份
+
+
+优势：
+
+性能极高：读110000次/s，写的速度是81000次/s
+操作是原子性的
+
+
+
+Redis支持数据结构Redis 支持 5 种数据类型：  
+
+string（字符串）
+hash（哈希）
+list（列表）
+set（集合）
+zset(sorted">
+<meta property="og:updated_time" content="2016-07-29T14:32:15.428Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis 入门">
+<meta name="twitter:description" content="Redis的简单介绍
+特点
+
+是键值型的数据库
+支持数据的持久化，可以将内存中的数据保存在磁盘中。
+支持多种数据结构的存储
+支持数据的备份
+
+
+优势：
+
+性能极高：读110000次/s，写的速度是81000次/s
+操作是原子性的
+
+
+
+Redis支持数据结构Redis 支持 5 种数据类型：  
+
+string（字符串）
+hash（哈希）
+list（列表）
+set（集合）
+zset(sorted">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Redis 入门 | zhusandiao </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhusandiao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I`m angry sometimes naive</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Redis 入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-29T22:30:18+08:00" content="2016-07-29">
+              2016-07-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/29/Redis-入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/29/Redis-入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Redis_u7684_u7B80_u5355_u4ECB_u7ECD"><a href="#Redis_u7684_u7B80_u5355_u4ECB_u7ECD" class="headerlink" title="Redis的简单介绍"></a>Redis的简单介绍</h3><ul>
+<li><p>特点</p>
+<ul>
+<li>是键值型的数据库</li>
+<li>支持数据的持久化，可以将内存中的数据保存在磁盘中。</li>
+<li>支持多种数据结构的存储</li>
+<li>支持数据的备份</li>
+</ul>
+</li>
+<li><p>优势：</p>
+<ul>
+<li>性能极高：读110000次/s，写的速度是81000次/s</li>
+<li>操作是原子性的</li>
+</ul>
+</li>
+</ul>
+<h3 id="Redis_u652F_u6301_u6570_u636E_u7ED3_u6784"><a href="#Redis_u652F_u6301_u6570_u636E_u7ED3_u6784" class="headerlink" title="Redis支持数据结构"></a>Redis支持数据结构</h3><p>Redis 支持 5 种数据类型：  </p>
+<ul>
+<li>string（字符串）</li>
+<li>hash（哈希）</li>
+<li>list（列表）</li>
+<li>set（集合）</li>
+<li>zset(sorted set：有序集合，redis1.2版本开始)</li>
+</ul>
+<ul>
+<li>string<ul>
+<li>是 redis 的最基本的类型，一个key对应一个value</li>
+</ul>
+</li>
+<li>hash<ul>
+<li>Redis hash 是一个键值对集合。</li>
+<li>一个string类型的field和value的映射表，hash特别适合用于存储对象。</li>
+</ul>
+</li>
+<li>list<ul>
+<li>列表是简单的字符串列表，按照插入顺序排序。</li>
+<li>可以在列表的头部（左边）或者尾部（右边）添加一个元素。</li>
+</ul>
+</li>
+<li>set<ul>
+<li>Redis的Set是string类型的无序集合。</li>
+</ul>
+</li>
+<li>Redis zset <ul>
+<li>和 set 一样也是string类型元素的集合,且不允许重复的成员</li>
+<li>每个元素都会关联一个double类型的分数</li>
+<li>通过分数来为集合中的成员进行从小到大的排序</li>
+<li>zset的成员是唯一的,但分数(score)却可以重复</li>
+</ul>
+</li>
+</ul>
+<h3 id="Redis__u7684_u5E38_u7528_u6307_u4EE4"><a href="#Redis__u7684_u5E38_u7528_u6307_u4EE4" class="headerlink" title="Redis 的常用指令"></a>Redis 的常用指令</h3><a id="more"></a>
+<h4 id="u6267_u884C_redis__u547D_u4EE4"><a href="#u6267_u884C_redis__u547D_u4EE4" class="headerlink" title="执行 redis 命令"></a>执行 redis 命令</h4><ol>
+<li>本机执行 redis 命令</li>
+</ol>
+<ul>
+<li>redis 服务上执行命令需要一个 redis 客户端。</li>
+<li>命令：<code>redis-cli</code></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10140;  ~ redis-cli&#10;127.0.0.1:6379&#62; ping&#10;PONG&#10;127.0.0.1:6379&#62;&#10140;  ~ redis-cli&#10;127.0.0.1:6379&#62; ping&#10;PONG&#10;127.0.0.1:6379&#62;</span><br></pre></td></tr></table></figure>
+<p>用 <code>ping</code>命令检测 redis 服务是否启动。</p>
+<ol>
+<li>在远程 redis 服务上执行命令</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h host -<span class="tag">p</span> port -<span class="tag">a</span> password</span><br></pre></td></tr></table></figure>
+<h4 id="u64CD_u4F5C_u952E_u7684_u547D_u4EE4"><a href="#u64CD_u4F5C_u952E_u7684_u547D_u4EE4" class="headerlink" title="操作键的命令"></a>操作键的命令</h4><p>命令格式：<code>指令 键名</code></p>
+<center><strong>相关指令见下表</strong></center>
+
+<table class="table table-striped table-bordered"><br><tbody><br><tr><br><th style="width:5%">序号</th><br><th>命令及描述</th><br></tr><br><tr><br><td>√1</td><br><td><a href="/order/3528.html">del key</a><br>该命令用于在 key 存在时删除 key。</td><br></tr><br><tr><br><td>2</td><br><td><a href="/order/3529.html">dump key</a><br>序列化给定 key ，并返回被序列化的值。</td><br></tr><br><tr><br><td>√3</td><br><td><a href="/order/3530.html">exists key</a><br>检查给定 key 是否存在。</td><br></tr><br><tr><br><td>√4</td><br><td><a href="/order/3531.html">expire key</a> seconds<br>为给定 key 设置过期时间。</td><br></tr><br><tr><br><td>5</td><br><td><a href="/order/3532.html">expire key timestamp</a><br>EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)。</td><br></tr><br><tr><br><td>6</td><br><td><a href="/order/3533.html">pexpire key milliseconds</a><br>设置 key 的过期时间以亿毫秒计。</td><br></tr><br><tr><br><td>7</td><br><td><a href="/order/3534.html">pexpire key milliseconds-timestamp</a><br>设置 key 过期时间的时间戳(unix timestamp) 以毫秒计</td><br></tr><br><tr><br><td>8</td><br><td><a href="/order/3535.html">keys pattern</a><br>查找所有符合给定模式( pattern)的 key 。</td><br></tr><br><tr><br><td>9</td><br><td><a href="/order/3536.html">move key db</a><br>将当前数据库的 key 移动到给定的数据库 db 当中。</td><br></tr><br><tr><br><td>√10</td><br><td><a href="/order/3537.html">persist key</a><br>移除 key 的过期时间，key 将持久保持。</td><br></tr><br><tr><br><td>√11</td><br><td><a href="/order/3538.html">pttl key</a><br>以毫秒为单位返回 key 的剩余的过期时间。</td><br></tr><br><tr><br><td>√12</td><br><td><a href="/order/3539.html">ttl key</a><br>以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)。</td><br></tr><br><tr><br><td>13</td><br><td><a href="/order/3540.html">randomkey</a><br>从当前数据库中随机返回一个 key 。</td><br></tr><br><tr><br><td>14</td><br><td><a href="/order/3541.html">rename key newkey</a><br>修改 key 的名称</td><br></tr><br><br><tr><br><td>15</td><br><td><a href="/order/3542.html">renamenx key newkey</a><br>仅当 newkey 不存在时，将 key 改名为 newkey 。</td><br></tr><br><tr><br><td>16</td><br><td><a href="/order/3543.html">type key</a><br>返回 key 所储存的值的类型。</td><br></tr><br></tbody><br></table>
+
+<p>序号前面打勾的命令，我觉得比较常用。  </p>
+<h4 id="u64CD_u4F5C_u5B57_u7B26_u4E32_u7684_u547D_u4EE4"><a href="#u64CD_u4F5C_u5B57_u7B26_u4E32_u7684_u547D_u4EE4" class="headerlink" title="操作字符串的命令"></a>操作字符串的命令</h4><center><strong>下表列出了常用的 redis 字符串命令</strong></center>
+
+<table class="table table-striped table-bordered"><br><tbody><br><tr><br><th style="width:5%">序号</th><br><th>命令及描述</th><br></tr><br><tr><br><td>√1</td><br><td><a href="8669.html">set key value</a><br>设置指定 key 的值</td><br></tr><br><tr><br><td>√2</td><br><td><a href="8670.html">get key</a><br>获取指定 key 的值。</td><br></tr><br><tr><br><td>√3</td><br><td><a href="8671.html">getrange key start end</a><br>返回 key 中字符串值的子字符</td><br></tr><br><tr><br><td>4</td><br><td><a href="8672.html">getset key value</a><br>将给定 key 的值设为 value ，并返回 key 的旧值(old value)。</td><br></tr><br><tr><br><td>5</td><br><td><a href="8673.html">getbit key offset</a><br>对 key 所储存的字符串值，获取指定偏移量上的位(bit)。</td><br></tr><br><tr><br><td>√6</td><br><td><a href="8674.html">mget key1 [key2..]</a><br>获取所有(一个或多个)给定 key 的值。</td><br></tr><br><tr><br><td>7</td><br><td><a href="8675.html">setbit key offset value</a><br>对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。</td><br></tr><br><tr><br><td>8</td><br><td><a href="8676.html">setex key seconds value</a><br>将值 value 关联到 key ，并将 key 的过期时间设为 seconds (以秒为单位)。</td><br></tr><br><tr><br><td>9</td><br><td><a href="8677.html">setnx key value</a><br>只有在 key 不存在时设置 key 的值。</td><br></tr><br><tr><br><td>10</td><br><td><a href="8678.html">setrange key offset value</a><br>用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始。</td><br></tr><br><tr><br><td>√11</td><br><td><a href="8679.html">strlen key</a><br>返回 key 所储存的字符串值的长度。</td><br></tr><br><tr><br><td>12</td><br><td><a href="8680.html">mset key value [key value …]</a><br>同时设置一个或多个 key-value 对。</td><br></tr><br><tr><br><td>13</td><br><td><a href="8681.html">msetnx key value [key value …]</a><br>同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。</td><br></tr><br><tr><br><td>14</td><br><td><a href="8682.html">psetex key milliseconds value</a><br>这个命令和 SETEX 命令相似，但它以毫秒为单位设置 key 的生存时间，而不是像 SETEX 命令那样，以秒为单位。</td><br></tr><br><tr><br><td>√15</td><br><td><a href="8683.html">incr key</a><br>将 key 中储存的数字值增一。</td><br></tr><br><tr><br><td>√16</td><br><td><a href="8684.html">incrby key increment</a><br>将 key 所储存的值加上给定的增量值（increment） 。</td><br></tr><br><tr><br><td>17</td><br><td><a href="8685.html">incrbyfloat key increment</a><br>将 key 所储存的值加上给定的浮点增量值（increment） 。</td><br></tr><br><tr><br><td>√18</td><br><td><a href="8686.html">decr key</a><br>将 key 中储存的数字值减一。</td><br></tr><br><tr><br><td>√19</td><br><td><a href="8687.html">decrby key decrement</a><br>key 所储存的值减去给定的减量值（decrement） 。</td><br></tr><br><tr><br><td>√20</td><br><td><a href="8688.html">append key value</a><br>如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。</td><br></tr><br></tbody><br></table>
+
+<p>序号前面打勾的命令，我觉得比较常用。  </p>
+<h4 id="u64CD_u4F5Chash_u7684_u547D_u4EE4"><a href="#u64CD_u4F5Chash_u7684_u547D_u4EE4" class="headerlink" title="操作hash的命令"></a>操作hash的命令</h4><p>Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。</p>
+<p>示例：存储了一个 class，信息有班级名，开班时间，老师数量，学生数量</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&#62; hmset class name &#34;W3S1&#34;&#10;OK&#10;127.0.0.1:6379&#62; hmset class year 2011&#10;OK&#10;127.0.0.1:6379&#62; hmset class teacherNum 4&#10;OK&#10;127.0.0.1:6379&#62; hmset class studentNum 32&#10;OK&#10;127.0.0.1:6379&#62; hgetall class&#10;1) &#34;name&#34;&#10;2) &#34;W3S1&#34;&#10;3) &#34;year&#34;&#10;4) &#34;2011&#34;&#10;5) &#34;teacherNum&#34;&#10;6) &#34;4&#34;&#10;7) &#34;studentNum&#34;&#10;8) &#34;32&#34;&#10;127.0.0.1:6379&#62;</span><br></pre></td></tr></table></figure>
+<center><strong>下表列出了 redis hash 基本的相关命令</strong></center>
+
+<table class="table table-striped table-bordered"><br><tbody><br><tr><br><th style="width:5%">序号</th><br><th>命令及描述</th><br></tr><br><tr><br><td>√1</td><br><td><a href="/order/3564.html">hdel key field2 [field2]</a><br>删除一个或多个哈希表字段</td><br></tr><br><tr><br><td>√2</td><br><td><a href="/order/3565.html">hexists key field</a><br>查看哈希表 key 中，指定的字段是否存在。</td><br></tr><br><tr><br><td>√3</td><br><td><a href="/order/3566.html">hget key field</a><br>获取存储在哈希表中指定字段的值/td&gt;</td><br></tr><br><tr><br><td>√4</td><br><td><a href="/order/3567.html">hgetall key</a><br>获取在哈希表中指定 key 的所有字段和值</td><br></tr><br><tr><br><td>√5</td><br><td><a href="/order/3568.html">hincrby key field increment</a><br>为哈希表 key 中的指定字段的整数值加上增量 increment 。</td><br></tr><br><tr><br><td>6</td><br><td><a href="/order/3569.html">hincrbyfloat key field increment</a><br>为哈希表 key 中的指定字段的浮点数值加上增量 increment 。</td><br></tr><br><tr><br><td>√7</td><br><td><a href="/order/3570.html">hkeys key</a><br>获取所有哈希表中的字段</td><br></tr><br><tr><br><td>√8</td><br><td><a href="/order/3571.html">hlen key</a><br>获取哈希表中字段的数量</td><br></tr><br><tr><br><td>√9</td><br><td><a href="/order/3572.html">hmget key field1 [field2]</a><br>获取所有给定字段的值</td><br></tr><br><tr><br><td>10</td><br><td><a href="/order/3573.html">hmset key field1 value1 [field2 value2 ]</a><br>同时将多个 field-value (域-值)对设置到哈希表 key 中。</td><br></tr><br><br><tr><br><td>√11</td><br><td><a href="/order/3574.html">hset key field value</a><br>将哈希表 key 中的字段 field 的值设为 value 。</td><br></tr><br><tr><br><td>12</td><br><td><a href="/order/3575.html">hsetnx key field value</a><br>只有在字段 field 不存在时，设置哈希表字段的值。</td><br></tr><br><tr><br><td>13</td><br><td><a href="/order/3576.html">hvals key</a><br>获取哈希表中所有值</td><br></tr><br><tr><br><td>14</td><br><td>hscan key cursor [MATCH pattern] [COUNT count]<br>迭代哈希表中的键值对。</td><br></tr><br></tbody><br></table>
+
+<p>序号前面打勾的命令，我觉得比较常用。  </p>
+<h4 id="u64CD_u4F5Clist_u7684_u547D_u4EE4"><a href="#u64CD_u4F5Clist_u7684_u547D_u4EE4" class="headerlink" title="操作list的命令"></a>操作list的命令</h4><p>Redis列表是简单的字符串列表，按照插入顺序排序。</p>
+<p>可以从列表的头部或者列表的尾部添加一个元素。  </p>
+<p>下面示例，将5个技能添加到了技能列表 skills 中，并且打印出来</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">lpush</span> <span class="tag">skills</span> <span class="tag">redis</span></span><br><span class="line">(<span class="tag">integer</span>) 1</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">lpush</span> <span class="tag">skills</span> <span class="tag">mysql</span></span><br><span class="line">(<span class="tag">integer</span>) 2</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">lpush</span> <span class="tag">skills</span> <span class="tag">php</span></span><br><span class="line">(<span class="tag">integer</span>) 3</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">lpush</span> <span class="tag">skills</span> <span class="tag">html</span></span><br><span class="line">(<span class="tag">integer</span>) 4</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">lpush</span> <span class="tag">skills</span> <span class="tag">css</span></span><br><span class="line">(<span class="tag">integer</span>) 5</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">lrange</span> <span class="tag">skills</span> 0 <span class="tag">-1</span></span><br><span class="line">1) "<span class="tag">css</span>"</span><br><span class="line">2) "<span class="tag">html</span>"</span><br><span class="line">3) "<span class="tag">php</span>"</span><br><span class="line">4) "<span class="tag">mysql</span>"</span><br><span class="line">5) "<span class="tag">redis</span>"</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>下表列出了列表 list 相关的基本命令 </p>
+<table class="table table-striped table-bordered"><br><tbody><br><tr><br><th style="width:5%">序号</th><br><th>命令及描述</th><br></tr><br><tr><br><td>1</td><br><td><a href="/order/3577.html">blpop key1 [key2 ] timeout</a><br>移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</td><br></tr><br><tr><br><td>2</td><br><td><a href="/order/3578.html">brpop key1 [key2 ] timeout</a><br>移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</td><br></tr><br><tr><br><td>3</td><br><td><a href="/order/3579.html">brpoplpush source destination timeout</a><br>从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</td><br></tr><br><tr><br><td>√4</td><br><td><a href="/order/3580.html">lindex key index</a><br>通过索引获取列表中的元素</td><br></tr><br><tr><br><td>√5</td><br><td><a href="/order/3581.html">linsert key before|after pivot value</a><br>在列表的元素前或者后插入元素</td><br></tr><br><tr><br><td>√6</td><br><td><a href="/order/3582.html">llen key</a><br>获取列表长度</td><br></tr><br><tr><br><td>√7</td><br><td><a href="/order/3583.html">lpop key</a><br>移出并获取列表的第一个元素</td><br></tr><br><tr><br><td>√8</td><br><td><a href="/order/3584.html">lpush key value1 [value2]</a><br>将一个或多个值插入到列表头部</td><br></tr><br><tr><br><td>9</td><br><td><a href="/order/3585.html">lpushx key value</a><br>将一个或多个值插入到已存在的列表头部</td><br></tr><br><tr><br><td>√10</td><br><td><a href="/order/3586.html">lrange key start stop</a><br>获取列表指定范围内的元素</td><br></tr><br><tr><br><td>11</td><br><td><a href="/order/3587.html">lrem key count value</a><br>移除列表元素</td><br></tr><br><br><tr><br><td>12</td><br><td><a href="/order/3588.html">lset key index value</a><br>通过索引设置列表元素的值</td><br></tr><br><tr><br><td>13</td><br><td><a href="/order/3589.html">ltrim key start stop</a><br>对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除。</td><br></tr><br><tr><br><td>14</td><br><td><a href="/order/3590.html">rpop key</a><br>移除并获取列表最后一个元素</td><br></tr><br><tr><br><td>15</td><br><td><a href="/order/3591.html"> rpoplpushsource destination</a><br>移除列表的最后一个元素，并将该元素添加到另一个列表并返回</td><br></tr><br><tr><br><td>16</td><br><td><a href="/order/3592.html">rpush key value1 [value2]</a><br>在列表中添加一个或多个值</td><br></tr><br><tr><br><td>17</td><br><td><a href="/order/3593.html">rpushx key value</a><br>为已存在的列表添加值</td><br></tr><br></tbody><br></table>
+
+<p>序号前面打勾的命令，我觉得比较常用。  </p>
+<h4 id="u64CD_u4F5CSet_u7684_u547D_u4EE4"><a href="#u64CD_u4F5CSet_u7684_u547D_u4EE4" class="headerlink" title="操作Set的命令"></a>操作Set的命令</h4><ul>
+<li>Redis的 Set 是 string 类型的<strong>无序集合</strong>。  </li>
+<li><strong>集合成员是唯一的</strong>，这就意味着集合中不能出现重复的数据。  </li>
+<li>Redis 中 集合是通过哈希表实现的</li>
+</ul>
+<p>示例</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">sadd</span> <span class="tag">myskills</span> <span class="tag">mysql</span></span><br><span class="line">(<span class="tag">integer</span>) 1</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">sadd</span> <span class="tag">myskills</span> <span class="tag">php</span></span><br><span class="line">(<span class="tag">integer</span>) 1</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">sadd</span> <span class="tag">myskills</span> <span class="tag">html</span></span><br><span class="line">(<span class="tag">integer</span>) 1</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">sadd</span> <span class="tag">myskills</span> <span class="tag">css</span></span><br><span class="line">(<span class="tag">integer</span>) 1</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">sadd</span> <span class="tag">myskills</span> <span class="tag">nginx</span></span><br><span class="line">(<span class="tag">integer</span>) 1</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt; <span class="tag">smembers</span> <span class="tag">myskills</span></span><br><span class="line">1) "<span class="tag">css</span>"</span><br><span class="line">2) "<span class="tag">html</span>"</span><br><span class="line">3) "<span class="tag">php</span>"</span><br><span class="line">4) "<span class="tag">mysql</span>"</span><br><span class="line">5) "<span class="tag">nginx</span>"</span><br><span class="line">127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:6379</span>&gt;</span><br></pre></td></tr></table></figure>
+<center><strong>下表列出了 Redis 集合基本命令</strong></center>
+
+<table class="table table-striped table-bordered"><br><tbody><br><tr><br><th style="width:5%">序号</th><br><th>命令及描述</th><br></tr><br><tr><br><td>√1</td><br><td><a href="/order/3594.html">sadd key member1 [member2]</a><br>向集合添加一个或多个成员</td><br></tr><br><tr><br><td>√2</td><br><td><a href="/order/3595.html">scard key</a><br>获取集合的成员数</td><br></tr><br><tr><br><td>3</td><br><td><a href="/order/3596.html">sdiff key1 [key2]</a><br>返回给定所有集合的差集</td><br></tr><br><tr><br><td>4</td><br><td><a href="/order/3597.html">sdiffstore destination key1 [key2]</a><br>返回给定所有集合的差集并存储在 destination 中</td><br></tr><br><tr><br><td>5</td><br><td><a href="/order/3598.html">sinters key1 [key2]</a><br>返回给定所有集合的交集</td><br></tr><br><tr><br><td>6</td><br><td><a href="/order/3599.html">sinterstore destination key1 [key2]</a><br>返回给定所有集合的交集并存储在 destination 中</td><br></tr><br><tr><br><td>√7</td><br><td><a href="/order/3600.html">sismember key member</a><br>判断 member 元素是否是集合 key 的成员</td><br></tr><br><tr><br><td>√8</td><br><td><a href="/order/3601.html">smembers key</a><br>返回集合中的所有成员</td><br></tr><br><tr><br><td>9</td><br><td><a href="/order/3602.html">smove source destination member</a><br>将 member 元素从 source 集合移动到 destination 集合</td><br></tr><br><tr><br><td>√10</td><br><td><a href="/order/3603.html">spop key</a><br>移除并返回集合中的一个随机元素</td><br></tr><br><tr><br><td>√11</td><br><td><a href="/order/3604.html">srandmember key [count]</a><br>返回集合中一个或多个随机数</td><br></tr><br><tr><br><td>12</td><br><td><a href="/order/3605.html">srem key member1 [member2]</a><br>移除集合中一个或多个成员</td><br><br></tr><br><tr><br><td>13</td><br><td><a href="/order/3606.html">sunion key1 [key2]</a><br>返回所有给定集合的并集</td><br></tr><br><tr><br><td>14</td><br><td><a href="/order/3607.html">sunionstore destination key1 [key2]</a><br>所有给定集合的并集存储在 destination 集合中</td><br></tr><br><tr><br><td>15</td><br><td><a href="/order/3608.html">sscan key cursor [MATCH pattern] [COUNT count]</a><br>迭代集合中的元素</td><br></tr><br></tbody><br></table>
+
+<p>序号前面打勾的命令，我觉得比较常用。  </p>
+<h4 id="u64CD_u4F5C_sorted_set__u7684_u547D_u4EE4"><a href="#u64CD_u4F5C_sorted_set__u7684_u547D_u4EE4" class="headerlink" title="操作 sorted set 的命令"></a>操作 sorted set 的命令</h4><ul>
+<li>Redis sorted set 和 Set 一样的地方是：都是string 类型元素的集合，而且成员不允许重复</li>
+<li>不同的地方是：每个元素都会关联一个double类型的分数，Redis 通过分数来为集合中的成员进行从小到大的排序。  </li>
+</ul>
+<p>注：<strong>sorted set 的成员是唯一的,但<u>分数(score)却可以重复</u></strong>。</p>
+<p>示例，存储了一个 sorted set –NBAplayer。通过分数由小到大，表示一个球员的进步轨迹–由菜鸟到历史最佳。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd NBAplayer <span class="number">1</span> rookie</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd NBAplayer <span class="number">2</span> player</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd NBAplayer <span class="number">3</span> star</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd NBAplayer <span class="number">4</span> superstar</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd NBAplayer <span class="number">5</span> GOAT</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zrange NBAplayer <span class="number">0</span> <span class="number">10</span> withscores</span><br><span class="line"> <span class="number">1</span>) <span class="string">"rookie"</span></span><br><span class="line"> <span class="number">2</span>) <span class="string">"1"</span></span><br><span class="line"> <span class="number">3</span>) <span class="string">"player"</span></span><br><span class="line"> <span class="number">4</span>) <span class="string">"2"</span></span><br><span class="line"> <span class="number">5</span>) <span class="string">"star"</span></span><br><span class="line"> <span class="number">6</span>) <span class="string">"3"</span></span><br><span class="line"> <span class="number">7</span>) <span class="string">"superstar"</span></span><br><span class="line"> <span class="number">8</span>) <span class="string">"4"</span></span><br><span class="line"> <span class="number">9</span>) <span class="string">"GOAT"</span></span><br><span class="line"><span class="number">10</span>) <span class="string">"5"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;</span><br></pre></td></tr></table></figure>
+<center><strong>下表列出了 redis 操作 sorted set的基本命令</strong></center>
+
+<table class="table table-striped table-bordered"><br><tbody><br><tr><br><th style="width:5%">序号</th><br><th>命令及描述</th><br></tr><br><tr><br><td>√1</td><br><td><a href="/order/3609.html">zadd key score1 member1 [score2 member2]</a><br>向有序集合添加一个或多个成员，或者更新已存在成员的分数</td><br></tr><br><tr><br><td>√2</td><br><td><a href="/order/3610.html">zcard key</a><br>获取有序集合的成员数</td><br></tr><br><tr><br><td>√3</td><br><td><a href="/order/3611.html">zount key min max</a><br>计算在有序集合中指定区间分数的成员数</td><br></tr><br><tr><br><td>4</td><br><td><a href="/order/3612.html">zincrby key increment member</a><br>有序集合中对指定成员的分数加上增量 increment</td><br></tr><br><tr><br><td>5</td><br><td><a href="/order/3613.html">zinterstore destination numkeys key [key …]</a><br>计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中</td><br></tr><br><tr><br><td>6</td><br><td><a href="/order/3614.html">zlexcount key min max</a><br>在有序集合中计算指定字典区间内成员数量</td><br></tr><br><tr><br><td>√7</td><br><td><a href="/order/3615.html">zrange key start stop [WITHSCORES]</a><br>通过索引区间返回有序集合成指定区间内的成员</td><br></tr><br><tr><br><td>8</td><br><td><a href="/order/3616.html">zrangebylex key min max [LIMIT offset count]</a><br>通过字典区间返回有序集合的成员</td><br></tr><br><tr><br><td>9</td><br><td><a href="/order/3617.html">zrangebyscore key min max [WITHSCORES] [LIMIT]</a><br>通过分数返回有序集合指定区间内的成员</td><br></tr><br><tr><br><td>√10</td><br><td><a href="/order/3618.html">zrank key member</a><br>返回有序集合中指定成员的索引</td><br></tr><br><tr><br><td>√11</td><br><td><a href="/order/3619.html">zrem key member [member …]</a><br>移除有序集合中的一个或多个成员</td><br></tr><br><tr><br><td>12</td><br><td><a href="/order/3620.html">zremrangebylex key min max</a><br>移除有序集合中给定的字典区间的所有成员</td><br></tr><br><tr><br><td>13</td><br><td><a href="/order/3621.html">zremrangebyrank key start stop</a><br>移除有序集合中给定的排名区间的所有成员</td><br></tr><br><tr><br><td>√14</td><br><td><a href="/order/3622.html"> zremrangebyscore key min max</a><br>移除有序集合中给定的分数区间的所有成员</td><br></tr><br><tr><br><td>15</td><br><td><a href="/order/3623.html">zrevrange key start stop [WITHSCORES]</a><br>返回有序集中指定区间内的成员，通过索引，分数从高到底</td><br></tr><br><tr><br><td>√16</td><br><td><a href="/order/3624.html">zrevrangebyscore key max min [WITHSCORES]</a><br>返回有序集中指定分数区间内的成员，分数从高到低排序</td><br></tr><br><tr><br><td>√17</td><br><td><a href="/order/3625.html">zrevrank key member</a><br>返回有序集合中指定成员的排名，有序集成员按分数值递减(从大到小)排序</td><br></tr><br><tr><br><td>√18</td><br><td><a href="/order/3626.html">zscore key member</a><br>返回有序集合中，成员的分数值</td><br></tr><br><tr><br><td>19</td><br><td><a href="/order/3627.html">zunionstore destination numkeys key [key …]</a><br>计算给定的一个或多个有序集的并集，并存储在新的 key 中</td><br></tr><br><tr><br><td>20</td><br><td><a href="/order/3628.html">zscan key cursor [MATCH pattern] [COUNT count]</a><br>迭代有序集合中的元素（包括元素成员和元素分值）</td><br></tr><br></tbody><br></table>
+
+<p>序号前面打勾的命令，我觉得比较常用。  </p>
+<h4 id="HyperLogLog__u7ED3_u6784"><a href="#HyperLogLog__u7ED3_u6784" class="headerlink" title="HyperLogLog 结构"></a>HyperLogLog 结构</h4><ul>
+<li>Redis HyperLogLog 是用来做<u><strong>基数统计</strong>的算法</u>。<br>优点：在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定的、并且是很小的。–节省资源，性能强大。  </li>
+<li>HyperLogLog 只计算，不存储</li>
+</ul>
+<p><strong>基数的概念：</strong>  </p>
+<p>比如数据集 {1, 3, 5, 7, 5, 7, 8}， 那么这个数据集的基数集为 {1, 3, 5 ,7, 8}, 基数(不重复元素)为5。<br><strong>即<u>描述一个数据集所有元素的最小集合。</u></strong>  </p>
+<p><strong>基数估计</strong></p>
+<p>基数估计就是<u><strong>在误差可接受的范围内，快速计算基数。</strong></u></p>
+<p>示例：在一个工厂里有多个职位，如经理，工人，保安和老板等，每个职位都可能有多个员工，如果我只是想了解这个工厂有多少个职位而不关心每个岗位上有多少个员工，我可以使用基数估计。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"manager"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"manager"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"worker"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"worker"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"worker"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"worker"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"worker"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"boss"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"boss"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"manager"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"securty"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"securty"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; pfadd factory <span class="string">"securty"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="function">pfcount <span class="title">factory</span></span><br><span class="line"><span class="params">(integer)</span> 4</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，一共有四个岗位。  </p>
+<center><strong>下表列出了 redis HyperLogLog 的基本命令</strong></center>
+
+<table class="table table-striped table-bordered"><br><tbody><br><tr><br><th style="width:5%">序号</th><br><th>命令及描述</th><br></tr><br><tr><br><td>1</td><br><td><a href="/order/3629.html">pfadd key element [element …]</a><br>添加指定元素到 HyperLogLog 中。</td><br></tr><br><tr><br><td>2</td><br><td><a href="/order/3630.html">pfcount key [key …]</a><br>返回给定 HyperLogLog 的基数估算值。</td><br></tr><br><tr><br><td>3</td><br><td><a href="/order/3631.html">pfmerge destkey sourcekey [sourcekey …]</a><br>将多个 HyperLogLog 合并为一个 HyperLogLog</td><br></tr><br></tbody><br></table>
+
+<h4 id="Redis__u53D1_u5E03_u8BA2_u9605"><a href="#Redis__u53D1_u5E03_u8BA2_u9605" class="headerlink" title="Redis 发布订阅"></a>Redis 发布订阅</h4><p>Redis <strong>发布订阅(pub/sub)</strong>是<strong>一种消息通信模式</strong>：  </p>
+<blockquote>
+<p>发送者(pub)发送消息，订阅者(sub)接收消息。</p>
+</blockquote>
+<p><u>Redis 客户端可以订阅任意数量</u>的频道。</p>
+<p>新消息发送到频道1，然后订阅了频道1的三个客户端，都会接收到消息。  </p>
+<p>新消息————&gt;频道1<br>            |————&gt;客户端1（接收消息）<br>            |————&gt;客户端2（接收消息）<br>            |————&gt;客户端3（接收消息）</p>
+<p><strong> 频道1发消息 </strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ redis-cli</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; PUBLISH hellochat <span class="string">"hello"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; PUBLISH hellochat <span class="string">"wwww"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; PUBLISH hellochat <span class="string">"eeeee"</span></span><br><span class="line">(integer) <span class="number">2</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;</span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line">客户端<span class="number">1</span>接收到消息：</span><br></pre></td></tr></table></figure>
+<p>➜  ~ redis-cli<br>127.0.0.1:6379&gt; subscribe hellochat<br>Reading messages… (press Ctrl-C to quit)<br>1) “subscribe”<br>2) “hellochat”<br>3) (integer) 1<br>1) “message”<br>2) “hellochat”<br>3) “eeeee”</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">客户端<span class="number">2</span>也接收到消息：</span><br></pre></td></tr></table></figure>
+<p>127.0.0.1:6379&gt; subscribe redischat hellochat<br>Reading messages… (press Ctrl-C to quit)<br>1) “subscribe”<br>2) “redischat”<br>3) (integer) 1<br>1) “subscribe”<br>2) “hellochat”<br>3) (integer) 2<br>1) “message”<br>2) “hellochat”<br>3) “hello”<br>1) “message”<br>2) “hellochat”<br>3) “wwww”<br>1) “message”<br>2) “hellochat”<br>3) “eeeee”<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">&lt;center&gt;</span><span class="keyword">*</span><span class="keyword">*</span>下表列出了 redis 常用的订阅发布命令<span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;/center&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">&lt;table class="table table-striped table-bordered"&gt;</span></span><br><span class="line"><span class="variable">&lt;tbody&gt;</span></span><br><span class="line"><span class="variable">&lt;tr&gt;</span></span><br><span class="line"><span class="variable">&lt;th style="width:5%"&gt;</span>序号<span class="variable">&lt;/th&gt;</span></span><br><span class="line"><span class="variable">&lt;th&gt;</span>命令及描述<span class="variable">&lt;/th&gt;</span></span><br><span class="line"><span class="variable">&lt;/tr&gt;</span></span><br><span class="line"><span class="variable">&lt;tr&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span>1<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span><span class="variable">&lt;a href="/order/3632.html"&gt;</span>psubscribe pattern [pattern ...]<span class="variable">&lt;/a&gt;</span></span><br><span class="line">订阅一个或多个符合给定模式的频道。<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;/tr&gt;</span></span><br><span class="line"><span class="variable">&lt;tr&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span>2<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span><span class="variable">&lt;a href="/order/3633.html"&gt;</span>pubsub subcommand [argument [argument ...]]<span class="variable">&lt;/a&gt;</span></span><br><span class="line">查看订阅与发布系统状态。<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;/tr&gt;</span></span><br><span class="line"><span class="variable">&lt;tr&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span>√3<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span><span class="variable">&lt;a href="/order/3634.html"&gt;</span>publish channel message<span class="variable">&lt;/a&gt;</span></span><br><span class="line">将信息发送到指定的频道。<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;/tr&gt;</span></span><br><span class="line"><span class="variable">&lt;tr&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span>4<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span><span class="variable">&lt;a href="/order/3635.html"&gt;</span>punsubscribe [pattern [pattern ...]]<span class="variable">&lt;/a&gt;</span></span><br><span class="line">退订所有给定模式的频道。<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;/tr&gt;</span></span><br><span class="line"><span class="variable">&lt;tr&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span>√5<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span><span class="variable">&lt;a href="/order/3636.html"&gt;</span>subscribe channel [channel ...]<span class="variable">&lt;/a&gt;</span></span><br><span class="line">订阅给定的一个或多个频道的信息。<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;/tr&gt;</span></span><br><span class="line"><span class="variable">&lt;tr&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">&lt;td&gt;</span>√6<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;td&gt;</span><span class="variable">&lt;a href="/order/3637.html"&gt;</span>unsubscribe [channel [channel ...]]<span class="variable">&lt;/a&gt;</span></span><br><span class="line">指退订给定的频道。<span class="variable">&lt;/td&gt;</span></span><br><span class="line"><span class="variable">&lt;/tr&gt;</span></span><br><span class="line"><span class="variable">&lt;/tbody&gt;</span></span><br><span class="line"><span class="variable">&lt;/table&gt;</span></span><br><span class="line"></span><br><span class="line">序号前面打勾的命令，我觉得比较常用。  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#### Redis 事务</span></span><br><span class="line"></span><br><span class="line">Redis 事务<span class="variable">&lt;u&gt;</span><span class="keyword">*</span><span class="keyword">*</span>可以一次执行多个命令<span class="keyword">*</span><span class="keyword">*</span><span class="variable">&lt;/u&gt;</span>。并且保证以下两点：  </span><br><span class="line"></span><br><span class="line">- 1.)事务是一个<span class="keyword">*</span><span class="keyword">*</span>单独的隔离操作<span class="keyword">*</span><span class="keyword">*</span>：</span><br><span class="line">	- 事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。</span><br><span class="line">- 2.)事务是一个原子操作：</span><br><span class="line">	- 事务中的命令要么全部被执行，要么全部都不执行。  </span><br><span class="line">- 3.）一个事务从开始到执行会经历以下三个阶段：</span><br><span class="line">	1. 开始事务</span><br><span class="line">	2. 命令入队</span><br><span class="line">	3. 执行事务</span><br><span class="line"></span><br><span class="line">示例：  </span><br><span class="line">先用 multi 开始一个事务，然后将多个命令入队到事务中，最后由 EXEC 命令触发事务，同时执行所有命令。</span><br></pre></td></tr></table></figure></p>
+<p>127.0.0.1:6379&gt; multi<br>OK<br>127.0.0.1:6379&gt; set company-name “Google”<br>QUEUED<br>127.0.0.1:6379&gt; set company-name “Apple”<br>QUEUED<br>127.0.0.1:6379&gt; set company-name “Microsoft”<br>QUEUED<br>127.0.0.1:6379&gt; get company-name<br>QUEUED<br>127.0.0.1:6379&gt; exec<br>1) OK<br>2) OK<br>3) OK<br>4) “Microsoft”<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">table</span> <span class="attribute">class</span>=<span class="value">"table table-striped table-bordered"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">th</span> <span class="attribute">style</span>=<span class="value">"width:5%"</span>&gt;</span>序号<span class="tag">&lt;/<span class="title">th</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">th</span>&gt;</span>命令及描述<span class="tag">&lt;/<span class="title">th</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span>1<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/order/3638.html"</span>&gt;</span>discard<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">取消事务，放弃执行事务块内的所有命令。<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span>2<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/order/3639.html"</span>&gt;</span>exec<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">执行所有事务块内的命令。<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span>3<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/order/3640.html"</span>&gt;</span>multi<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">标记一个事务块的开始。<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span>4<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/order/3641.html"</span>&gt;</span>unwatch<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">取消 WATCH 命令对所有 key 的监视。<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span>5<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">td</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/order/3642.html"</span>&gt;</span>watch key [key ...]<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。<span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### Redis 脚本</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">#### Redis 连接</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">### PHP 使用 Redis</span><br><span class="line"></span><br><span class="line">首先确定能使用 PHP ，接着安装 redis 和 PHP 的 redis 扩展。整个过程，网上教程很多，在此不再赘述，整个完毕之后，可以查看 phpinfo ，看是否安装成功 redis 扩展。  </span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">    <span class="comment">//连接本地的 Redis 服务</span></span><br><span class="line">   <span class="variable">$redis</span> = <span class="keyword">new</span> Redis();</span><br><span class="line">   <span class="variable">$redis</span>-&gt;connect(<span class="string">'127.0.0.1'</span>, <span class="number">6379</span>);</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">"Connection to server sucessfully"</span>;</span><br><span class="line">         <span class="comment">//查看服务是否运行</span></span><br><span class="line">   <span class="keyword">echo</span> <span class="string">"Server is running: "</span>+ <span class="variable">$redis</span>-&gt;ping();</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>上面这段，主要作用是连接了本地的 redis 服务，并且将是否成功连接信息打印出来。   </p>
+<p>接下来，就可以在 PHP 里执行那些 redis 操作。  </p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag">#Redis</a>
+          
+            <a href="/tags/后端/" rel="tag">#后端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/20/PHP连接MySQL的三种方式/" rel="next" title="PHP连接MySQL的三种方式">
+                <i class="fa fa-chevron-left"></i> PHP连接MySQL的三种方式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7fva1q.com1.z0.glb.clouddn.com/avatar-icon.png"
+               alt="zhusandiao" />
+          <p class="site-author-name" itemprop="name">zhusandiao</p>
+          <p class="site-description motion-element" itemprop="description">伪文艺中复兴</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://gist.github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Gist
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.xiuyetang.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> xiuyetang
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis_u7684_u7B80_u5355_u4ECB_u7ECD"><span class="nav-number">1.</span> <span class="nav-text">Redis的简单介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis_u652F_u6301_u6570_u636E_u7ED3_u6784"><span class="nav-number">2.</span> <span class="nav-text">Redis支持数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis__u7684_u5E38_u7528_u6307_u4EE4"><span class="nav-number">3.</span> <span class="nav-text">Redis 的常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u6267_u884C_redis__u547D_u4EE4"><span class="nav-number">3.1.</span> <span class="nav-text">执行 redis 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5C_u952E_u7684_u547D_u4EE4"><span class="nav-number">3.2.</span> <span class="nav-text">操作键的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5C_u5B57_u7B26_u4E32_u7684_u547D_u4EE4"><span class="nav-number">3.3.</span> <span class="nav-text">操作字符串的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5Chash_u7684_u547D_u4EE4"><span class="nav-number">3.4.</span> <span class="nav-text">操作hash的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5Clist_u7684_u547D_u4EE4"><span class="nav-number">3.5.</span> <span class="nav-text">操作list的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5CSet_u7684_u547D_u4EE4"><span class="nav-number">3.6.</span> <span class="nav-text">操作Set的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5C_sorted_set__u7684_u547D_u4EE4"><span class="nav-number">3.7.</span> <span class="nav-text">操作 sorted set 的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HyperLogLog__u7ED3_u6784"><span class="nav-number">3.8.</span> <span class="nav-text">HyperLogLog 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis__u53D1_u5E03_u8BA2_u9605"><span class="nav-number">3.9.</span> <span class="nav-text">Redis 发布订阅</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhusandiao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'zhusandiao';
+      var disqus_identifier = '2016/07/29/Redis-入门/';
+      var disqus_title = 'Redis 入门';
+      var disqus_url = 'http://yoursite.com/2016/07/29/Redis-入门/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
