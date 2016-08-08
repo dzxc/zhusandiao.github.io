@@ -1,0 +1,841 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="json," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="json 是什么json 是一种数据交换格式。（数据交换格式是一种在不同平台间传递数据的文本格式。）  
+
+json 独立于编程语言
+全称是JavaScript Object Notation(JavaScript 对象表示法）
+关于这个名称，很容易造成误解，虽然 json 源于 JavaScript ，但是 json 是通用的数据交换格式，可以用在不同的系统，不同的语言中。  
+json 是源于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="json详解">
+<meta property="og:url" content="http://yoursite.com/2016/08/08/json-start/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="json 是什么json 是一种数据交换格式。（数据交换格式是一种在不同平台间传递数据的文本格式。）  
+
+json 独立于编程语言
+全称是JavaScript Object Notation(JavaScript 对象表示法）
+关于这个名称，很容易造成误解，虽然 json 源于 JavaScript ，但是 json 是通用的数据交换格式，可以用在不同的系统，不同的语言中。  
+json 是源于">
+<meta property="og:updated_time" content="2016-08-08T05:56:26.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="json详解">
+<meta name="twitter:description" content="json 是什么json 是一种数据交换格式。（数据交换格式是一种在不同平台间传递数据的文本格式。）  
+
+json 独立于编程语言
+全称是JavaScript Object Notation(JavaScript 对象表示法）
+关于这个名称，很容易造成误解，虽然 json 源于 JavaScript ，但是 json 是通用的数据交换格式，可以用在不同的系统，不同的语言中。  
+json 是源于">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> json详解 | zhusandiao </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhusandiao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I`m angry sometimes naive</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                json详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-08T09:28:31+08:00" content="2016-08-08">
+              2016-08-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="json__u662F_u4EC0_u4E48"><a href="#json__u662F_u4EC0_u4E48" class="headerlink" title="json 是什么"></a>json 是什么</h3><h4 id="json__u662F_u4E00_u79CD_u6570_u636E_u4EA4_u6362_u683C_u5F0F_u3002"><a href="#json__u662F_u4E00_u79CD_u6570_u636E_u4EA4_u6362_u683C_u5F0F_u3002" class="headerlink" title="json 是一种数据交换格式。"></a>json 是一种数据交换格式。</h4><p>（数据交换格式是一种在不同平台间传递数据的文本格式。）  </p>
+<ol>
+<li>json 独立于编程语言</li>
+<li>全称是JavaScript Object Notation<span style="color:#be2532">(JavaScript 对象表示法）</span><ul>
+<li>关于这个名称，很容易造成误解，虽然 json 源于 JavaScript ，但是 json 是通用的数据交换格式，可以用在不同的系统，不同的语言中。  </li>
+<li><span style="color:#be2532">json 是源于 JavaScript 字面量的。</span> </li>
+<li>所以，我们可以这么理解 json :<u>一种<span style="color:#be2532"><strong>基于对象表示法</strong>的数据交换格式</span></u><ul>
+<li>对象，是面向对象编程中很常见的概念。</li>
+<li>而不太容易理解的是表示法，<span style="color:#be2532"><u><strong>表示法</strong>是指一个可以表示如数字或单词等数据的字符系统</u>。</span>  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>json 之所以流行，是因为其不仅独立于语言,而且使用了一种在许多编程语言中都能找到共同元素的表达方式。  <ul>
+<li>通过这种表达数据的方式,即便是那 些不支持面向对象编程的语言,也会发现 json 这种格式是可以接受的。  </li>
+</ul>
+</li>
+</ol>
+<h4 id="json_u7684_u6587_u4EF6_uFF0C_u5A92_u4F53_u7C7B_u578B"><a href="#json_u7684_u6587_u4EF6_uFF0C_u5A92_u4F53_u7C7B_u578B" class="headerlink" title="json的文件，媒体类型"></a>json的文件，媒体类型</h4><ul>
+<li>json 文件的后缀就是<code>.json</code></li>
+<li>json 的媒体类型（MIME）为<code>application/json</code></li>
+</ul>
+<h3 id="json__u8BED_u6CD5"><a href="#json__u8BED_u6CD5" class="headerlink" title="json 语法"></a>json 语法</h3><h4 id="u793A_u4F8B"><a href="#u793A_u4F8B" class="headerlink" title="示例"></a>示例</h4><p>json 所基于的 JavaScript 对象字面量单纯指对象字面量及其属性的语法表示，而且<u><strong>这种属性表示方法</strong>也就是通过<strong>名称 - 值对</strong>来实现的。</u>  </p>
+<p><span style="color:#be2532">json 的最外层为花括号｛ ｝，表示一个对象，而括号里面，都是由被称为名称-值对（键值对）组成。</span>  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">｛</span><br><span class="line">	"animal" : "horse"</span><br><span class="line"> ｝</span><br></pre></td></tr></table></figure>
+<p>上面这个就是最简单的一段 json 数据。  </p>
+<a id="more"></a>
+<h4 id="u6B63_u786E_u7684_json__u8BED_u6CD5"><a href="#u6B63_u786E_u7684_json__u8BED_u6CD5" class="headerlink" title="正确的 json 语法"></a>正确的 json 语法</h4><ol>
+<li>先来看看：名称-值对中的<strong>名称</strong>。<br>在，json 中名称即上面的<code>&quot;animal&quot;</code>，必须<ol>
+<li>双引号包裹</li>
+<li>而且是有效的字符串<ul>
+<li>最好是英文字母 A~Z 或 a~z。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>多个名称-值对用逗号隔开</li>
+</ol>
+<h4 id="json__u7684_u6570_u636E_u7C7B_u578B"><a href="#json__u7684_u6570_u636E_u7C7B_u578B" class="headerlink" title="json 的数据类型"></a>json 的数据类型</h4><p>上面说了，<span style="color:#be2532">名称-值对中的<u>名称为<strong>双引号包裹的字符串</strong></u></span>，而 json 的数据类型指的是值对的数据类型。<br>包括：  </p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 对象  </span><br><span class="line">	-<span class="ruby"> 对象可以嵌套</span><br><span class="line"></span>2. 字符串  </span><br><span class="line">	-<span class="ruby"> 可能需要用<span class="string">`\`转义  </span><br><span class="line"></span></span>3. 数字  </span><br><span class="line">	-<span class="ruby"><span class="string"> 整数、小数、负数或者指数</span><br><span class="line"></span></span>4. 布尔值   </span><br><span class="line">	-<span class="ruby"><span class="string"> 格式非常严格，只能使用小写的 true,false</span><br><span class="line"></span></span>5. null  </span><br><span class="line">	-<span class="ruby"><span class="string"> 表示没有值，必须为小写的 null</span><br><span class="line"></span></span>6. 数组 </span><br><span class="line">	-<span class="ruby"><span class="string"> `</span>[]<span class="string">`包裹，值之间用逗号隔开。</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>json 中的字符类型</strong></p>
+<p>重点要说的是字符串类型，在 JavaScript 中,使用单引号或双引号没有任何区别，但是 <span style="color:#be2532"><u>json 只是基于 JavaScript 对象字面量</u>。 而<u>在 json 中,<strong>仅允许使用双引号来包裹字符串</strong>。</u></span>  </p>
+<p>另外，<u><strong>json 中的字符串还涉及到一个转义的问题</strong></u>，即解析器在解析 json 时，当读到一个双引号 “ 时，就认为接下来是一个字符串文本，并且预期有另一个双引号 “ 结尾，这就意味着，如果这段字符串本身含有双引号，那么就有可能会解析错误。  </p>
+<p>为了处理这个问题,我们需要 <u>在字符串中的<strong>双引号前面加上一个反斜线字符</strong>来对其转义</u>。  </p>
+<p>另外还有其他一些需要转义的字符：  </p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">• \\(反斜线)</span><br><span class="line">• \/(正斜线)</span><br><span class="line">• \<span class="function"><span class="title">b</span><span class="params">(退格符)</span></span></span><br><span class="line">• \<span class="function"><span class="title">f</span><span class="params">(换页符)</span></span></span><br><span class="line">• \<span class="function"><span class="title">t</span><span class="params">(制表符)</span></span></span><br><span class="line">• \<span class="function"><span class="title">n</span><span class="params">(换行符)</span></span></span><br><span class="line">• \<span class="function"><span class="title">r</span><span class="params">(回车符)</span></span></span><br><span class="line">• \u后面跟十六进制字符(如笑脸表情\u263A)</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><p>json 中的数字可以是<code>整数、小数、负数或者指数。</code>  </p>
+</li>
+<li><p>json 中的布尔类型非常严格，<u><strong>仅使用小写形式:true 或 false,任何其他 形式的写法都会报错</strong>。</u></p>
+</li>
+<li><p>json 中的null类型，<strong>编程中当我们需要表示没有，不存在，空，一无所有等等意思的时候</strong>，我们不用数字0表示，而是 null ,null 是一个表示“没有值”的值。在 json 中,<u><strong>null 必须使用小写形式。</strong></u></p>
+</li>
+<li><p>json 中同一个数组里，可以放置不同类型的数据，但是尽量避免这么做，数组里的值类型可以包括：<u><strong>字符串、数字、布尔值、对象 或数组中</strong>的任何一种</u>,数组必须被方括号<code>[]</code>包裹,且值与值之间用 逗号隔开。  </p>
+</li>
+</ul>
+<h3 id="json__u6570_u636E_u7684_u4E00_u81F4_u6027_u9A8C_u8BC1"><a href="#json__u6570_u636E_u7684_u4E00_u81F4_u6027_u9A8C_u8BC1" class="headerlink" title="json 数据的一致性验证"></a>json 数据的一致性验证</h3><p>发送方和接收方都可以使用 json Schema 来校验数据。  </p>
+<ol>
+<li>对于发送方来说，在发送数据前,随时可以验证数据是否与 Schema 一致,以便知道会不会被接收方接受。如果出现错误，也可以轻松定位和修复。  </li>
+<li>对于接收方来说，可以将 json Schema 放在接收数据的第一行，以保证数据符合要求。主要在数据被处理前回答三个问题。 </li>
+</ol>
+<ul>
+<li>2.1 <span style="color:#be2532"><u><strong>值的数据类型是否正确?</strong></u></span>  <ul>
+<li>可以具体规定一个值是数字、字符串等类型。</li>
+</ul>
+</li>
+<li>2.2 <span style="color:#be2532"><u><strong>是否包含所需要的数据?</strong></u></span>  <ul>
+<li>可以具体规定哪些数据是需要的,哪些是不需要的。</li>
+</ul>
+</li>
+<li>2.3 <span style="color:#be2532"><u><strong>值的形式是不是我需要的?</strong></u></span>  <ul>
+<li>可以指定范围、最小值和最大值。  </li>
+</ul>
+</li>
+</ul>
+<h4 id="json_Schema"><a href="#json_Schema" class="headerlink" title="json Schema"></a>json Schema</h4><p><span style="color:#be2532">json Schema 也是使用 json 来书写。</span></p>
+<p>一、第一个名称 - 值对中,声明其为一个 schema 文件。声明的名称必须为 “$schema”,值必须为所用草拟版本的链接。   </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	"<span class="attribute">$schema</span>": <span class="value"><span class="string">"http://json-schema.org/draft-04/schema#"</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>二、 第二个名称 - 值对应该是 json Schema 文件的标题。  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	"<span class="attribute">$schema</span>": <span class="value"><span class="string">"http://json-schema.org/draft-04/schema#"</span></span>,</span><br><span class="line">	 "<span class="attribute">title</span>": <span class="value"><span class="string">"Cat"</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>三、 第三个名称值对中,要定义需要在json中包含的 属性。例如定义猫的属性。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   "<span class="attribute">$schema</span>": <span class="value"><span class="string">"http://json-schema.org/draft-04/schema#"</span></span>,</span><br><span class="line">   "<span class="attribute">title</span>": <span class="value"><span class="string">"Cat"</span></span>,</span><br><span class="line">   "<span class="attribute">properties</span>": <span class="value">&#123;</span><br><span class="line">		"<span class="attribute">name</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"string"</span></span><br><span class="line">         </span>&#125;</span>,</span><br><span class="line">         "<span class="attribute">age</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"number"</span></span>,</span><br><span class="line">           "<span class="attribute">description</span>": <span class="value"><span class="string">"Your cat's age in years."</span></span><br><span class="line">         </span>&#125;</span>,</span><br><span class="line">         "<span class="attribute">declawed</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"boolean"</span></span><br><span class="line">         </span>&#125;</span><br><span class="line">	</span>&#125; </span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>在第三个名称 - 值对中，我们验证了第一个问题，<u><strong>值的类型是否正确</strong>。</u><br>如果需要验证第二个问题–<u><strong>是否包含所需要的数据。</strong></u>就需要第四个名称 - 值对。  </p>
+<p>四、 第四个名称 - 值对，<u><strong>名称为 “require”，值为数组，数组中包含必填的字段</strong></u>。  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	"<span class="attribute">$schema</span>": <span class="value"><span class="string">"http://json-schema.org/draft-04/schema#"</span></span>,</span><br><span class="line">	"<span class="attribute">title</span>": <span class="value"><span class="string">"Cat"</span></span>,</span><br><span class="line">	"<span class="attribute">properties</span>": <span class="value">&#123;</span><br><span class="line">         "<span class="attribute">name</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"string"</span></span><br><span class="line"></span>&#125;</span>, 		 "<span class="attribute">age</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"number"</span></span>,</span><br><span class="line">           "<span class="attribute">description</span>": <span class="value"><span class="string">"Your cat's age in years."</span></span><br><span class="line">         </span>&#125;</span>,</span><br><span class="line">         "<span class="attribute">declawed</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"boolean"</span></span><br><span class="line">         </span>&#125;</span>,</span><br><span class="line">         "<span class="attribute">description</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"string"</span></span><br><span class="line">         </span>&#125;</span><br><span class="line">       </span>&#125;</span>,</span><br><span class="line">	"<span class="attribute">require</span>": <span class="value">[</span><br><span class="line">         <span class="string">"name"</span>,</span><br><span class="line">         <span class="string">"age"</span>,</span><br><span class="line">         <span class="string">"declawed"</span></span><br><span class="line">] </span>&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是一个合法的 json：  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">       "<span class="attribute">name</span>": <span class="value"><span class="string">"Fluffy"</span></span>,</span><br><span class="line">       "<span class="attribute">age</span>": <span class="value"><span class="number">2</span></span>,</span><br><span class="line">       "<span class="attribute">declawed</span>": <span class="value"><span class="literal">false</span></span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：<br>如果你的 json Schema 中<u><strong>不包含 “require” 名称-值对</strong>,那么将不会有必填项。</u>  </p>
+<p>下面解决第三个问题：值的形式是不是我需要的？  </p>
+<blockquote>
+<p>这个可以通过<span style="color:#be2532"><u><strong>对数据的格式提出更具体的要求来实现</strong></u></span>，比如设置数字的最大、最小值，字符串长度的最长最短等等。</p>
+</blockquote>
+<p>下面是示例：  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	"<span class="attribute">$schema</span>": <span class="value"><span class="string">"http://json-schema.org/draft-04/schema#"</span></span>,</span><br><span class="line">	"<span class="attribute">title</span>": <span class="value"><span class="string">"Cat"</span></span>,</span><br><span class="line">	"<span class="attribute">properties</span>": <span class="value">&#123;</span><br><span class="line">         "<span class="attribute">name</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"string"</span></span>,</span><br><span class="line">           "<span class="attribute">minLength</span>": <span class="value"><span class="number">3</span></span>,</span><br><span class="line">           "<span class="attribute">maxLength</span>" : <span class="value"><span class="number">20</span></span><br><span class="line">		</span>&#125;</span>, 		 </span><br><span class="line">		"<span class="attribute">age</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"number"</span></span>,</span><br><span class="line">           "<span class="attribute">description</span>": <span class="value"><span class="string">"Your cat's age in years."</span></span>,</span><br><span class="line">           "<span class="attribute">minimum</span>" : <span class="value"><span class="number">0</span></span><br><span class="line">         </span>&#125;</span>,</span><br><span class="line">        "<span class="attribute">declawed</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"boolean"</span></span><br><span class="line">         </span>&#125;</span>,</span><br><span class="line">         "<span class="attribute">description</span>": <span class="value">&#123;</span><br><span class="line">           "<span class="attribute">type</span>": <span class="value"><span class="string">"string"</span></span><br><span class="line">		</span>&#125; </span><br><span class="line">	</span>&#125;</span>,</span><br><span class="line">       "<span class="attribute">requi#be2532</span>": <span class="value">[</span><br><span class="line">			<span class="string">"name"</span>,</span><br><span class="line">			<span class="string">"age"</span>,</span><br><span class="line">			<span class="string">"declawed"</span> </span><br><span class="line">		]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="json_Schema__u540C_u65F6_u8FD8_u652F_u6301_u6B63_u5219_u8868_u8FBE_u5F0F_u548C_u679A_u4E3E_u7C7B_u578B"><a href="#json_Schema__u540C_u65F6_u8FD8_u652F_u6301_u6B63_u5219_u8868_u8FBE_u5F0F_u548C_u679A_u4E3E_u7C7B_u578B" class="headerlink" title="json Schema 同时还支持正则表达式和枚举类型"></a>json Schema 同时还支持正则表达式和枚举类型</h4><ul>
+<li>正则表达式<ul>
+<li>一种字符形式</li>
+</ul>
+</li>
+<li>枚举类型<ul>
+<li>一个 包含所有可能值的列表</li>
+</ul>
+</li>
+</ul>
+<h3 id="json__u4E2D_u7684_u5B89_u5168_u95EE_u9898"><a href="#json__u4E2D_u7684_u5B89_u5168_u95EE_u9898" class="headerlink" title="json 中的安全问题"></a>json 中的安全问题</h3><p>json 本身并不会造成什么安全问题，可能会出现问题的是 json 的使用。<br>主要是两点：  </p>
+<ol>
+<li><span style="color:#be2532"><u><strong>跨站请求</strong></u></span></li>
+<li><span style="color:#be2532"><u><strong>跨站脚本攻击</strong></u></span></li>
+</ol>
+<h4 id="u8DE8_u7AD9_u8BF7_u6C42_u4F2A_u9020"><a href="#u8DE8_u7AD9_u8BF7_u6C42_u4F2A_u9020" class="headerlink" title="跨站请求伪造"></a>跨站请求伪造</h4><p>跨站请求伪造,即 CSRF(cross-site request forgery,读作 sea-surf),是一种 <span style="color:#be2532"><u><strong>利用站点对用户浏览器信任而</strong>发起攻击的方式。</u></span>  </p>
+<p>那 json 和 CSRF 攻击又有什么联系呢？</p>
+<p>下面这个看上去不像 json 的 json 数据<u>被称为<span style="color:#be2532">顶层 json 数组</span>，是<span style="color:#be2532">可以作为被执行的 JavaScript 脚本。</span></u></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">	&#123;</span><br><span class="line">         "<span class="attribute">user</span>": <span class="value"><span class="string">"bobbarker"</span></span><br><span class="line">    </span>&#125;,</span><br><span class="line">    &#123;</span><br><span class="line">         "<span class="attribute">phone</span>": <span class="value"><span class="string">"555-555-5555"</span></span><br><span class="line">	</span>&#125; </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>因为浏览器对于跨域名的资源共享有一定的限制，所以，黑客通常使用 <code>&lt;script&gt;</code> 标签来绕开这些规则（<code>&lt;script&gt;可以引用其他站点的脚本</code>），<span style="color:#be2532">使用顶层级别数组的 json 是合法的 JavaScript 代码</span></p>
+<p>那如何防范这种跨站请求伪造呢？  </p>
+<p>一、 首先<span style="color:#be2532">不在 json 中使用顶级数组，应该<strong>将数组作为一个值存入 json 对象</strong>。这样的数组将不再是合法的 JavaScript。  </span></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "<span class="attribute">info</span>": <span class="value">[</span><br><span class="line">        &#123;</span><br><span class="line">            "<span class="attribute">user</span>": <span class="value"><span class="string">"bobbarker"</span></span><br><span class="line">        </span>&#125;, </span><br><span class="line">        &#123;</span><br><span class="line">            "<span class="attribute">phone</span>": <span class="value"><span class="string">"555-555-5555"</span></span><br><span class="line">        </span>&#125;</span><br><span class="line">    ]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>二、网站，<span style="color:#be2532">应仅允许 POST 请求获取数据,禁止使用 GET 请求</span>  </p>
+<h4 id="u6CE8_u5165_u653B_u51FB"><a href="#u6CE8_u5165_u653B_u51FB" class="headerlink" title="注入攻击"></a>注入攻击</h4><p>CSRF（跨站请求伪造）攻击仅包括利用信任机制进行的攻击。<span style="color:#be2532">注入攻击则主要通过向网站注入恶意代码</span>来实现。</p>
+<p><strong>一、 跨站脚本攻击</strong>  </p>
+<p>跨站脚本攻击(cross-site scripting,XSS)是注入攻击的一种。<u>在使用 json 时常见的安全漏洞通常发生在 JavaScript 从服务器获取到一段 json 字符串并将其转化为 JavaScript 对象时。</u><br>要知道，<strong>json 本身仅仅是文本。</strong><u>在编程中，<span style="color:#be2532">如果想要对代表对象的文本进行操作,首先要将它转换成对象并装入内存中。</span>这样,它才能被操作、观察,并在程序逻辑中使用。</u>  </p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/json/" rel="tag">#json</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/29/Redis-入门/" rel="next" title="Redis 入门">
+                <i class="fa fa-chevron-left"></i> Redis 入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7fva1q.com1.z0.glb.clouddn.com/avatar-icon.png"
+               alt="zhusandiao" />
+          <p class="site-author-name" itemprop="name">zhusandiao</p>
+          <p class="site-description motion-element" itemprop="description">伪文艺中复兴</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://gist.github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Gist
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.xiuyetang.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> xiuyetang
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u662F_u4EC0_u4E48"><span class="nav-number">1.</span> <span class="nav-text">json 是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#json__u662F_u4E00_u79CD_u6570_u636E_u4EA4_u6362_u683C_u5F0F_u3002"><span class="nav-number">1.1.</span> <span class="nav-text">json 是一种数据交换格式。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json_u7684_u6587_u4EF6_uFF0C_u5A92_u4F53_u7C7B_u578B"><span class="nav-number">1.2.</span> <span class="nav-text">json的文件，媒体类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u8BED_u6CD5"><span class="nav-number">2.</span> <span class="nav-text">json 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u793A_u4F8B"><span class="nav-number">2.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6B63_u786E_u7684_json__u8BED_u6CD5"><span class="nav-number">2.2.</span> <span class="nav-text">正确的 json 语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json__u7684_u6570_u636E_u7C7B_u578B"><span class="nav-number">2.3.</span> <span class="nav-text">json 的数据类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u6570_u636E_u7684_u4E00_u81F4_u6027_u9A8C_u8BC1"><span class="nav-number">3.</span> <span class="nav-text">json 数据的一致性验证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#json_Schema"><span class="nav-number">3.1.</span> <span class="nav-text">json Schema</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json_Schema__u540C_u65F6_u8FD8_u652F_u6301_u6B63_u5219_u8868_u8FBE_u5F0F_u548C_u679A_u4E3E_u7C7B_u578B"><span class="nav-number">3.2.</span> <span class="nav-text">json Schema 同时还支持正则表达式和枚举类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u4E2D_u7684_u5B89_u5168_u95EE_u9898"><span class="nav-number">4.</span> <span class="nav-text">json 中的安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u8DE8_u7AD9_u8BF7_u6C42_u4F2A_u9020"><span class="nav-number">4.1.</span> <span class="nav-text">跨站请求伪造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u5165_u653B_u51FB"><span class="nav-number">4.2.</span> <span class="nav-text">注入攻击</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhusandiao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
