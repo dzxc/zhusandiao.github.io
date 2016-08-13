@@ -57,16 +57,19 @@
 
 
 
-<meta name="description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。">
+<meta name="description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
+几个概念cgiCommon Gateway Interface–通用网关接口">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fast-cgi&nginx&php">
+<meta property="og:title" content="fast-cgi、nginx和php">
 <meta property="og:url" content="http://yoursite.com/2016/08/13/fast-cgi-nginx-php/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。">
-<meta property="og:updated_time" content="2016-08-13T11:57:42.432Z">
+<meta property="og:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
+几个概念cgiCommon Gateway Interface–通用网关接口">
+<meta property="og:updated_time" content="2016-08-13T12:40:19.403Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fast-cgi&nginx&php">
-<meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。">
+<meta name="twitter:title" content="fast-cgi、nginx和php">
+<meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
+几个概念cgiCommon Gateway Interface–通用网关接口">
 
 
 
@@ -100,7 +103,7 @@
       border-left-color: #be2532;    /*左边框颜色*/
   }
 </style>
-  <title> fast-cgi&nginx&php | zhusandiao </title>
+  <title> fast-cgi、nginx和php | zhusandiao </title>
 <!--   <script type="text/javascript">
       var host = "zhusandiao.com";
       if ((host == window.location.host) && (window.location.protocol != "https:"))
@@ -244,7 +247,7 @@
             
             
               
-                fast-cgi&nginx&php
+                fast-cgi、nginx和php
               
             
           </h1>
@@ -271,7 +274,7 @@
 
           
           
-             <span id="/2016/08/13/fast-cgi-nginx-php/" class="leancloud_visitors" data-flag-title="fast-cgi&nginx&php">
+             <span id="/2016/08/13/fast-cgi-nginx-php/" class="leancloud_visitors" data-flag-title="fast-cgi、nginx和php">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -292,6 +295,7 @@
 
       
         <p>一直没搞清楚 <code>fast-cgi</code>，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  </p>
+<h3 id="u51E0_u4E2A_u6982_u5FF5"><a href="#u51E0_u4E2A_u6982_u5FF5" class="headerlink" title="几个概念"></a>几个概念</h3><h4 id="cgi"><a href="#cgi" class="headerlink" title="cgi"></a>cgi</h4><p>Common Gateway Interface–通用网关接口  </p>
 <a id="more"></a>
       
     </div>
@@ -344,10 +348,10 @@
         </div>
 
         <div class="copyright" style="clear:both;">
-           <p><span>本文标题:</span><a href="/2016/08/13/fast-cgi-nginx-php/">fast-cgi&nginx&php</a></p>
+           <p><span>本文标题:</span><a href="/2016/08/13/fast-cgi-nginx-php/">fast-cgi、nginx和php</a></p>
            <p><span>发布时间:</span>2016年8月13日 - 17时08分</p>
-           <p><span>最后更新:</span>2016年8月13日 - 19时08分</p>
-           <p><span>本文链接:</span><a href="/2016/08/13/fast-cgi-nginx-php/" title="fast-cgi&nginx&php">zhusandiao.com/2016/08/13/fast-cgi-nginx-php/</a></p>
+           <p><span>最后更新:</span>2016年8月13日 - 20时08分</p>
+           <p><span>本文链接:</span><a href="/2016/08/13/fast-cgi-nginx-php/" title="fast-cgi、nginx和php">zhusandiao.com/2016/08/13/fast-cgi-nginx-php/</a></p>
         </div>
       
 
@@ -483,7 +487,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u51E0_u4E2A_u6982_u5FF5"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cgi"><span class="nav-number">1.1.</span> <span class="nav-text">cgi</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
