@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="nginx,php,后端," />
 
 
 
@@ -57,42 +57,16 @@
 
 
 
-<meta name="description" content="另外两篇通过githug游戏学习git（上）通过githug游戏学习git（下）  
-下面是16~35关- 16. log查看提交日志git log  
-- 17. tag为最近的一次 commit 打上标签git tag 标签名">
+<meta name="description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="通过githug游戏学习git（中）">
-<meta property="og:url" content="http://yoursite.com/2016/01/20/git-learning-next/index.html">
+<meta property="og:title" content="fast-cgi&nginx&php">
+<meta property="og:url" content="http://yoursite.com/2016/08/13/fast-cgi-nginx-php/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="另外两篇通过githug游戏学习git（上）通过githug游戏学习git（下）  
-下面是16~35关- 16. log查看提交日志git log  
-- 17. tag为最近的一次 commit 打上标签git tag 标签名">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2316-log.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2317-tag.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2318-push_tags.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2319-commit_amend.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2320-commit_in_future.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2321-reset.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2322-reset_soft.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2323-checkout_file.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2324-remote.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2325-remote_url.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2326-pull.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2327-remote_add.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2328-push.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2329-diff.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2330-blame.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2331-branch.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2332-checkout.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2333-checkout_tags.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2334-checkout_tags_over_branch.png">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2335-branch-at.png">
-<meta property="og:updated_time" content="2016-01-29T04:47:19.795Z">
+<meta property="og:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。">
+<meta property="og:updated_time" content="2016-08-13T11:57:42.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="通过githug游戏学习git（中）">
-<meta name="twitter:description" content="另外两篇通过githug游戏学习git（上）通过githug游戏学习git（下）  
-下面是16~35关- 16. log查看提交日志git log  
-- 17. tag为最近的一次 commit 打上标签git tag 标签名">
+<meta name="twitter:title" content="fast-cgi&nginx&php">
+<meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。">
 
 
 
@@ -126,7 +100,7 @@
       border-left-color: #be2532;    /*左边框颜色*/
   }
 </style>
-  <title> 通过githug游戏学习git（中） | zhusandiao </title>
+  <title> fast-cgi&nginx&php | zhusandiao </title>
 <!--   <script type="text/javascript">
       var host = "zhusandiao.com";
       if ((host == window.location.host) && (window.location.protocol != "https:"))
@@ -270,7 +244,7 @@
             
             
               
-                通过githug游戏学习git（中）
+                fast-cgi&nginx&php
               
             
           </h1>
@@ -282,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-20T20:23:09+08:00" content="2016-01-20">
-              2016-01-20
+            <time itemprop="dateCreated" datetime="2016-08-13T17:59:40+08:00" content="2016-08-13">
+              2016-08-13
             </time>
           </span>
 
@@ -297,7 +271,7 @@
 
           
           
-             <span id="/2016/01/20/git-learning-next/" class="leancloud_visitors" data-flag-title="通过githug游戏学习git（中）">
+             <span id="/2016/08/13/fast-cgi-nginx-php/" class="leancloud_visitors" data-flag-title="fast-cgi&nginx&php">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -317,29 +291,8 @@
       
 
       
-        <h4 id="u53E6_u5916_u4E24_u7BC7"><a href="#u53E6_u5916_u4E24_u7BC7" class="headerlink" title="另外两篇"></a>另外两篇</h4><p><a href="http://zhusandiao.com/2016/01/15/git-learning/" target="_blank" rel="external">通过githug游戏学习git（上）</a><br><a href="http://zhusandiao.com/2016/01/20/git-learning-last/" target="_blank" rel="external">通过githug游戏学习git（下）</a>  </p>
-<h4 id="u4E0B_u9762_u662F16_7E35_u5173"><a href="#u4E0B_u9762_u662F16_7E35_u5173" class="headerlink" title="下面是16~35关"></a>下面是16~35关</h4><h5 id="16-_log"><a href="#16-_log" class="headerlink" title="- 16. log"></a>- 16. log</h5><p><strong>查看提交日志</strong><br><strong><code>git log</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2316-log.png" alt="log">  </p>
-<h5 id="17-_tag"><a href="#17-_tag" class="headerlink" title="- 17. tag"></a>- 17. tag</h5><p><strong>为最近的一次 commit 打上标签</strong><br><strong><code>git tag 标签名</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2317-tag.png" alt="tag"><br><a id="more"></a></p>
-<h5 id="18-_push_tags"><a href="#18-_push_tags" class="headerlink" title="- 18. push_tags"></a>- 18. push_tags</h5><p><strong>把一些标签推送到远程仓库</strong><br><strong><code>git push tags</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2318-push_tags.png" alt="push_tags">  </p>
-<h5 id="19-_commit_amend"><a href="#19-_commit_amend" class="headerlink" title="- 19. commit_amend"></a>- 19. commit_amend</h5><p><strong>修改上一次的提交，加入一个新的文件</strong><br><strong><code>git add forgotten_file.rb</code></strong> ，先将文件存入暂存区，然后 <strong><code>git commit amend</code></strong> ，使用一次新的提交，替代上一次的提交<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2319-commit_amend.png" alt="commit_amend">  </p>
-<h5 id="20-_commit_in_future"><a href="#20-_commit_in_future" class="headerlink" title="- 20. commit_in_future"></a>- 20. commit_in_future</h5><p><strong>为一次提交指定一个未来的时间</strong><br><strong><code>git commit --date=12.06.2016T15:00:00</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2320-commit_in_future.png" alt="commit_in_future">  </p>
-<h5 id="21-_reset"><a href="#21-_reset" class="headerlink" title="- 21. reset"></a>- 21. reset</h5><p><strong>把某个文件撤出暂存区</strong><br><strong><code>git reset HEAD 要撤出的文件</code></strong><br><strong><code>git reset HEAD to_commit_second.rb</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2321-reset.png" alt="reset">  </p>
-<h5 id="22-_reset_soft"><a href="#22-_reset_soft" class="headerlink" title="- 22. reset_soft"></a>- 22. reset_soft</h5><p><strong>只撤销上次的提交信息，工作区和暂存区内容不变</strong><br><strong><code>git reset --soft HEAD^1</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2322-reset_soft.png" alt="reset_soft">  </p>
-<h5 id="23-_checkout_file"><a href="#23-_checkout_file" class="headerlink" title="- 23. checkout_file"></a>- 23. checkout_file</h5><p><strong>丢弃工作区某个文件的改动，用上次提交覆盖工作区</strong><br><strong><code>git checkout [commit] [file]</code></strong><br><strong><code>git checkou con*</code></strong><br>注：图中的这个实际上是用暂存区的文件覆盖，实际上 checkout 还有几种，以及需要和 git reset 命令进行区分，这些留待以后说<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2323-checkout_file.png" alt="checkout_file">  </p>
-<h5 id="24-_remote"><a href="#24-_remote" class="headerlink" title="- 24. remote"></a>- 24. remote</h5><p><strong>查看远程仓库</strong><br><strong><code>git remote</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2324-remote.png" alt="remote">  </p>
-<h5 id="25-_remote_url"><a href="#25-_remote_url" class="headerlink" title="- 25. remote_url"></a>- 25. remote_url</h5><p><strong>查看远程仓库以及地址</strong><br><strong><code>git remote -v</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2325-remote_url.png" alt="remote_url">  </p>
-<h5 id="26-_pull"><a href="#26-_pull" class="headerlink" title="- 26. pull"></a>- 26. pull</h5><p><strong>从（远程）仓库取回变动，并与本地分支合并</strong><br><strong><code>git pull [remote] [branch]</code></strong><br><strong><code>git pull origin master</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2326-pull.png" alt="pull">  </p>
-<h5 id="27-_remote_add"><a href="#27-_remote_add" class="headerlink" title="- 27. remote_add"></a>- 27. remote_add</h5><p><strong>添加一个远程仓库，同时命名</strong>，<strong>git remote add [shortname] [url]</strong><br><strong><code>git remote add origin https://githug.com/githug/githug</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2327-remote_add.png" alt="remote_add">  </p>
-<h5 id="28-_push"><a href="#28-_push" class="headerlink" title="- 28. push"></a>- 28. push</h5><p><strong>推送本地修改到远程仓库中</strong>，<strong>这个例子里，远程的仓库和分支是 origin/master ，本地主机的分支是master，先 <code>git rebase origin/master</code> ，在当前分支上，合并 origin/master ，然后通过 <code>git push origin master</code> 推送本地修改到这个远程仓库</strong>  </p>
-<p><strong><code>git push [remote] [branch]</code></strong>，上传本地指定分支到远程仓库<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2328-push.png" alt="push">  </p>
-<h5 id="29-_diff"><a href="#29-_diff" class="headerlink" title="- 29. diff"></a>- 29. diff</h5><p><strong>显示暂存区和工作区的差异</strong><br><strong><code>git diff</code></strong>，注：diff信息读取也值得一讲，也留待以后细说<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2329-diff.png" alt="diff">  </p>
-<h5 id="30-_Blame"><a href="#30-_Blame" class="headerlink" title="- 30. Blame"></a>- 30. Blame</h5><p><strong>显示指定文件是什么人在什么时间修改过</strong><br><strong><code>git blame [file]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2330-blame.png" alt="blame">  </p>
-<h5 id="31-_branch"><a href="#31-_branch" class="headerlink" title="- 31. branch"></a>- 31. branch</h5><p><strong>创建分支</strong><br><strong><code>git  branch [branch_name]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2331-branch.png" alt="branch">  </p>
-<h5 id="32-_checkout"><a href="#32-_checkout" class="headerlink" title="- 32. checkout"></a>- 32. checkout</h5><p><strong>创建并切换分支</strong><br><strong><code>git  branch my_branch</code></strong> 先创建一个名为 my_branch 的分支，接着 <strong><code>git checkout my_branch</code></strong> ，通过 <code>git checkout</code> 命令切换到该分支<br><strong>实际上，开发中一般直接使用<code>git checkout -b [branch_name]</code>，直接创建分支并且切换过去</strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2332-checkout.png" alt="branch">  </p>
-<h5 id="33-_checkout_tag"><a href="#33-_checkout_tag" class="headerlink" title="- 33. checkout_tag"></a>- 33. checkout_tag</h5><p><strong>切换到指定 tag </strong><br><strong><code>git checkout tag_name</code></strong>，可以先<code>git tag</code> 查看所有的tag ，发现有 v1.2，然后<code>git checkout v1.2</code>，切换过去<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2333-checkout_tags.png" alt="checkout_tag">  </p>
-<h5 id="34-_checkout_tags_over_branch"><a href="#34-_checkout_tags_over_branch" class="headerlink" title="- 34. checkout_tags_over_branch"></a>- 34. checkout_tags_over_branch</h5><p><strong>切换到指定 tag ，但这个 tag 和 branch 重名了</strong><br><strong><code>git checkout tags/tag_name</code></strong>，还是先<code>git tag</code> 查看所有的tag，接着<code>git checkout tags/v1.2</code>直接切换<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2334-checkout_tags_over_branch.png" alt="checkout_tags_over_branch">  </p>
-<h5 id="35-_branch_at"><a href="#35-_branch_at" class="headerlink" title="- 35. branch_at"></a>- 35. branch_at</h5><p><strong>根据一个特定提交创建一个分支</strong><br>该关卡的要求是在上一次的提交前创建新分支，<strong><code>git branch test_branch HEAD^1</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2335-branch-at.png" alt="branch_at">  </p>
-
+        <p>一直没搞清楚 <code>fast-cgi</code>，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  </p>
+<a id="more"></a>
       
     </div>
 
@@ -347,7 +300,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag">#Git</a>
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+            <a href="/tags/后端/" rel="tag">#后端</a>
           
         </div>
       
@@ -356,17 +313,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/15/git-learning/" rel="next" title="通过githug游戏学习git（上）">
-                <i class="fa fa-chevron-left"></i> 通过githug游戏学习git（上）
+              <a href="/2016/08/08/json-start/" rel="next" title="json详解">
+                <i class="fa fa-chevron-left"></i> json详解
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/20/git-learning-last/" rel="prev" title="通过githug游戏学习git（下）">
-                通过githug游戏学习git（下） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -391,10 +344,10 @@
         </div>
 
         <div class="copyright" style="clear:both;">
-           <p><span>本文标题:</span><a href="/2016/01/20/git-learning-next/">通过githug游戏学习git（中）</a></p>
-           <p><span>发布时间:</span>2016年1月20日 - 20时01分</p>
-           <p><span>最后更新:</span>2016年1月29日 - 12时01分</p>
-           <p><span>本文链接:</span><a href="/2016/01/20/git-learning-next/" title="通过githug游戏学习git（中）">zhusandiao.com/2016/01/20/git-learning-next/</a></p>
+           <p><span>本文标题:</span><a href="/2016/08/13/fast-cgi-nginx-php/">fast-cgi&nginx&php</a></p>
+           <p><span>发布时间:</span>2016年8月13日 - 17时08分</p>
+           <p><span>最后更新:</span>2016年8月13日 - 19时08分</p>
+           <p><span>本文链接:</span><a href="/2016/08/13/fast-cgi-nginx-php/" title="fast-cgi&nginx&php">zhusandiao.com/2016/08/13/fast-cgi-nginx-php/</a></p>
         </div>
       
 
@@ -530,7 +483,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u53E6_u5916_u4E24_u7BC7"><span class="nav-number">1.</span> <span class="nav-text">另外两篇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E0B_u9762_u662F16_7E35_u5173"><span class="nav-number">2.</span> <span class="nav-text">下面是16~35关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#16-_log"><span class="nav-number">2.1.</span> <span class="nav-text">- 16. log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#17-_tag"><span class="nav-number">2.2.</span> <span class="nav-text">- 17. tag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#18-_push_tags"><span class="nav-number">2.3.</span> <span class="nav-text">- 18. push_tags</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#19-_commit_amend"><span class="nav-number">2.4.</span> <span class="nav-text">- 19. commit_amend</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#20-_commit_in_future"><span class="nav-number">2.5.</span> <span class="nav-text">- 20. commit_in_future</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#21-_reset"><span class="nav-number">2.6.</span> <span class="nav-text">- 21. reset</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#22-_reset_soft"><span class="nav-number">2.7.</span> <span class="nav-text">- 22. reset_soft</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#23-_checkout_file"><span class="nav-number">2.8.</span> <span class="nav-text">- 23. checkout_file</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#24-_remote"><span class="nav-number">2.9.</span> <span class="nav-text">- 24. remote</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#25-_remote_url"><span class="nav-number">2.10.</span> <span class="nav-text">- 25. remote_url</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#26-_pull"><span class="nav-number">2.11.</span> <span class="nav-text">- 26. pull</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#27-_remote_add"><span class="nav-number">2.12.</span> <span class="nav-text">- 27. remote_add</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#28-_push"><span class="nav-number">2.13.</span> <span class="nav-text">- 28. push</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#29-_diff"><span class="nav-number">2.14.</span> <span class="nav-text">- 29. diff</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#30-_Blame"><span class="nav-number">2.15.</span> <span class="nav-text">- 30. Blame</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#31-_branch"><span class="nav-number">2.16.</span> <span class="nav-text">- 31. branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#32-_checkout"><span class="nav-number">2.17.</span> <span class="nav-text">- 32. checkout</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#33-_checkout_tag"><span class="nav-number">2.18.</span> <span class="nav-text">- 33. checkout_tag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#34-_checkout_tags_over_branch"><span class="nav-number">2.19.</span> <span class="nav-text">- 34. checkout_tags_over_branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#35-_branch_at"><span class="nav-number">2.20.</span> <span class="nav-text">- 35. branch_at</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
