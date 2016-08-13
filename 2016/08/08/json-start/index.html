@@ -73,7 +73,7 @@ json 独立于编程语言
 全称是JavaScript Object Notation(JavaScript 对象表示法）
 关于这个名称，很容易造成误解，虽然 json 源于 JavaScript ，但是 json 是通用的数据交换格式，可以用在不同的系统，不同的语言中。  
 json 是源于">
-<meta property="og:updated_time" content="2016-08-08T05:56:26.749Z">
+<meta property="og:updated_time" content="2016-08-13T08:23:19.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="json详解">
 <meta name="twitter:description" content="json 是什么json 是一种数据交换格式。（数据交换格式是一种在不同平台间传递数据的文本格式。）  
@@ -412,6 +412,82 @@ json 是源于">
 <h4 id="u6CE8_u5165_u653B_u51FB"><a href="#u6CE8_u5165_u653B_u51FB" class="headerlink" title="注入攻击"></a>注入攻击</h4><p>CSRF（跨站请求伪造）攻击仅包括利用信任机制进行的攻击。<span style="color:#be2532">注入攻击则主要通过向网站注入恶意代码</span>来实现。</p>
 <p><strong>一、 跨站脚本攻击</strong>  </p>
 <p>跨站脚本攻击(cross-site scripting,XSS)是注入攻击的一种。<u>在使用 json 时常见的安全漏洞通常发生在 JavaScript 从服务器获取到一段 json 字符串并将其转化为 JavaScript 对象时。</u><br>要知道，<strong>json 本身仅仅是文本。</strong><u>在编程中，<span style="color:#be2532">如果想要对代表对象的文本进行操作,首先要将它转换成对象并装入内存中。</span>这样,它才能被操作、观察,并在程序逻辑中使用。</u>  </p>
+<p>在 JavaScript 中，可以<span style="color:#be2532">使用 <code>eval()</code> 函数来进行这一操作。该函数<u>获取一段字符串，并对其进行编译与执行</u></span></p>
+<p>示例：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonString = <span class="string">'&#123;"animal":"cat"&#125;'</span>; </span><br><span class="line"><span class="keyword">var</span> myObject = <span class="built_in">eval</span>(<span class="string">"("</span> + jsonString + <span class="string">")"</span>); </span><br><span class="line">alert(myObject.animal);</span><br></pre></td></tr></table></figure>
+<p>使用 <code>eval()</code> 函数来将 <code>animal/cat</code> 对象放入内存中。之后就可以在代码中使用该对象的属性了。  </p>
+<p>代码相对来说没有什么危险，因为 json 是直接位于代码中的。不过在一些情况下，我们的 json 是从别的服务器上获取的。如果服<br>务器本身或发来的 json 数据被人劫持，那么很可能就会运行恶意代码。<br>  <span style="color:#be2532"><u><code>eval()</code> 函数的问题是，它会将传入的字符串无差别地编译执行。</u></span>如果从第三方服务器中获取的 json 被替换为了恶意脚本，那么我的站点就会无辜地蒙冤，在访问者的浏览器中编译执行恶意代码。  </p>
+<p>如果用一些 JavaScript 代码来替换原本的 json 字符串。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonString = <span class="string">"alert('this is bad')"</span>; </span><br><span class="line"><span class="keyword">var</span> myObject = <span class="built_in">eval</span>(<span class="string">"("</span> + jsonString + <span class="string">")"</span>); </span><br><span class="line">alert(myObject.animal);</span><br></pre></td></tr></table></figure>
+<p>执行结果是，直接弹出 this is bad  </p>
+<p><span style="color:#be2532"><code>JSON.parse()</code> 函数</span>就是用来处理这一问题的。<u>该函数仅会解析 json，并不会执行脚本。</u>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonString = <span class="string">'&#123;"animal":"cat"&#125;'</span>; </span><br><span class="line"><span class="keyword">var</span> myObject = <span class="built_in">JSON</span>.parse(jsonString); </span><br><span class="line">alert(myObject.animal);</span><br></pre></td></tr></table></figure>
+<p><code>JSON.parse()</code> 函数更加安全，目前已经被全部主流浏览器的最新版本所支持。  </p>
+<h5 id="u627E_u51FA_u53EF_u80FD_u7684_u6CE8_u5165_u70B9"><a href="#u627E_u51FA_u53EF_u80FD_u7684_u6CE8_u5165_u70B9" class="headerlink" title="找出可能的注入点"></a>找出可能的注入点</h5><p>对于一些合法的 json 数据，也可能包含一些危险。  </p>
+<p>比如 json 中可能包含了 JavaScript 脚本：  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> "<span class="attribute">message</span>": <span class="value"><span class="string">"&lt;div onmouseover=\"alert('gotcha!')\"&gt;hover here.&lt;/div&gt;"</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>这段 JavaScript，当它在网站的消息页面中输出时，就会构成威胁。示例中的这段“不规矩的 json”会在用户每次将鼠标移动至<br>屏幕上的消息时弹出内容为“gotcha!”的警告框。<br>当然，如果是黑客攻击，不是简单的弹出一个警告框这么简单了，可能会将你的私人信息发送到他的服务器。  </p>
+<p><strong>如何阻止这种情况呢？</strong>  </p>
+<ul>
+<li>一方面，<span style="color:#be2532">可以采取一些手段使得消息中不包含 HTML。</span>可以在客户端和服务端都加上这一认证。  </li>
+<li><p>此外，<span style="color:#be2532">还可以将消息中所有的HTML字符进行转码，</span>这样的话，诸如 <code>&lt;div&gt;</code> 这样的标签就会被转换成 <code>&amp;lt;div&amp;gt;</code>，然后插入页面（<code>&amp;lt;div&amp;gt;</code> 将不会是合法的 HTML）。  </p>
+<p>总之，<u>抵御注入攻击的关键是<span style="color:#be2532">要找出可能的注入点</span>，并加入一些额外的步骤（有时可能会很麻烦）来加以防范。</u></p>
+</li>
+</ul>
+<p>总结：  </p>
+<p>JSON 本身不构成什么威胁，它只是文本。  </p>
+<p>在定位 JSON 安全问题时，应该记住以下三件事。  </p>
+<ol>
+<li>不要使用顶级数组。顶级数组是合法的 JavaScript 脚本，它们可以用<br><code>&lt;script&gt;</code> 标签链接并使用。  </li>
+<li>对于不想公开的资源，仅允许使用 HTTP POST 方法请求，而不是 GET<br>方法。GET 方法可以通过 URL 来请求，甚至可以放在 <code>&lt;script&gt;</code> 标签中。  </li>
+<li>使用 JSON.parse() 来代替 eval()。eval() 函数会将传入的字符串编<br>译并执行，这会让你的代码易被攻击。应仅使用 JSON.parse() 来解析 JSON 数据。  </li>
+</ol>
+<p>安全漏洞通常是由于开发人员没有考虑“黑客如何利用这一点”这一问<br>题所造成的。  </p>
+<h3 id="JavaScript_u4E2D_u7684_XMLHttpRequest__u4E0E_Web_API"><a href="#JavaScript_u4E2D_u7684_XMLHttpRequest__u4E0E_Web_API" class="headerlink" title="JavaScript中的 XMLHttpRequest 与 Web API"></a>JavaScript中的 XMLHttpRequest 与 Web API</h3><p><u>JavaScript 中的<span style="color:#be2532"> XMLHttpRequest</span> 负责<span style="color:#be2532">在客户端发起请求</span>。而 <span style="color:#be2532">Web API </span>负责<span style="color:#be2532">在服务端返回响应。</span></u></p>
+<h4 id="Web_API"><a href="#Web_API" class="headerlink" title="Web API"></a>Web API</h4><p><span style="color:#be2532">Web API 是通过 HTTP 服务进行交互的一组指令和标准。</span>这些交互可以包括创建、读取、更新、删除（CRUD）等操作，且 Web API 都会有一份说明，概述如何使用这些指令和标准。  </p>
+<p>这里要提到 JavaScript 中的异步（后台）操作– AJAX。AJAX这个专有名词使用的时间已经很久了，很多<br>时候，与其说它是一个首字母缩写，不如说是用来描述 JavaScript 中的任何一种异步操作。  </p>
+<p>接下来看看如何用 json 和 JavaScript 中的 XMLHttpRequest 实现 AJAX。  </p>
+<h4 id="JavaScript_u4E2D_u7684XMLHttpRequest_u5BF9_u8C61"><a href="#JavaScript_u4E2D_u7684XMLHttpRequest_u5BF9_u8C61" class="headerlink" title="JavaScript中的XMLHttpRequest对象"></a>JavaScript中的XMLHttpRequest对象</h4><p>尽管 JavaScript 的 XMLHttpRequest 对象听上去和 XML 有关，但实际上我们使用它来发起 HTTP 请求。然而，<span style="color:#be2532">XMLHttpRequest 并不仅限于使用 XML。</span>  </p>
+<p>当使用 <code>new XmlHttpRequest()</code> 语法，并将其返回值赋值给一个变量时，<u>它就具有了从某一地址请求资源的功能。</u>  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myXmlHttpRequest = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure>
+<p>我们说过，JavaScript对象具有属性。这些“属性”就是名称-值<br>XMLHttpRequest对象所拥有的属性有 <code>onreadystatechange、readyState、
+response、 responseText、 responseType、 responseXML、 status、
+statusText、timeout、ontimeout、upload 以及 withCredentials</code>。  </p>
+<p>XMLHttpRequest 中还包含以下这些可用的函数：  </p>
+<ul>
+<li>open（method，url，async（可选），user（可选），password（可选））</li>
+<li>send()</li>
+</ul>
+<p>以及下面这些属性：  </p>
+<ul>
+<li>onreadystatechange<br>可以在代码中给它赋值为一个函数</li>
+<li>readyState<br>返回一个 0~4 的值，用来表示状态码</li>
+<li>status<br>返回 HTTP 状态码（如 200 表示请求成功）</li>
+<li>responseText<br>当请求成功时，该属性会包含作为文本的响应体（如我们请求的 JSON）</li>
+</ul>
+<p><strong>属性的值可以是一个函数。</strong>因为 JavaScript 中的函数也是一类对象。对象是一类数据，因此它可以被赋值给一个变量（属性）、修改和传递。在编程中，这种情况称为“函数是一等公民”。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myXMLHttpRequest = <span class="keyword">new</span> XMLHttpRequest(); </span><br><span class="line"><span class="keyword">var</span> url = <span class="string">"http://api.openweathermap.org/data/2.5/weather?lat=35&amp;lon=139"</span>;</span><br><span class="line"> </span><br><span class="line">myXMLHttpRequest.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (myXMLHttpRequest.readyState === <span class="number">4</span> &amp;&amp; myXMLHttpRequest.</span><br><span class="line"> status === <span class="number">200</span>) &#123; </span><br><span class="line"> <span class="keyword">var</span> myObject = <span class="built_in">JSON</span>.parse(myXMLHttpRequest.responseText);</span><br><span class="line"> <span class="keyword">var</span> myJSON = <span class="built_in">JSON</span>.stringify(myObject); </span><br><span class="line"> &#125; </span><br><span class="line">&#125; </span><br><span class="line">myXMLHttpRequest.open(<span class="string">"GET"</span>, url, <span class="literal">true</span>); </span><br><span class="line">myXMLHttpRequest.send();</span><br></pre></td></tr></table></figure>
+<p>上面这段代码当请求成功，返回 json 文本时，涉及到一个序列化和反序列化问题。  </p>
+<ul>
+<li><span style="color:#be2532">序列化</span>是将<span style="color:#be2532">对象转换成文本的过程</span><ul>
+<li>在 JavaScript 中，可以通过 <span style="color:#be2333"><code>JSON.stringify()</code> 对 json 进行序列化。</span></li>
+</ul>
+</li>
+<li><span style="color:#be2532">反序列化</span>是将<span style="color:#be2532">文本转换成对象的过程。</span><ul>
+<li>JavaScript 中的 <span style="color:#be2333"><code>JSON.parse()</code> 进行反序列化操作</span></li>
+</ul>
+</li>
+</ul>
+<h4 id="u7A81_u7834_u540C_u6E90_u7B56_u7565"><a href="#u7A81_u7834_u540C_u6E90_u7B56_u7565" class="headerlink" title="突破同源策略"></a>突破同源策略</h4><p>然而，出于安全考虑，浏览器对资源共享有一定的限制。<strong>同源策略</strong>就要求此类后台请求仅可以请求来自同一域名的资源。  </p>
+<h5 id="u8DE8_u57DF_u8D44_u6E90_u5171_u4EABCORS_28cross-origin_resource_sharing_29"><a href="#u8DE8_u57DF_u8D44_u6E90_u5171_u4EABCORS_28cross-origin_resource_sharing_29" class="headerlink" title="跨域资源共享CORS(cross-origin resource sharing)"></a>跨域资源共享CORS(cross-origin resource sharing)</h5><p>这是因为这些公共 API 的开发者在他们的服务器上实现了<span style="color:#be2532">跨域资源共享（cross-origin resource sharing，CORS）。</span>这些服务器会在响应头额外加上一些带有 <code>Access-Control-Allow</code> 前缀的属性</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Credentials:<span class="keyword">true</span></span><br><span class="line">Access-Control-Allow-Methods:GET, POST</span><br><span class="line">Access-Control-Allow-Origin:*</span><br></pre></td></tr></table></figure>
+<p>这些头部定义了证书是否可用，哪些 HTTP 方法（GET、POST、PUT、DELETE、HEAD、OPTIONS、TRACE、CONNECT）是可用的，以及最重要的一点，即允许哪些域名。本例中，此处包含一个星号（*）。它表示任意域名都是允许的。  </p>
+<p>同时，<span style="color:#be2532">CORS 还可用于禁止某些域名的访问</span>，来防止有些人用 API 做坏事。  </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Methods:POST </span><br><span class="line">Access-Control-Allow-Origin:http:<span class="comment">//www.somebank.com</span></span><br></pre></td></tr></table></figure>
+<p>本例中，我们仅允许通过 POST 方式请求资源。如果有人想通过将 URL 放<br>入 <code>&lt;script&gt;</code> 标签来进行请求（使用 GET 方式），浏览器会阻止他。同时，由于具体设定了银行站点的 URL，浏览器会禁止除 <a href="http://www.somebank.com" target="_blank" rel="external">http://www.somebank.com</a> 以外的站点去获取资源。</p>
+<h5 id="JSON-P"><a href="#JSON-P" class="headerlink" title="JSON-P"></a>JSON-P</h5><p>  JSON-P 指带有 padding 的 JSON。我在第 5 章提到过 <u><code>&lt;script&gt;</code> 标签不受同源策略的影响。JSON-P 就是利用这一点来向不同域名的站点请求 JSON 的。</u> <strong>JSON-P 并没有CORS那么理想，它只是一个备选方案（CORS是更好的方案，同时也是一种标准）。</strong>不过有些时候，还是很需要这种不是很规范的解决方案的。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getTheAnimal(</span><br><span class="line"> &#123;</span><br><span class="line"> <span class="string">"animal"</span>: <span class="string">"cat"</span></span><br><span class="line"> &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><u><strong>内联于 json 文档的 JavaScript 调用了一个函数，函数参数是 json 。</strong></u>函数参数提供了一种将数据传递给函数的方式。</p>
 
       
     </div>
@@ -580,7 +656,7 @@ json 是源于">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u662F_u4EC0_u4E48"><span class="nav-number">1.</span> <span class="nav-text">json 是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#json__u662F_u4E00_u79CD_u6570_u636E_u4EA4_u6362_u683C_u5F0F_u3002"><span class="nav-number">1.1.</span> <span class="nav-text">json 是一种数据交换格式。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json_u7684_u6587_u4EF6_uFF0C_u5A92_u4F53_u7C7B_u578B"><span class="nav-number">1.2.</span> <span class="nav-text">json的文件，媒体类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u8BED_u6CD5"><span class="nav-number">2.</span> <span class="nav-text">json 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u793A_u4F8B"><span class="nav-number">2.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6B63_u786E_u7684_json__u8BED_u6CD5"><span class="nav-number">2.2.</span> <span class="nav-text">正确的 json 语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json__u7684_u6570_u636E_u7C7B_u578B"><span class="nav-number">2.3.</span> <span class="nav-text">json 的数据类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u6570_u636E_u7684_u4E00_u81F4_u6027_u9A8C_u8BC1"><span class="nav-number">3.</span> <span class="nav-text">json 数据的一致性验证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#json_Schema"><span class="nav-number">3.1.</span> <span class="nav-text">json Schema</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json_Schema__u540C_u65F6_u8FD8_u652F_u6301_u6B63_u5219_u8868_u8FBE_u5F0F_u548C_u679A_u4E3E_u7C7B_u578B"><span class="nav-number">3.2.</span> <span class="nav-text">json Schema 同时还支持正则表达式和枚举类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u4E2D_u7684_u5B89_u5168_u95EE_u9898"><span class="nav-number">4.</span> <span class="nav-text">json 中的安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u8DE8_u7AD9_u8BF7_u6C42_u4F2A_u9020"><span class="nav-number">4.1.</span> <span class="nav-text">跨站请求伪造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u5165_u653B_u51FB"><span class="nav-number">4.2.</span> <span class="nav-text">注入攻击</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u662F_u4EC0_u4E48"><span class="nav-number">1.</span> <span class="nav-text">json 是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#json__u662F_u4E00_u79CD_u6570_u636E_u4EA4_u6362_u683C_u5F0F_u3002"><span class="nav-number">1.1.</span> <span class="nav-text">json 是一种数据交换格式。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json_u7684_u6587_u4EF6_uFF0C_u5A92_u4F53_u7C7B_u578B"><span class="nav-number">1.2.</span> <span class="nav-text">json的文件，媒体类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u8BED_u6CD5"><span class="nav-number">2.</span> <span class="nav-text">json 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u793A_u4F8B"><span class="nav-number">2.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6B63_u786E_u7684_json__u8BED_u6CD5"><span class="nav-number">2.2.</span> <span class="nav-text">正确的 json 语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json__u7684_u6570_u636E_u7C7B_u578B"><span class="nav-number">2.3.</span> <span class="nav-text">json 的数据类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u6570_u636E_u7684_u4E00_u81F4_u6027_u9A8C_u8BC1"><span class="nav-number">3.</span> <span class="nav-text">json 数据的一致性验证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#json_Schema"><span class="nav-number">3.1.</span> <span class="nav-text">json Schema</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json_Schema__u540C_u65F6_u8FD8_u652F_u6301_u6B63_u5219_u8868_u8FBE_u5F0F_u548C_u679A_u4E3E_u7C7B_u578B"><span class="nav-number">3.2.</span> <span class="nav-text">json Schema 同时还支持正则表达式和枚举类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json__u4E2D_u7684_u5B89_u5168_u95EE_u9898"><span class="nav-number">4.</span> <span class="nav-text">json 中的安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u8DE8_u7AD9_u8BF7_u6C42_u4F2A_u9020"><span class="nav-number">4.1.</span> <span class="nav-text">跨站请求伪造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u5165_u653B_u51FB"><span class="nav-number">4.2.</span> <span class="nav-text">注入攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u627E_u51FA_u53EF_u80FD_u7684_u6CE8_u5165_u70B9"><span class="nav-number">4.2.1.</span> <span class="nav-text">找出可能的注入点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript_u4E2D_u7684_XMLHttpRequest__u4E0E_Web_API"><span class="nav-number">5.</span> <span class="nav-text">JavaScript中的 XMLHttpRequest 与 Web API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Web_API"><span class="nav-number">5.1.</span> <span class="nav-text">Web API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript_u4E2D_u7684XMLHttpRequest_u5BF9_u8C61"><span class="nav-number">5.2.</span> <span class="nav-text">JavaScript中的XMLHttpRequest对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7A81_u7834_u540C_u6E90_u7B56_u7565"><span class="nav-number">5.3.</span> <span class="nav-text">突破同源策略</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u8DE8_u57DF_u8D44_u6E90_u5171_u4EABCORS_28cross-origin_resource_sharing_29"><span class="nav-number">5.3.1.</span> <span class="nav-text">跨域资源共享CORS(cross-origin resource sharing)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSON-P"><span class="nav-number">5.3.2.</span> <span class="nav-text">JSON-P</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
