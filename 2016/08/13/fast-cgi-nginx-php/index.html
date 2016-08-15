@@ -70,7 +70,7 @@
 要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。
 网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请">
 <meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/%E7%BD%91%E5%85%B3.png">
-<meta property="og:updated_time" content="2016-08-15T23:11:41.002Z">
+<meta property="og:updated_time" content="2016-08-15T23:17:41.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fast-cgi、nginx、PHP-FPM和PHP">
 <meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
@@ -324,6 +324,7 @@
 <p>　　4. CGI应用程序执行所需要的操作，通常是基于浏览者输入的内容。</p>
 <p>　　5. CGI应用程序把结果格式化为网络服务器和浏览器能够理解的文档（通常是HTML网页）。</p>
 <p>　　6. 网络服务器把结果返回到浏览器中。</p>
+<p>CGI程序存在性能问题，主要原因是<u>CGI程序运行在独立的进程中，并对每个Web请求建立一个进程，这种方法非常容易实现，但效率很差，难以扩展。面对大量请求，进程的大量建立和消亡使操作系统性能大大下降。此外，由于地址空间无法共享，也限制了资源重用。</u>  </p>
 <h4 id="FastCGI"><a href="#FastCGI" class="headerlink" title="FastCGI"></a>FastCGI</h4>
       
     </div>
