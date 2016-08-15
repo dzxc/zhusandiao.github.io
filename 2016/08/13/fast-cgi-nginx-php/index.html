@@ -70,7 +70,7 @@
 要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。
 网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请">
 <meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/%E7%BD%91%E5%85%B3.png">
-<meta property="og:updated_time" content="2016-08-15T22:25:59.508Z">
+<meta property="og:updated_time" content="2016-08-15T22:50:20.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fast-cgi、nginx、PHP-FPM和PHP">
 <meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
@@ -312,7 +312,11 @@
 </blockquote>
 <p>例如，一个 HTTP/FTP 网关会通过 HTTP 请求接收对 FTP URI 的请求，但通过 FTP 协议来获取文档（参见图 1-13）。得到的文档会被封装成一条 HTTP 报文，发送给客户端。  </p>
 <p><img src="http://7fva1q.com1.z0.glb.clouddn.com/%E7%BD%91%E5%85%B3.png" alt="网关">  </p>
-<h4 id="Common_Gateway_Interface_u2013_u901A_u7528_u7F51_u5173_u63A5_u53E3"><a href="#Common_Gateway_Interface_u2013_u901A_u7528_u7F51_u5173_u63A5_u53E3" class="headerlink" title="Common Gateway Interface–通用网关接口"></a>Common Gateway Interface–通用网关接口</h4><a id="more"></a>
+<a id="more"></a>
+<h4 id="Common_Gateway_Interface_u2013_u901A_u7528_u7F51_u5173_u63A5_u53E3"><a href="#Common_Gateway_Interface_u2013_u901A_u7528_u7F51_u5173_u63A5_u53E3" class="headerlink" title="Common Gateway Interface–通用网关接口"></a>Common Gateway Interface–通用网关接口</h4><blockquote class="blockquote-center"><p>Common Gateway Interface (CGI) is a standard way for web servers to interface with executable programs installed on a server that generate web pages dynamically. Such programs are known as CGI scripts or simply CGIs; they are usually written in a scripting language, but can be written in any programming language.–wiki</p>
+</blockquote>
+<p>通用网关接口，定义了一种标准，这个标准规定了网络服务器与安装了动态生成网页内容执行程序的服务器之间的交互方式。这种可执行程序被叫做 CGI 脚本或者简单 CGIS，通常用脚本语言写，但是也可以用其他任何语言来写。  </p>
+<p>总的来说，</p>
 
       
     </div>
