@@ -63,7 +63,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/07/20/nginx官网文档翻译-负载均衡/index.html">
 <meta property="og:site_name" content="zhusandiao">
 <meta property="og:description" content="简介Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault-tolerant configurat">
-<meta property="og:updated_time" content="2016-07-21T01:17:24.735Z">
+<meta property="og:updated_time" content="2016-08-14T01:36:21.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx官网文档翻译-负载均衡">
 <meta name="twitter:description" content="简介Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault-tolerant configurat">
@@ -318,9 +318,6 @@
 <p>To configure load balancing for HTTPS instead of HTTP, just use “https” as the protocol.</p>
 <p>When setting up load balancing for FastCGI, uwsgi, SCGI, or memcached, use fastcgi_pass, uwsgi_pass, scgi_pass, and memcached_pass directives respectively.</p>
 <p>在上面的这个例子里，同一个应用的三个实例分别运行在srv1，srv2，srv3上，当配置文件中没有特别指定时，默认会以轮循的方式来实现负载均衡。所有的请求都会被代理到服务器组 myapp1 上，并且 nginx 应用负载均衡来分发这些请求。  </p>
-<p>Reverse proxy implementation in nginx includes load balancing for HTTP, HTTPS, FastCGI, uwsgi, SCGI, and memcached.</p>
-<p>To configure load balancing for HTTPS instead of HTTP, just use “https” as the protocol.</p>
-<p>When setting up load balancing for FastCGI, uwsgi, SCGI, or memcached, use fastcgi_pass, uwsgi_pass, scgi_pass, and memcached_pass directives respectively.  </p>
 <p>在 nginx 中反向代理工具包括 HTTP, HTTPS, FastCGI, uwsgi, SCGI, 和 memcached 的负载均衡。  </p>
 <p>配置 HTTPS 负载均衡取代 HTTP，仅仅需要使用 <code>https</code>作为协议。  </p>
 <p>而当为 FastCGI, uwsgi, SCGI, 或是 memcached 设置负载均衡时，需要分别使用对应的 fastcgi_pass, uwsgi_pass, scgi_pass, 和 memcached_pass 指令。  </p>
@@ -428,7 +425,7 @@
         <div class="copyright" style="clear:both;">
            <p><span>本文标题:</span><a href="/2016/07/20/nginx官网文档翻译-负载均衡/">nginx官网文档翻译-负载均衡</a></p>
            <p><span>发布时间:</span>2016年7月20日 - 23时07分</p>
-           <p><span>最后更新:</span>2016年7月21日 - 09时07分</p>
+           <p><span>最后更新:</span>2016年8月14日 - 09时08分</p>
            <p><span>本文链接:</span><a href="/2016/07/20/nginx官网文档翻译-负载均衡/" title="nginx官网文档翻译-负载均衡">zhusandiao.com/2016/07/20/nginx官网文档翻译-负载均衡/</a></p>
         </div>
       
@@ -488,7 +485,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -498,7 +495,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
