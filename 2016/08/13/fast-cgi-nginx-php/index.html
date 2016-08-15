@@ -59,26 +59,23 @@
 
 <meta name="description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
 几个概念cgiGateway（网关）：  
-网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请求时就好像自己是资源的源端服务器一样。客户端可能并不知道自己正在与一个网关进行通信。–《Http权威指南》
-
-Common Gate">
+要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。
+网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fast-cgi、nginx、PHP-FPM和PHP">
 <meta property="og:url" content="http://yoursite.com/2016/08/13/fast-cgi-nginx-php/index.html">
 <meta property="og:site_name" content="zhusandiao">
 <meta property="og:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
 几个概念cgiGateway（网关）：  
-网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请求时就好像自己是资源的源端服务器一样。客户端可能并不知道自己正在与一个网关进行通信。–《Http权威指南》
-
-Common Gate">
-<meta property="og:updated_time" content="2016-08-15T21:36:04.149Z">
+要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。
+网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请">
+<meta property="og:updated_time" content="2016-08-15T21:45:49.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fast-cgi、nginx、PHP-FPM和PHP">
 <meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
 几个概念cgiGateway（网关）：  
-网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请求时就好像自己是资源的源端服务器一样。客户端可能并不知道自己正在与一个网关进行通信。–《Http权威指南》
-
-Common Gate">
+要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。
+网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请">
 
 
 
@@ -306,7 +303,9 @@ Common Gate">
       
         <p>一直没搞清楚 <code>fast-cgi</code>，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  </p>
 <h3 id="u51E0_u4E2A_u6982_u5FF5"><a href="#u51E0_u4E2A_u6982_u5FF5" class="headerlink" title="几个概念"></a>几个概念</h3><h4 id="cgi"><a href="#cgi" class="headerlink" title="cgi"></a>cgi</h4><p>Gateway（网关）：  </p>
-<blockquote class="blockquote-center"><p><span style="color:#be2532">网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于<br>将 HTTP 流量转换成其他的协议。</span>网关接受请求时就好像自己是资源的源端服务器<br>一样。客户端可能并不知道自己正在与一个网关进行通信。–《Http权威指南》</p>
+<p>要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。</p>
+<blockquote class="blockquote-center"><p><span style="color:#be2532">网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。<u>通常用于<br>将 HTTP 流量转换成其他的协议。</u></span>网关接受请求时就好像自己是资源的源端服务器<br>一样。客户端可能并不知道自己正在与一个网关进行通信。  </p>
+<p>网关可以作为某种翻译器使用，它抽象出了一种能够到达资源的方法。网关是资源和应用程序之间的粘合剂。应用程序可以（通过 HTTP 或其他已定义的接口）请求网关来处理某条请求，网关可以提供一条响应。网关可以向数据库发送查询语句，或者生成动态的内容，就像一个门一样：<u><strong>进去一条请求，出来一个响应。</strong></u><br>——《Http权威指南》</p>
 </blockquote>
 <p>Common Gateway Interface–通用网关接口  </p>
 <a id="more"></a>
