@@ -70,7 +70,7 @@
 要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。
 网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请">
 <meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/%E7%BD%91%E5%85%B3.png">
-<meta property="og:updated_time" content="2016-08-16T00:24:13.235Z">
+<meta property="og:updated_time" content="2016-08-16T00:42:59.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fast-cgi、nginx、PHP-FPM和PHP">
 <meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
@@ -324,7 +324,7 @@
 <p>　　4. CGI应用程序执行所需要的操作，通常是基于浏览者输入的内容。</p>
 <p>　　5. CGI应用程序把结果格式化为网络服务器和浏览器能够理解的文档（通常是HTML网页）。</p>
 <p>　　6. 网络服务器把结果返回到浏览器中。</p>
-<p>CGI程序存在性能问题，主要原因是<u>CGI程序运行在独立的进程中，并对每个Web请求建立一个进程，这种方法非常容易实现，但效率很差，难以扩展。面对大量请求，进程的大量建立和消亡使操作系统性能大大下降。此外，由于地址空间无法共享，也限制了资源重用。</u>  </p>
+<p>CGI程序存在性能问题，主要原因是<u><strong>CGI程序运行在独立的进程中，并对每个Web请求建立一个进程，这种方法非常容易实现，但效率很差，难以扩展。面对大量请求，进程的大量建立和消亡使操作系统性能大大下降。此外，由于地址空间无法共享，也限制了资源重用。</strong></u>  </p>
 <h4 id="FastCGI"><a href="#FastCGI" class="headerlink" title="FastCGI"></a>FastCGI</h4><p>快速通用网关接口（Fast Common Gateway Interface／FastCGI）是一种让交互程序与Web服务器通信的协议。  </p>
 <p>由于 CGI 程序存在性能问题，所以 FastCGI 出现了，与为每个请求创建一个新的进程不同，<span style="color:#be2532">FastCGI 使用持续的进程来处理一连串的请求。这些进程由 FastCGI服务器管理，而不是 web 服务器。</span> 当进来一个请求时，web服务器把环境变量和这个页面请求通过一个 socket 比如 FastCGI 进程与 web 服务器(都位于本地）或者一个 TCP connection（FastCGI 进程在远端的 server farm）传递给 FastCGI 进程。  </p>
 <p>FastCGI 的工作原理</p>
@@ -347,7 +347,7 @@
 <li><p>…</p>
 </li>
 </ol>
-<h3 id="nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684"><a href="#nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684" class="headerlink" title="nginx 是如果处理 PHP 的"></a>nginx 是如果处理 PHP 的</h3><p>首先明确一点，</p>
+<h3 id="Nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684"><a href="#Nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684" class="headerlink" title="Nginx 是如果处理 PHP 的"></a>Nginx 是如果处理 PHP 的</h3><p>首先明确一点，Nginx 不支持对外部程序的直接调用或者解析，所有的外部程序（包括 PHP ）必须通过 FastCGI 接口来调用。</p>
 <h3 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h3><ol>
 <li><a href="https://segmentfault.com/q/1010000000256516" target="_blank" rel="external">搞不清FastCgi与PHP-fpm之间是个什么样的关系</a></li>
 <li><a href="http://www.nowamagic.net/librarys/veda/detail/1319" target="_blank" rel="external">概念了解：CGI，FastCGI，PHP-CGI与PHP-FPM</a></li>
@@ -548,7 +548,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u51E0_u4E2A_u6982_u5FF5"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cgi"><span class="nav-number">1.1.</span> <span class="nav-text">cgi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Common_Gateway_Interface_u2013_u901A_u7528_u7F51_u5173_u63A5_u53E3"><span class="nav-number">1.2.</span> <span class="nav-text">Common Gateway Interface–通用网关接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FastCGI"><span class="nav-number">1.3.</span> <span class="nav-text">FastCGI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP-FPM"><span class="nav-number">1.4.</span> <span class="nav-text">PHP-FPM</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684"><span class="nav-number">2.</span> <span class="nav-text">nginx 是如果处理 PHP 的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u53C2_u8003"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u51E0_u4E2A_u6982_u5FF5"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cgi"><span class="nav-number">1.1.</span> <span class="nav-text">cgi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Common_Gateway_Interface_u2013_u901A_u7528_u7F51_u5173_u63A5_u53E3"><span class="nav-number">1.2.</span> <span class="nav-text">Common Gateway Interface–通用网关接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FastCGI"><span class="nav-number">1.3.</span> <span class="nav-text">FastCGI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP-FPM"><span class="nav-number">1.4.</span> <span class="nav-text">PHP-FPM</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684"><span class="nav-number">2.</span> <span class="nav-text">Nginx 是如果处理 PHP 的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u53C2_u8003"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
