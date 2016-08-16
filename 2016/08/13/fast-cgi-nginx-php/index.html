@@ -70,7 +70,7 @@
 要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。
 网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请">
 <meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/%E7%BD%91%E5%85%B3.png">
-<meta property="og:updated_time" content="2016-08-16T00:18:21.173Z">
+<meta property="og:updated_time" content="2016-08-16T00:24:13.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fast-cgi、nginx、PHP-FPM和PHP">
 <meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
@@ -334,11 +334,10 @@
 <li>当客户端请求到达 Web Server 时，FastCGI 进程管理器选择并连接到一个CGI解释器。Web server 将 CGI 环境变量和标准输入发送到 FastCGI 子进程 php-cgi。  </li>
 <li>FastCGI 子进程完成处理后将标准输出和错误信息从同一连接返回Web Server。当 FastCGI 子进程关闭连接时，请求便告处理完成。FastCGI 子进程接着等待并处理来自 FastCGI 进程管理器(运行在 Web Server 中)的下一个连接。在 CGI 模式中，php-cgi 在此便退出了。  </li>
 </ol>
-<h4 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP-FPM"></a>PHP-FPM</h4><p>针对 PHP 来说，PHP-CGI 是用来解析 PHP 的，但是并不能管理进程。这个时候肯定需要一个 CGI 程序的进程管理器，于是就出现了 PHP-FPM。</p>
-<p>PHP-FPM (PHP FastCGI Process Manager) ，PHP 的 FastCGI 进程管理器。  </p>
-<p>PHP-FPM 实现了 FastCGI，并且被官方维护。管理的是 PHP-CGI。  </p>
+<h4 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP-FPM"></a>PHP-FPM</h4><p><span style="color:#be2532"><u>针对 PHP 来说，PHP-CGI 是用来解析 PHP 的，但是并不能管理进程。这个时候肯定需要一个 CGI 程序的进程管理器，于是就出现了 <strong>PHP-FPM</strong>。</u></span></p>
+<p>PHP-FPM (PHP FastCGI Process Manager) ，PHP 的 FastCGI 进程管理器。PHP-FPM 实现了 FastCGI，并且被官方维护。管理的是 PHP-CGI。  </p>
 <p>功能包括：  </p>
-<ul>
+<ol>
 <li><p>支持平滑停止/启动的高级进程管理功能；</p>
 </li>
 <li><p>动态／静态子进程产生；</p>
@@ -347,10 +346,12 @@
 </li>
 <li><p>…</p>
 </li>
-</ul>
-<h3 id="nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684"><a href="#nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684" class="headerlink" title="nginx 是如果处理 PHP 的"></a>nginx 是如果处理 PHP 的</h3><h3 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h3><ol>
+</ol>
+<h3 id="nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684"><a href="#nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684" class="headerlink" title="nginx 是如果处理 PHP 的"></a>nginx 是如果处理 PHP 的</h3><p>首先明确一点，</p>
+<h3 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h3><ol>
 <li><a href="https://segmentfault.com/q/1010000000256516" target="_blank" rel="external">搞不清FastCgi与PHP-fpm之间是个什么样的关系</a></li>
 <li><a href="http://www.nowamagic.net/librarys/veda/detail/1319" target="_blank" rel="external">概念了解：CGI，FastCGI，PHP-CGI与PHP-FPM</a></li>
+<li><a href="http://php.net/manual/zh/install.fpm.php" target="_blank" rel="external">FastCGI 进程管理器（FPM）</a></li>
 </ol>
 
       
