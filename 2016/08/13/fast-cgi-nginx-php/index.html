@@ -70,7 +70,7 @@
 要在 Web 上发布更复杂资源的需求出现时，人们很快就明确了一点：单个应用程序无法处理所有这些能想到的资源。所以才有了网关的出现。
 网关（gateway）是一种特殊的服务器，作为其他服务器的中间实体使用。通常用于将 HTTP 流量转换成其他的协议。网关接受请">
 <meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/%E7%BD%91%E5%85%B3.png">
-<meta property="og:updated_time" content="2016-08-16T02:49:21.178Z">
+<meta property="og:updated_time" content="2016-08-18T15:19:52.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fast-cgi、nginx、PHP-FPM和PHP">
 <meta name="twitter:description" content="一直没搞清楚 fast-cgi，PHP 以及 nginx 之间的关系，现在抽出时间来理一理。  
@@ -347,7 +347,7 @@
 <li><p>…</p>
 </li>
 </ol>
-<h3 id="Nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684"><a href="#Nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684" class="headerlink" title="Nginx 是如果处理 PHP 的"></a>Nginx 是如果处理 PHP 的</h3><p>首先明确一点，Nginx 不支持对外部程序的直接调用或者解析，所有的外部程序（包括 PHP ）必须通过 FastCGI 接口来调用。当进来一个请求时，web 服务器把环境变量和这个页面请求通过<strong>一个 socket</strong>（nginx 配置文件中的fastcgi_pass /var/run/php5-fpm.sock） 或者<strong>一个 TCP connection</strong>（nginx 配置文件中的fastcgi_pass   127.0.0.1:9000;）传递给 FastCGI 的子进程 PHP-CGI，而 PHP-CGI 会处理后将标准输出和错误信息从同一连接返回 Web Server 再返回给客户端。  </p>
+<h3 id="Nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684"><a href="#Nginx__u662F_u5982_u679C_u5904_u7406_PHP__u7684" class="headerlink" title="Nginx 是如果处理 PHP 的"></a>Nginx 是如果处理 PHP 的</h3><p>首先明确一点，Nginx 不支持对外部程序的直接调用或者解析，所有的外部程序（包括 PHP ）必须通过 FastCGI 接口来调用。当进来一个请求时，web 服务器把环境变量和这个页面请求通过<strong>一个 socket</strong>（nginx 配置文件中的 fastcgi_pass /var/run/php5-fpm.sock） 或者<strong>一个 TCP connection</strong>（nginx 配置文件中的fastcgi_pass   127.0.0.1:9000;）传递给 FastCGI 的子进程 PHP-CGI，而 PHP-CGI 会处理后将标准输出和错误信息从同一连接返回 Web Server 再返回给客户端。  </p>
 <p>我们知道 Nginx 有一个主进程（master）和多个工作进程（worker），在 FastCGi 中，主进程(master)会先读取配置文件 php.ini，初始化执行环境，然后再启动多个worker，请求过来，由 master 传递给 worker ，来由 worker 实际处理请求。</p>
 <h3 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h3><ol>
 <li><a href="https://segmentfault.com/q/1010000000256516" target="_blank" rel="external">搞不清FastCgi与PHP-fpm之间是个什么样的关系</a></li>
@@ -414,7 +414,7 @@
         <div class="copyright" style="clear:both;">
            <p><span>本文标题:</span><a href="/2016/08/13/fast-cgi-nginx-php/">fast-cgi、nginx、PHP-FPM和PHP</a></p>
            <p><span>发布时间:</span>2016年8月13日 - 17时08分</p>
-           <p><span>最后更新:</span>2016年8月16日 - 10时08分</p>
+           <p><span>最后更新:</span>2016年8月18日 - 23时08分</p>
            <p><span>本文链接:</span><a href="/2016/08/13/fast-cgi-nginx-php/" title="fast-cgi、nginx、PHP-FPM和PHP">zhusandiao.com/2016/08/13/fast-cgi-nginx-php/</a></p>
         </div>
       
