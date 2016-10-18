@@ -253,6 +253,108 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/18/dns-gogs/" itemprop="url">
+                  DNS 解析和私人代码仓库(gogs)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T09:30:47+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/18/dns-gogs/" class="leancloud_visitors" data-flag-title="DNS 解析和私人代码仓库(gogs)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>域名就像一个代号，我们必须找到其背后的 ip 地址，才能访问到具体的资源。而域名和 ip 就是通过 DNS (Domain Name System 域名系统联系起来的)  </p>
+<p>以我的域名：zhusandiao.com 为例：  </p>
+<p>首先 <a href="zhusandiao.com">zhusandiao.com</a>，实际上网站是通过 Github Pages 搭建的，原始域名是：<a href="zhusandiao.github.io">zhusandiao.github.io</a>, 这个原始域名，一点都不好记忆，而且没有个性。   所以，第一个需求是，当访问 <a href="zhusandiao.github.io">zhusandiao.github.io</a> 时，全部重定向到 <a href="zhusandiao.com">zhusandiao.com</a>。  </p>
+<p>在 github 的该博客仓库，添加 CNAME 文件，填上要重定向的域名，例如我的 zhusandiao.com<br><img src="http://picdrop.qiniudn.com/dnsCNAME.png" alt="CNAME"></p>
+<p>我选择第三方的免费 DNS 解析服务：<a href="https://dnspod.cn" target="_blank" rel="external">Dnspod</a>  </p>
+<ol>
+<li>先到域名注册商那里，将 DNS 解析设置成 DNSpod 解析<br><img src="http://picdrop.qiniudn.com/dns%E7%AC%AC%E4%B8%89%E6%96%B9%EF%BC%A4%EF%BC%AE%EF%BC%B3.png" alt="Godaddy 设置第三方 DNS 解析"></li>
+<li>然后，再到 DNS 解析服务商那里设置 A 记录 为 github 的两个 ip<br><img src="http://picdrop.qiniudn.com/dnsDNSPOD.png" alt="dnspod"><br>另外有两个 NS 记录，是默认添加的，不用管</li>
+</ol>
+<p>有关 DNS 解析的几种记录的作用，在下面这张图里：<br><img src="http://picdrop.qiniudn.com/dnsDNS.png" alt="dns几种记录的作用"></p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/14/Bourne-Franchise/" itemprop="url">
                   谍影重重三部曲
                 </a>
@@ -1227,118 +1329,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/01/sql-note/" itemprop="url">
-                  sql笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-01T22:15:33+08:00" content="2016-07-01">
-              2016-07-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/07/01/sql-note/" class="leancloud_visitors" data-flag-title="sql笔记">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="sql__u662F_u4E00_u4E2A_u6807_u51C6_uFF0C_u4E5F_u662F_u4E00_u95E8_u8BA1_u7B97_u673A_u8BED_u8A00"><a href="#sql__u662F_u4E00_u4E2A_u6807_u51C6_uFF0C_u4E5F_u662F_u4E00_u95E8_u8BA1_u7B97_u673A_u8BED_u8A00" class="headerlink" title="sql 是一个标准，也是一门计算机语言"></a>sql 是一个标准，也是一门计算机语言</h3><p>SQL 对大小写不敏感，用来访问和操作数据库。</p>
-<h3 id="RDBMS__u6307_u7684_u662F_u5173_u7CFB_u578B_u6570_u636E_u5E93_u7BA1_u7406_u7CFB_u7EDF_u3002"><a href="#RDBMS__u6307_u7684_u662F_u5173_u7CFB_u578B_u6570_u636E_u5E93_u7BA1_u7406_u7CFB_u7EDF_u3002" class="headerlink" title="RDBMS 指的是关系型数据库管理系统。"></a>RDBMS 指的是关系型数据库管理系统。</h3><p>RDBMS 是 SQL 的基础，同样也是所有现代数据库系统的基础。  </p>
-<p>RDBMS 中的数据存储在被称为表（tables）的数据库对象中。<br>表是相关的数据项的集合，它由列和行组成。  </p>
-<h3 id="u6570_u636E_u5E93_u8868"><a href="#u6570_u636E_u5E93_u8868" class="headerlink" title="数据库表"></a>数据库表</h3><p>一个数据库通常包含一个或多个表。  </p>
-<p>每个表由一个名字标识。  </p>
-<p>表包含带有数据的记录（行）。  </p>
-<p>列代表字段，行代表记录  </p>
-<h3 id="SQL__u8BED_u53E5"><a href="#SQL__u8BED_u53E5" class="headerlink" title="SQL 语句"></a>SQL 语句</h3><p>可以把 SQL 分为两个部分：  </p>
-<ul>
-<li><p>数据操作语言 (DML)<br>DML：查询和更新指令  </p>
-<ul>
-<li>SELECT  从数据库表中获取数据  </li>
-<li>UPDATE 更新数据库表中的数据  </li>
-<li>DELETE 从数据库表中删除数据  </li>
-<li>INSERT INTO 向数据库表中插入数据  </li>
-</ul>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/01/sql-note/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1385,7 +1375,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
