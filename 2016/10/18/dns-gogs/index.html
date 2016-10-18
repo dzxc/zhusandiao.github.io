@@ -76,7 +76,7 @@
 <meta property="og:image" content="http://picdrop.qiniudn.com/dns/Gogs%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/dns/Gogs%E4%BB%93%E5%BA%93%E9%A1%B5%E9%9D%A2.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/dns/Gogs%E4%B8%AA%E4%BA%BA%E9%A1%B5%E9%9D%A2.png">
-<meta property="og:updated_time" content="2016-10-18T03:12:13.213Z">
+<meta property="og:updated_time" content="2016-10-18T03:16:41.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS 解析和私人代码仓库( Gogs 搭建)">
 <meta name="twitter:description" content="DNS域名就像一个代号，我们必须找到其背后的 ip 地址，才能访问到具体的资源。而域名和 ip 就是通过 DNS (Domain Name System 域名系统联系起来的)  
@@ -338,6 +338,12 @@
 <h3 id="u5B8C_u6210_u9875_u9762"><a href="#u5B8C_u6210_u9875_u9762" class="headerlink" title="完成页面"></a>完成页面</h3><p>安装完成后，注册的第一个用户就是管理员<br><img src="http://picdrop.qiniudn.com/dns/Gogs%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2.png" alt="Gogs注册页面"></p>
 <p>仓库页面<br><img src="http://picdrop.qiniudn.com/dns/Gogs%E4%BB%93%E5%BA%93%E9%A1%B5%E9%9D%A2.png" alt="仓库页面"></p>
 <p>个人页面<br><img src="http://picdrop.qiniudn.com/dns/Gogs%E4%B8%AA%E4%BA%BA%E9%A1%B5%E9%9D%A2.png" alt="个人页面"></p>
+<h3 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="http://winterttr.me/2015/10/23/from-dns-to-github-custom-domain/index.html" target="_blank" rel="external">从DNS到github pages自定义域名 – 漫谈域名那些事</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="external">DNS 原理入门</a></li>
+<li><a href="https://imjad.cn/archives/lab/using-gogs-to-build-your-own-git-server-on-centos" target="_blank" rel="external">在CentOS上使用 Gogs 搭建自己的 Git 服务器</a></li>
+<li><a href="https://mynook.info/blog/post/host-your-own-git-server-using-gogs" target="_blank" rel="external">使用 Gogs 搭建自己的 Git 服务器</a></li>
+</ol>
 
       
     </div>
@@ -527,7 +533,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS__u89E3_u6790_u6B65_u9AA4"><span class="nav-number">1.1.</span> <span class="nav-text">DNS 解析步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55"><span class="nav-number">2.</span> <span class="nav-text">DNS 解析的几种记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5229_u7528_gogs__u642D_u5EFA_u79C1_u4EBA_u4EE3_u7801_u4ED3_u5E93"><span class="nav-number">3.</span> <span class="nav-text">利用 gogs 搭建私人代码仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gogs__u4ECB_u7ECD"><span class="nav-number">3.1.</span> <span class="nav-text">Gogs 介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8BBE_u7F6E_u72EC_u7ACB_u57DF_u540D"><span class="nav-number">3.2.</span> <span class="nav-text">设置独立域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E8C_u7EA7_u57DF_u540D__u7684_DNS__u89E3_u6790"><span class="nav-number">3.3.</span> <span class="nav-text">二级域名 的 DNS 解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u57DF_u540D_u76F8_u5173_u77E5_u8BC6"><span class="nav-number">3.4.</span> <span class="nav-text">域名相关知识</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B8C_u6210_u9875_u9762"><span class="nav-number">4.</span> <span class="nav-text">完成页面</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS__u89E3_u6790_u6B65_u9AA4"><span class="nav-number">1.1.</span> <span class="nav-text">DNS 解析步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55"><span class="nav-number">2.</span> <span class="nav-text">DNS 解析的几种记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5229_u7528_gogs__u642D_u5EFA_u79C1_u4EBA_u4EE3_u7801_u4ED3_u5E93"><span class="nav-number">3.</span> <span class="nav-text">利用 gogs 搭建私人代码仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gogs__u4ECB_u7ECD"><span class="nav-number">3.1.</span> <span class="nav-text">Gogs 介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8BBE_u7F6E_u72EC_u7ACB_u57DF_u540D"><span class="nav-number">3.2.</span> <span class="nav-text">设置独立域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E8C_u7EA7_u57DF_u540D__u7684_DNS__u89E3_u6790"><span class="nav-number">3.3.</span> <span class="nav-text">二级域名 的 DNS 解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u57DF_u540D_u76F8_u5173_u77E5_u8BC6"><span class="nav-number">3.4.</span> <span class="nav-text">域名相关知识</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B8C_u6210_u9875_u9762"><span class="nav-number">4.</span> <span class="nav-text">完成页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u53C2_u8003"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
