@@ -303,19 +303,16 @@
 
       
         
-          
-            <p>域名就像一个代号，我们必须找到其背后的 ip 地址，才能访问到具体的资源。而域名和 ip 就是通过 DNS (Domain Name System 域名系统联系起来的)  </p>
+          <p>域名就像一个代号，我们必须找到其背后的 ip 地址，才能访问到具体的资源。而域名和 ip 就是通过 DNS (Domain Name System 域名系统联系起来的)  </p>
 <p>以我的域名：zhusandiao.com 为例：  </p>
 <p>首先 <a href="zhusandiao.com">zhusandiao.com</a>，实际上网站是通过 Github Pages 搭建的，原始域名是：<a href="zhusandiao.github.io">zhusandiao.github.io</a>, 这个原始域名，一点都不好记忆，而且没有个性。   所以，第一个需求是，当访问 <a href="zhusandiao.github.io">zhusandiao.github.io</a> 时，全部重定向到 <a href="zhusandiao.com">zhusandiao.com</a>。  </p>
 <p>在 github 的该博客仓库，添加 CNAME 文件，填上要重定向的域名，例如我的 zhusandiao.com<br><img src="http://picdrop.qiniudn.com/dnsCNAME.png" alt="CNAME"></p>
-<p>我选择第三方的免费 DNS 解析服务：<a href="https://dnspod.cn" target="_blank" rel="external">Dnspod</a>  </p>
-<ol>
-<li>先到域名注册商那里，将 DNS 解析设置成 DNSpod 解析<br><img src="http://picdrop.qiniudn.com/dns%E7%AC%AC%E4%B8%89%E6%96%B9%EF%BC%A4%EF%BC%AE%EF%BC%B3.png" alt="Godaddy 设置第三方 DNS 解析"></li>
-<li>然后，再到 DNS 解析服务商那里设置 A 记录 为 github 的两个 ip<br><img src="http://picdrop.qiniudn.com/dnsDNSPOD.png" alt="dnspod"><br>另外有两个 NS 记录，是默认添加的，不用管</li>
-</ol>
-<p>有关 DNS 解析的几种记录的作用，在下面这张图里：<br><img src="http://picdrop.qiniudn.com/dnsDNS.png" alt="dns几种记录的作用"></p>
-
-          
+<p>我选择第三方的免费 DNS 解析服务：<a href="https://dnspod.cn">Dnspod</a>  </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/18/dns-gogs/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
