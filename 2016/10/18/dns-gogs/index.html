@@ -71,7 +71,7 @@
 <meta property="og:image" content="http://picdrop.qiniudn.com/dns%E7%AC%AC%E4%B8%89%E6%96%B9%EF%BC%A4%EF%BC%AE%EF%BC%B3.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/dnsDNSPOD.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/dnsDNS.png">
-<meta property="og:updated_time" content="2016-10-18T01:38:08.789Z">
+<meta property="og:updated_time" content="2016-10-18T01:53:48.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS 解析和私人代码仓库(gogs)">
 <meta name="twitter:description" content="DNS域名就像一个代号，我们必须找到其背后的 ip 地址，才能访问到具体的资源。而域名和 ip 就是通过 DNS (Domain Name System 域名系统联系起来的)  
@@ -308,11 +308,12 @@
 <p>在 github 的该博客仓库，添加 CNAME 文件，填上要重定向的域名，例如我的 zhusandiao.com<br><img src="http://picdrop.qiniudn.com/dnsCNAME.png" alt="CNAME"></p>
 <p>我选择第三方的免费 DNS 解析服务：<a href="https://dnspod.cn" target="_blank" rel="external">Dnspod</a>  </p>
 <a id="more"></a>
-<ol>
+<h4 id="DNS__u89E3_u6790_u6B65_u9AA4"><a href="#DNS__u89E3_u6790_u6B65_u9AA4" class="headerlink" title="DNS 解析步骤"></a>DNS 解析步骤</h4><ol>
 <li>先到域名注册商那里，将 DNS 解析设置成 DNSpod 解析<br><img src="http://picdrop.qiniudn.com/dns%E7%AC%AC%E4%B8%89%E6%96%B9%EF%BC%A4%EF%BC%AE%EF%BC%B3.png" alt="Godaddy 设置第三方 DNS 解析"></li>
-<li>然后，再到 DNS 解析服务商那里设置 A 记录 为 github 的两个 ip<br><img src="http://picdrop.qiniudn.com/dnsDNSPOD.png" alt="dnspod"><br>另外有两个 NS 记录，是默认添加的，不用管</li>
+<li>然后，再到 DNS 解析服务商那里设置 A 记录 为 github 的两个 ip<br><img src="http://picdrop.qiniudn.com/dnsDNSPOD.png" alt="dnspod"><br>另外有两个 NS 记录，是默认添加的，不用管。</li>
 </ol>
-<p>有关 DNS 解析的几种记录的作用，在下面这张图里：<br><img src="http://picdrop.qiniudn.com/dnsDNS.png" alt="dns几种记录的作用"></p>
+<h3 id="DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55"><a href="#DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55" class="headerlink" title="DNS 解析的几种记录"></a>DNS 解析的几种记录</h3><p>有关 DNS 解析的几种记录的作用，在下面这张图里：<br><img src="http://picdrop.qiniudn.com/dnsDNS.png" alt="dns几种记录的作用"></p>
+<h3 id="u5229_u7528_gogs__u642D_u5EFA_u79C1_u4EBA_u4EE3_u7801_u4ED3_u5E93"><a href="#u5229_u7528_gogs__u642D_u5EFA_u79C1_u4EBA_u4EE3_u7801_u4ED3_u5E93" class="headerlink" title="利用 gogs 搭建私人代码仓库"></a>利用 gogs 搭建私人代码仓库</h3><h4 id="Gogs__u4ECB_u7ECD"><a href="#Gogs__u4ECB_u7ECD" class="headerlink" title="Gogs 介绍"></a>Gogs 介绍</h4><p><a href="https://gogs.io/" target="_blank" rel="external">Gogs</a>是更为轻量级的自助 Git 服务。相对而言，人们可能更为熟悉 Gitlab，两者相比较的话，Gitlab 更为成熟，开发时间更长，稳定性更好，而 Gogs 更为轻量，可以在更低配置的 vps 上运行，搭建更方便。  </p>
 
       
     </div>
@@ -504,7 +505,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.</span> <span class="nav-text">DNS</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS__u89E3_u6790_u6B65_u9AA4"><span class="nav-number">1.1.</span> <span class="nav-text">DNS 解析步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55"><span class="nav-number">2.</span> <span class="nav-text">DNS 解析的几种记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5229_u7528_gogs__u642D_u5EFA_u79C1_u4EBA_u4EE3_u7801_u4ED3_u5E93"><span class="nav-number">3.</span> <span class="nav-text">利用 gogs 搭建私人代码仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gogs__u4ECB_u7ECD"><span class="nav-number">3.1.</span> <span class="nav-text">Gogs 介绍</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
