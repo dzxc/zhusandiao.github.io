@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="读书笔记," />
+  <meta name="keywords" content="Git,前端," />
 
 
 
@@ -57,40 +57,31 @@
 
 
 
-<meta name="description" content="作者：乙一
-地点
-杜王町
+<meta name="description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
 
-出场人物
-
-双叶千帆（二〇〇〇年时，高中生）————父母离异，父亲是大神照彦，与琢马同父异母  
-
-莲见琢马（比千帆高一级）————————孤儿，1982.06.10，一直身穿校服，替身使者，能力：超强记忆力，并利用记忆发动攻击父母是大神广彦和飞来明里，后来杀了织笠花惠和父亲大神照彦">
+定好二级域名 形如：xxx.zhusandiao.com  
+设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
+服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
+在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《The Book》读书笔记">
-<meta property="og:url" content="http://yoursite.com/2016/01/06/TheBook-ReadingNote/index.html">
+<meta property="og:title" content="记一次静态页面的上线过程">
+<meta property="og:url" content="http://yoursite.com/2016/10/23/build-a-html-page-automaticly/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="作者：乙一
-地点
-杜王町
+<meta property="og:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
 
-出场人物
-
-双叶千帆（二〇〇〇年时，高中生）————父母离异，父亲是大神照彦，与琢马同父异母  
-
-莲见琢马（比千帆高一级）————————孤儿，1982.06.10，一直身穿校服，替身使者，能力：超强记忆力，并利用记忆发动攻击父母是大神广彦和飞来明里，后来杀了织笠花惠和父亲大神照彦">
-<meta property="og:updated_time" content="2016-01-06T13:33:04.329Z">
+定好二级域名 形如：xxx.zhusandiao.com  
+设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
+服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
+在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，">
+<meta property="og:updated_time" content="2016-10-23T13:02:03.961Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《The Book》读书笔记">
-<meta name="twitter:description" content="作者：乙一
-地点
-杜王町
+<meta name="twitter:title" content="记一次静态页面的上线过程">
+<meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
 
-出场人物
-
-双叶千帆（二〇〇〇年时，高中生）————父母离异，父亲是大神照彦，与琢马同父异母  
-
-莲见琢马（比千帆高一级）————————孤儿，1982.06.10，一直身穿校服，替身使者，能力：超强记忆力，并利用记忆发动攻击父母是大神广彦和飞来明里，后来杀了织笠花惠和父亲大神照彦">
+定好二级域名 形如：xxx.zhusandiao.com  
+设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
+服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
+在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，">
 
 
 
@@ -124,7 +115,7 @@
       border-left-color: #be2532;    /*左边框颜色*/
   }
 </style>
-<!--   <title> 《The Book》读书笔记 | zhusandiao </title>
+<!--   <title> 记一次静态页面的上线过程 | zhusandiao </title>
   <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
   <script type="text/javascript">
       var host = "zhusandiao.com";
@@ -269,7 +260,7 @@
             
             
               
-                《The Book》读书笔记
+                记一次静态页面的上线过程
               
             
           </h1>
@@ -281,8 +272,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-06T14:28:31+08:00" content="2016-01-06">
-              2016-01-06
+            <time itemprop="dateCreated" datetime="2016-10-23T20:45:02+08:00" content="2016-10-23">
+              2016-10-23
             </time>
           </span>
 
@@ -296,7 +287,7 @@
 
           
           
-             <span id="/2016/01/06/TheBook-ReadingNote/" class="leancloud_visitors" data-flag-title="《The Book》读书笔记">
+             <span id="/2016/10/23/build-a-html-page-automaticly/" class="leancloud_visitors" data-flag-title="记一次静态页面的上线过程">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -316,35 +307,16 @@
       
 
       
-        <p><strong>作者</strong>：<strong><em>乙一</em></strong></p>
-<h4 id="u5730_u70B9"><a href="#u5730_u70B9" class="headerlink" title="地点"></a>地点</h4><blockquote>
-<p><strong>杜王町</strong></p>
-</blockquote>
-<h4 id="u51FA_u573A_u4EBA_u7269"><a href="#u51FA_u573A_u4EBA_u7269" class="headerlink" title="出场人物"></a>出场人物</h4><blockquote>
-<ul>
-<li><p><strong>双叶千帆</strong>（二〇〇〇年时，高中生）————父母离异，父亲是大神照彦，与琢马同父异母  </p>
-</li>
-<li><p><strong>莲见琢马</strong>（比千帆高一级）————————孤儿，<code>1982.06.10</code>，一直身穿校服，替身使者，能力：超强记忆力，并利用记忆发动攻击父母是大神广彦和飞来明里，后来杀了织笠花惠和父亲大神照彦</p>
-<a id="more"></a>  
-</li>
-</ul>
-</blockquote>
-<h4 id="u4E8C_u3007_u3007_u3007_u5E74_u2193"><a href="#u4E8C_u3007_u3007_u3007_u5E74_u2193" class="headerlink" title="二〇〇〇年↓"></a>二〇〇〇年↓</h4><blockquote>
-<ul>
-<li><strong>岸边露伴</strong>（二十岁的漫画家）———————替身使者，能力：将智慧体变成记忆书，随意翻看</li>
-<li><strong>广濑康一</strong>（高一学生）——————————岸边的朋友，替身使者，能力：将拟声词变成实际的声音</li>
-<li>东方仗助（不良少年）——————————替身使者，能力：修复和破坏</li>
-<li>虹村亿泰（不良少年）——————————替身使者，能力：使空间消失</li>
-<li>山岸由花子（康一同学）—————————替身使者，能力：可操作本体的头发攻击</li>
-</ul>
-</blockquote>
-<h4 id="u4E00_u4E5D_u516B_u3007_u5E74_u2193"><a href="#u4E00_u4E5D_u516B_u3007_u5E74_u2193" class="headerlink" title="一九八〇年↓"></a>一九八〇年↓</h4><blockquote>
-<ul>
-<li><strong>飞来明里</strong>（建筑公司职员）————————大神的恋人，父母在其失踪后，先后病逝，<code>1980左右</code></li>
-<li><strong>大神照彦</strong>（年轻的建筑师）————————与建筑商一起，赚取黑心钱，折磨飞来明里，致其死亡</li>
-<li><strong>织笠花惠</strong>（大神的情人）—————————二十年后被琢马杀死于家中</li>
-</ul>
-</blockquote>
+        <h3 id="u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><a href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B" class="headerlink" title="部署一个二级域名的静态页面的大致过程"></a>部署一个二级域名的静态页面的大致过程</h3><p>大致步骤简述如下：  </p>
+<ol>
+<li>定好二级域名<br> 形如：xxx.zhusandiao.com  </li>
+<li>设置好 DNS 解析<br> 在 Dnspod 里直接设置一个 A 记录  </li>
+<li>服务器上配置好 nginx<br> 还是在 80 端口，通过 <code>server_name xxx.zhusandiao.com;</code> 来区分。  </li>
+<li>在 Gogs 上建立要部署的页面的裸仓库<br> 这点要说明的是：我一开始不知道，直接在 Gogs 上建立的仓库是裸仓库，而且一开始没有裸仓库和普通仓库的概念，在这上面浪费了挺长时间（下面重点说明一下）  </li>
+<li>在服务器的另一个目录下，建立 clone 自刚才那个裸仓库的普通仓库<br> 该目录最好自己事先规划好，今后可能要部署多个仓库，最好在同一个大目录下  </li>
+<li>从裸仓库 clone 一份到本地<br> 建立一份本地仓库，这个就是开发环境了  </li>
+<li>在 Gogs 里，设置好 git钩子，用来自动部署<br> git钩子，我之前也没有接触过，下面也稍微强调一下  </li>
+</ol>
 
       
     </div>
@@ -353,7 +325,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/读书笔记/" rel="tag">#读书笔记</a>
+            <a href="/tags/Git/" rel="tag">#Git</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
           
         </div>
       
@@ -362,17 +336,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/05/And-Then-There-Were-None/" rel="next" title="《无人生还》读书笔记">
-                <i class="fa fa-chevron-left"></i> 《无人生还》读书笔记
+              <a href="/2016/10/18/dns-gogs/" rel="next" title="DNS 解析和私人代码仓库( Gogs 搭建)">
+                <i class="fa fa-chevron-left"></i> DNS 解析和私人代码仓库( Gogs 搭建)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/06/summer-firework/" rel="prev" title="《夏天·烟火·我的尸体》读书笔记">
-                《夏天·烟火·我的尸体》读书笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -397,10 +367,10 @@
         </div>
 
         <div class="copyright" style="clear:both;">
-           <p><span>本文标题:</span><a href="/2016/01/06/TheBook-ReadingNote/">《The Book》读书笔记</a></p>
-           <p><span>发布时间:</span>2016年1月6日 - 14时01分</p>
-           <p><span>最后更新:</span>2016年1月6日 - 21时01分</p>
-           <p><span>本文链接:</span><a href="/2016/01/06/TheBook-ReadingNote/" title="《The Book》读书笔记">zhusandiao.com/2016/01/06/TheBook-ReadingNote/</a></p>
+           <p><span>本文标题:</span><a href="/2016/10/23/build-a-html-page-automaticly/">记一次静态页面的上线过程</a></p>
+           <p><span>发布时间:</span>2016年10月23日 - 20时10分</p>
+           <p><span>最后更新:</span>2016年10月23日 - 21时10分</p>
+           <p><span>本文链接:</span><a href="/2016/10/23/build-a-html-page-automaticly/" title="记一次静态页面的上线过程">zhusandiao.com/2016/10/23/build-a-html-page-automaticly/</a></p>
         </div>
       
 
@@ -536,7 +506,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u5730_u70B9"><span class="nav-number">1.</span> <span class="nav-text">地点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u51FA_u573A_u4EBA_u7269"><span class="nav-number">2.</span> <span class="nav-text">出场人物</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E8C_u3007_u3007_u3007_u5E74_u2193"><span class="nav-number">3.</span> <span class="nav-text">二〇〇〇年↓</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E00_u4E5D_u516B_u3007_u5E74_u2193"><span class="nav-number">4.</span> <span class="nav-text">一九八〇年↓</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><span class="nav-number">1.</span> <span class="nav-text">部署一个二级域名的静态页面的大致过程</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

@@ -253,6 +253,108 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/23/build-a-html-page-automaticly/" itemprop="url">
+                  记一次静态页面的上线过程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T20:45:02+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/23/build-a-html-page-automaticly/" class="leancloud_visitors" data-flag-title="记一次静态页面的上线过程">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><a href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B" class="headerlink" title="部署一个二级域名的静态页面的大致过程"></a>部署一个二级域名的静态页面的大致过程</h3><p>大致步骤简述如下：  </p>
+<ol>
+<li>定好二级域名<br> 形如：xxx.zhusandiao.com  </li>
+<li>设置好 DNS 解析<br> 在 Dnspod 里直接设置一个 A 记录  </li>
+<li>服务器上配置好 nginx<br> 还是在 80 端口，通过 <code>server_name xxx.zhusandiao.com;</code> 来区分。  </li>
+<li>在 Gogs 上建立要部署的页面的裸仓库<br> 这点要说明的是：我一开始不知道，直接在 Gogs 上建立的仓库是裸仓库，而且一开始没有裸仓库和普通仓库的概念，在这上面浪费了挺长时间（下面重点说明一下）  </li>
+<li>在服务器的另一个目录下，建立 clone 自刚才那个裸仓库的普通仓库<br> 该目录最好自己事先规划好，今后可能要部署多个仓库，最好在同一个大目录下  </li>
+<li>从裸仓库 clone 一份到本地<br> 建立一份本地仓库，这个就是开发环境了  </li>
+<li>在 Gogs 里，设置好 git钩子，用来自动部署<br> git钩子，我之前也没有接触过，下面也稍微强调一下  </li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/18/dns-gogs/" itemprop="url">
                   DNS 解析和私人代码仓库( Gogs 搭建)
                 </a>
@@ -1221,111 +1323,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/02/php-mysql/" itemprop="url">
-                  PHP操作MySQL
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-02T20:26:04+08:00" content="2016-07-02">
-              2016-07-02
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/07/02/php-mysql/" class="leancloud_visitors" data-flag-title="PHP操作MySQL">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="u64CD_u4F5C_u6570_u636E_u5E93_u7684_u6B65_u9AA4"><a href="#u64CD_u4F5C_u6570_u636E_u5E93_u7684_u6B65_u9AA4" class="headerlink" title="操作数据库的步骤"></a>操作数据库的步骤</h3><ol>
-<li>与数据库建立连接</li>
-<li>选择要操作的数据表</li>
-<li>拼接 SQL 语句</li>
-<li>执行 SQL 语句</li>
-<li>获取记录集（单个 or 多个）</li>
-<li>判断记录集，执行下一步操作</li>
-</ol>
-<h3 id="u5177_u4F53_u6B65_u9AA4"><a href="#u5177_u4F53_u6B65_u9AA4" class="headerlink" title="具体步骤"></a>具体步骤</h3><h4 id="u4E0E_u6570_u636E_u5E93_u5EFA_u7ACB_u8FDE_u63A5"><a href="#u4E0E_u6570_u636E_u5E93_u5EFA_u7ACB_u8FDE_u63A5" class="headerlink" title="与数据库建立连接"></a>与数据库建立连接</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_connect(servername,username,password);</span><br></pre></td></tr></table></figure>
-<p>注：<br>这里的连接是非持久的，脚本执行完，到服务器的连接就被关闭，如果需要持久连接，需要使用<code>mysql_pconnect()</code> 函数  </p>
-<p>对应的提前关闭非持久连接的函数：<br><code>mysql_close(link_identifier)</code><br>本函数关闭指定的连接标识所关联非持久连接。如果没有指定 <code>link_identifier</code>，则关闭上一个打开的连接。另外，<strong>通常不需要使用 <code>mysql_close()</code>，因为已打开的非持久连接会在脚本执行完毕后自动关闭</strong>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/02/php-mysql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1372,7 +1369,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
