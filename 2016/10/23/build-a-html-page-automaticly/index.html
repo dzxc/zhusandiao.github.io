@@ -57,36 +57,39 @@
 
 
 
-<meta name="description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
+<meta name="description" content="部署一个二级域名的静态页面的大致过程Git钩子的使用和自动部署
+大致步骤简述如下：  
 
 定好子域名 形如：xxx.zhusandiao.com  
 设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
 服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
-在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，直">
+在 Gogs 上建立要部署的页面的裸仓库 这点要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次静态页面的上线过程">
 <meta property="og:url" content="http://yoursite.com/2016/10/23/build-a-html-page-automaticly/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
+<meta property="og:description" content="部署一个二级域名的静态页面的大致过程Git钩子的使用和自动部署
+大致步骤简述如下：  
 
 定好子域名 形如：xxx.zhusandiao.com  
 设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
 服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
-在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，直">
+在 Gogs 上建立要部署的页面的裸仓库 这点要">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/nginx.jpg">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/%E4%BB%93%E5%BA%93.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/Git%E9%92%A9%E5%AD%90.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
-<meta property="og:updated_time" content="2016-10-23T17:22:51.915Z">
+<meta property="og:updated_time" content="2016-10-23T17:25:12.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次静态页面的上线过程">
-<meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
+<meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程Git钩子的使用和自动部署
+大致步骤简述如下：  
 
 定好子域名 形如：xxx.zhusandiao.com  
 设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
 服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
-在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，直">
+在 Gogs 上建立要部署的页面的裸仓库 这点要">
 
 
 
@@ -312,7 +315,8 @@
       
 
       
-        <h3 id="u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><a href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B" class="headerlink" title="部署一个二级域名的静态页面的大致过程"></a>部署一个二级域名的静态页面的大致过程</h3><p><strong>大致步骤简述如下：</strong>  </p>
+        <h3 id="u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><a href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B" class="headerlink" title="部署一个二级域名的静态页面的大致过程"></a>部署一个二级域名的静态页面的大致过程</h3><p>Git钩子的使用和自动部署</p>
+<p><strong>大致步骤简述如下：</strong>  </p>
 <ol>
 <li>定好子域名<br> 形如：xxx.zhusandiao.com  </li>
 <li>设置好 DNS 解析<br> 在 Dnspod 里直接设置一个 A 记录  </li>
