@@ -57,31 +57,29 @@
 
 
 
-<meta name="description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
-
-定好二级域名 形如：xxx.zhusandiao.com  
+<meta name="description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：
+定好子域名 形如：xxx.zhusandiao.com  
 设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
 服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
-在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，">
+在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，直接在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次静态页面的上线过程">
 <meta property="og:url" content="http://yoursite.com/2016/10/23/build-a-html-page-automaticly/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
-
-定好二级域名 形如：xxx.zhusandiao.com  
+<meta property="og:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：
+定好子域名 形如：xxx.zhusandiao.com  
 设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
 服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
-在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，">
-<meta property="og:updated_time" content="2016-10-23T13:02:03.961Z">
+在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，直接在">
+<meta property="og:image" content="http://picdrop.qiniudn.com/static/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png">
+<meta property="og:updated_time" content="2016-10-23T13:17:14.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次静态页面的上线过程">
-<meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
-
-定好二级域名 形如：xxx.zhusandiao.com  
+<meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：
+定好子域名 形如：xxx.zhusandiao.com  
 设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
 服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
-在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，">
+在 Gogs 上建立要部署的页面的裸仓库 这点要说明的是：我一开始不知道，直接在">
 
 
 
@@ -307,9 +305,8 @@
       
 
       
-        <h3 id="u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><a href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B" class="headerlink" title="部署一个二级域名的静态页面的大致过程"></a>部署一个二级域名的静态页面的大致过程</h3><p>大致步骤简述如下：  </p>
-<ol>
-<li>定好二级域名<br> 形如：xxx.zhusandiao.com  </li>
+        <h3 id="u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><a href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B" class="headerlink" title="部署一个二级域名的静态页面的大致过程"></a>部署一个二级域名的静态页面的大致过程</h3><h4 id="u5927_u81F4_u6B65_u9AA4_u7B80_u8FF0_u5982_u4E0B_uFF1A"><a href="#u5927_u81F4_u6B65_u9AA4_u7B80_u8FF0_u5982_u4E0B_uFF1A" class="headerlink" title="大致步骤简述如下："></a>大致步骤简述如下：</h4><ol>
+<li>定好子域名<br> 形如：xxx.zhusandiao.com  </li>
 <li>设置好 DNS 解析<br> 在 Dnspod 里直接设置一个 A 记录  </li>
 <li>服务器上配置好 nginx<br> 还是在 80 端口，通过 <code>server_name xxx.zhusandiao.com;</code> 来区分。  </li>
 <li>在 Gogs 上建立要部署的页面的裸仓库<br> 这点要说明的是：我一开始不知道，直接在 Gogs 上建立的仓库是裸仓库，而且一开始没有裸仓库和普通仓库的概念，在这上面浪费了挺长时间（下面重点说明一下）  </li>
@@ -317,6 +314,9 @@
 <li>从裸仓库 clone 一份到本地<br> 建立一份本地仓库，这个就是开发环境了  </li>
 <li>在 Gogs 里，设置好 git钩子，用来自动部署<br> git钩子，我之前也没有接触过，下面也稍微强调一下  </li>
 </ol>
+<a id="more"></a>
+<h3 id="u4E00_u3001_u5148_u914D_u7F6E_u597D_u5B50_u57DF_u540D_u7684_DNS__u89E3_u6790"><a href="#u4E00_u3001_u5148_u914D_u7F6E_u597D_u5B50_u57DF_u540D_u7684_DNS__u89E3_u6790" class="headerlink" title="一、先配置好子域名的 DNS 解析"></a>一、先配置好子域名的 DNS 解析</h3><p>根据预先想好的子域名，在 Dnspod 里设置一个该子域名的 A 记录：  </p>
+<p><img src="http://picdrop.qiniudn.com/static/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png" alt="子域名 DNS 解析"></p>
 
       
     </div>
@@ -506,7 +506,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><span class="nav-number">1.</span> <span class="nav-text">部署一个二级域名的静态页面的大致过程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><span class="nav-number">1.</span> <span class="nav-text">部署一个二级域名的静态页面的大致过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u5927_u81F4_u6B65_u9AA4_u7B80_u8FF0_u5982_u4E0B_uFF1A"><span class="nav-number">1.1.</span> <span class="nav-text">大致步骤简述如下：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E00_u3001_u5148_u914D_u7F6E_u597D_u5B50_u57DF_u540D_u7684_DNS__u89E3_u6790"><span class="nav-number">2.</span> <span class="nav-text">一、先配置好子域名的 DNS 解析</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
