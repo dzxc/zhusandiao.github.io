@@ -80,7 +80,7 @@
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/%E4%BB%93%E5%BA%93.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/Git%E9%92%A9%E5%AD%90.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
-<meta property="og:updated_time" content="2016-10-23T17:31:01.443Z">
+<meta property="og:updated_time" content="2016-10-23T17:40:26.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次静态页面的上线过程">
 <meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程Git钩子的使用和自动部署
@@ -334,7 +334,7 @@
 <p><img src="http://picdrop.qiniudn.com/static/nginx.jpg" alt="nginx 配置"></p>
 <h4 id="u4E09_u3001_u5728_Gogs__u4E0A_u5EFA_u7ACB_u88F8_u4ED3_u5E93"><a href="#u4E09_u3001_u5728_Gogs__u4E0A_u5EFA_u7ACB_u88F8_u4ED3_u5E93" class="headerlink" title="三、在 Gogs 上建立裸仓库"></a>三、在 Gogs 上建立裸仓库</h4><p>通过 web 页面，直接建立裸仓库（TODO： 关于为什么是建立的裸仓库，还需要再查看下 gogs 的说明）。  </p>
 <p><img src="http://picdrop.qiniudn.com/static/%E4%BB%93%E5%BA%93.png" alt="裸仓库">  </p>
-<h4 id="u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93"><a href="#u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93" class="headerlink" title="四、在另一个目录下，建立普通仓库"></a>四、在另一个目录下，建立普通仓库</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone /home/xxx/xxx (&#35064;&#20179;&#24211;&#22320;&#22336;)</span><br></pre></td></tr></table></figure>
+<h4 id="u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93"><a href="#u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93" class="headerlink" title="四、在另一个目录下，建立普通仓库"></a>四、在另一个目录下，建立普通仓库</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init xxx&#10;git clone /home/xxx/xxx (&#35064;&#20179;&#24211;&#22320;&#22336;)</span><br></pre></td></tr></table></figure>
 <h4 id="u4E94_u3001_u672C_u5730_u73AF_u5883_u7684_u642D_u5EFA_uFF0C_u514B_u9686_u4ED3_u5E93_u5230_u672C_u5730"><a href="#u4E94_u3001_u672C_u5730_u73AF_u5883_u7684_u642D_u5EFA_uFF0C_u514B_u9686_u4ED3_u5E93_u5230_u672C_u5730" class="headerlink" title="五、本地环境的搭建，克隆仓库到本地"></a>五、本地环境的搭建，克隆仓库到本地</h4><p>建立一份本地仓库，就是开发环境，之后用这个仓库推送代码</p>
 <h4 id="u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50"><a href="#u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50" class="headerlink" title="六、配置 Git钩子"></a>六、配置 Git钩子</h4><p><img src="http://picdrop.qiniudn.com/static/Git%E9%92%A9%E5%AD%90.png" alt="Git钩子"></p>
 <p>仓库设置里面，找到 Git钩子，然后点击修改 post-receive ，输入以下内容（需要根据实际情况自行修改 site=为普通仓库目录）：  </p>
