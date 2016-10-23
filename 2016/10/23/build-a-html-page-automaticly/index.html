@@ -77,7 +77,8 @@
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/nginx.jpg">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/%E4%BB%93%E5%BA%93.png">
 <meta property="og:image" content="http://picdrop.qiniudn.com/static/Git%E9%92%A9%E5%AD%90.png">
-<meta property="og:updated_time" content="2016-10-23T17:18:18.469Z">
+<meta property="og:image" content="http://picdrop.qiniudn.com/static/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
+<meta property="og:updated_time" content="2016-10-23T17:22:51.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次静态页面的上线过程">
 <meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程大致步骤简述如下：  
@@ -335,6 +336,7 @@
 <p>仓库设置里面，找到 Git钩子，然后点击修改 post-receive ，输入以下内容（需要根据实际情况自行修改 site=为普通仓库目录）：  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/sh</span></span><br><span class="line">site=/home/xxx/xxx  </span><br><span class="line"><span class="built_in">export</span> GIT_WORK_TREE=<span class="variable">$site</span></span><br><span class="line">git checkout <span class="operator">-f</span></span><br></pre></td></tr></table></figure>
 <h3 id="u63A8_u9001_u5373_u66F4_u65B0"><a href="#u63A8_u9001_u5373_u66F4_u65B0" class="headerlink" title="推送即更新"></a>推送即更新</h3><p>以上步骤完成之后，只要你本地代码推送到远程仓库，就会立即生效。马上能够看到改动</p>
+<p><img src="http://picdrop.qiniudn.com/static/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png" alt="完成的页面"></p>
 <h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><p>本篇文章，还需要补充的是：  </p>
 <ol>
 <li>Git 当中的裸仓库和普通仓库的使用；</li>
