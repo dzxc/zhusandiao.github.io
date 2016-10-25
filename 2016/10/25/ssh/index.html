@@ -94,7 +94,7 @@
 
 非对">
 <meta property="og:image" content="http://picdrop.qiniudn.com/ssh/%E5%88%86%E5%B1%82%E5%8D%8F%E8%AE%AE.png">
-<meta property="og:updated_time" content="2016-10-25T12:26:40.255Z">
+<meta property="og:updated_time" content="2016-10-25T12:43:21.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="公钥、密钥以及 SSH">
 <meta name="twitter:description" content="这篇文章简单聊一聊我对公钥加密的理解以及其在日常编码当中的使用。
@@ -373,14 +373,24 @@
 <p><img src="http://picdrop.qiniudn.com/ssh/%E5%88%86%E5%B1%82%E5%8D%8F%E8%AE%AE.png" alt="协议分层">  </p>
 <p>SSH <u>允许两台电脑之间通过安全的连接进行数据交换，而加密传输保证了数据的保密性和完整性。</u>  </p>
 <p>主要用于<strong>远程登录会话</strong>和<strong>其他网络服务提供安全性</strong>。利用SSH协议可以<strong>有效防止远程管理过程中的信息泄露问题</strong>。通过 SSH <strong>可以对所有传输的数据进行加密</strong>，也能够防止 DNS 欺骗和 IP 欺骗。  </p>
-<p>SSH之另一项优点<strong>为其传输的数据可以是经过压缩的</strong>，所以可以加快传输的速度。  </p>
+<p>SSH 之另一项优点<strong>为其传输的数据可以是经过压缩的</strong>，所以可以加快传输的速度。  </p>
 <h4 id="u603B_u7ED3_u4E00_u4E0B_uFF1A"><a href="#u603B_u7ED3_u4E00_u4E0B_uFF1A" class="headerlink" title="总结一下："></a>总结一下：</h4><p>SSH 是一个<strong>用于连接和数据交换</strong>的安全协议，主要用于<strong>远程登录和用户验证</strong>。<br>SSH 的优点是：<strong>传输的数据可以加密和压缩。</strong>  </p>
 <p>现在使用的基本是开源的 OpenSSH。  </p>
 <p>SSH协议框架中最主要的部分是三个协议：  </p>
-<pre><code>1. &lt;span style=&quot;color:#be2532&quot;&gt;传输层协议&lt;/span&gt;（The Transport Layer Protocol）：传输层协议提供&lt;u&gt;**服务器认证，数据机密性，信息完整性等**&lt;/u&gt;的支持。  
-</code></pre><ol>
+<ol>
+<li><span style="color:#be2532">传输层协议</span>（The Transport Layer Protocol）：传输层协议提供<u><strong>服务器认证，数据机密性，信息完整性等</strong></u>的支持。  </li>
 <li><span style="color:#be2532">用户认证协议（The User Authentication Protocol）</span>：用户认证协议为<strong><u>服务器提供客户端的身份鉴别</u></strong>。  </li>
-<li><span style="color:#be2532">连接协议（The Connection Protocol）</span>：连接协议<u><strong>将加密的信息隧道复用成若干个逻辑通道，提供给更高层的应用协议使用</strong></u>。<br>同时还有为许多高层的网络安全应用协议提供扩展的支持。<br>各种高层应用协议可以相对地独立于SSH基本体系之外，并依靠这个基本框架，通过连接协议使用SSH的安全机制。  </li>
+<li><span style="color:#be2532">连接协议（The Connection Protocol）</span>：连接协议<u><strong>将加密的信息隧道复用成若干个逻辑通道，提供给更高层的应用协议使用</strong></u>。<br>同时还有为许多高层的网络安全应用协议提供扩展的支持。<br>各种高层应用协议可以相对地独立于SSH基本体系之外，并依靠这个基本框架，通过连接协议使用SSH的安全机制。  <h4 id="SSH__u5B89_u5168_u8BA4_u8BC1"><a href="#SSH__u5B89_u5168_u8BA4_u8BC1" class="headerlink" title="SSH 安全认证"></a>SSH 安全认证</h4></li>
+</ol>
+<p>客户端方面：  </p>
+<ol>
+<li><strong>基于密码</strong>验证，通过帐号和密码，就可以登录到远程主机，并且所有传输的数据都会被加密，但是无法避免被“中间人”攻击。  </li>
+<li><strong>基于密钥</strong>的验证，你必须为自己创建一对密钥，并把公有密钥放在需要访问的服务器上。客户端软件会向服务器发出请求，请求用你的密钥进行安全验证。服务器收到请求之后，先在你在该服务器的用户根目录下寻找你的公有密钥，然后把它和你发送过来的公有密钥进行比较。如果两个密钥一致，服务器就用公有密钥加密“质询”（challenge）并把它发送给客户端软件。从而避免被“中间人”攻击。  </li>
+</ol>
+<p>服务器端：  </p>
+<ol>
+<li><strong>主机将自己的公用密钥分发给相关的客户端</strong>，客户端在访问主机时则使用该主机的公开密钥来加密数据，主机则使用自己的私有密钥来解密数据，从而实现主机密钥认证，确保数据的保密性。  </li>
+<li>通过<strong>密钥认证中心</strong>，所有提供服务的主机都将自己的公开密钥提交给认证中心，而任何作为客户端的主机则只要保存一份认证中心的公开密钥就可以了。在这种模式下，客户端必须访问认证中心然后才能访问服务器主机。</li>
 </ol>
 <h3 id="u5B9E_u9645_u5E94_u7528"><a href="#u5B9E_u9645_u5E94_u7528" class="headerlink" title="实际应用"></a>实际应用</h3><p>公钥加密机制用的地方非常多，这里就拿熟悉的 Git 来说一下。</p>
 <p>在 Git 当中，</p>
@@ -571,7 +581,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E3A_u4EC0_u4E48_u9700_u8981_u516C_u94A5_u52A0_u5BC6"><span class="nav-number">1.</span> <span class="nav-text">为什么需要公钥加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH_28Secure_Shell_29"><span class="nav-number">2.</span> <span class="nav-text">SSH(Secure Shell)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u603B_u7ED3_u4E00_u4E0B_uFF1A"><span class="nav-number">2.1.</span> <span class="nav-text">总结一下：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B9E_u9645_u5E94_u7528"><span class="nav-number">3.</span> <span class="nav-text">实际应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E3A_u4EC0_u4E48_u9700_u8981_u516C_u94A5_u52A0_u5BC6"><span class="nav-number">1.</span> <span class="nav-text">为什么需要公钥加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH_28Secure_Shell_29"><span class="nav-number">2.</span> <span class="nav-text">SSH(Secure Shell)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u603B_u7ED3_u4E00_u4E0B_uFF1A"><span class="nav-number">2.1.</span> <span class="nav-text">总结一下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH__u5B89_u5168_u8BA4_u8BC1"><span class="nav-number">2.2.</span> <span class="nav-text">SSH 安全认证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B9E_u9645_u5E94_u7528"><span class="nav-number">3.</span> <span class="nav-text">实际应用</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
