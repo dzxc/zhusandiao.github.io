@@ -94,7 +94,7 @@
 
 非对">
 <meta property="og:image" content="http://picdrop.qiniudn.com/ssh/%E5%88%86%E5%B1%82%E5%8D%8F%E8%AE%AE.png">
-<meta property="og:updated_time" content="2016-10-25T12:20:49.631Z">
+<meta property="og:updated_time" content="2016-10-25T12:26:40.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="公钥、密钥以及 SSH">
 <meta name="twitter:description" content="这篇文章简单聊一聊我对公钥加密的理解以及其在日常编码当中的使用。
@@ -339,9 +339,9 @@
 
       
         <p>这篇文章简单聊一聊我对公钥加密的理解以及其在日常编码当中的使用。</p>
-<h3 id="u4E3A_u4EC0_u4E48_u9700_u8981_u516C_u94A5_u52A0_u5BC6"><a href="#u4E3A_u4EC0_u4E48_u9700_u8981_u516C_u94A5_u52A0_u5BC6" class="headerlink" title="为什么需要公钥加密"></a>为什么需要公钥加密</h3><p>加密技术主要分为对称密钥加密和非对称密钥加密。</p>
+<h3 id="u4E3A_u4EC0_u4E48_u9700_u8981_u516C_u94A5_u52A0_u5BC6"><a href="#u4E3A_u4EC0_u4E48_u9700_u8981_u516C_u94A5_u52A0_u5BC6" class="headerlink" title="为什么需要公钥加密"></a>为什么需要公钥加密</h3><p>加密技术主要分为<strong>对称密钥加密</strong>和<strong>非对称密钥加密</strong>。</p>
 <ul>
-<li><p>对称密钥加密的意味着<strong>信息的发送方和接收方使用同一个密钥进行加密和解密的过程</strong>。</p>
+<li><p><span style="color:#be2532">对称密钥加密</span>的意味着<strong>信息的发送方和接收方使用同一个密钥进行加密和解密的过程</strong>。</p>
 <ul>
 <li>优点：  <ul>
 <li>加密解密速度快  </li>
@@ -353,7 +353,7 @@
 </li>
 </ul>
 </li>
-<li><p>非对称加密加密则是<strong>每个人管理两个不同的密钥，一个公钥和一个私钥。</strong>  信息发送方使用（信息接收方的）公钥进行加密，信息接收方使用对应的私钥进行解密  </p>
+<li><p><span style="color:#be2532">非对称加密加密</span>则是<strong>每个人管理两个不同的密钥，一个公钥和一个私钥。</strong>  信息发送方使用（信息接收方的）公钥进行加密，信息接收方使用对应的私钥进行解密  </p>
 <ul>
 <li>优点：  <ul>
 <li>使用灵活，密钥管理相对简单（一般只要记住自己的私钥）  </li>
@@ -377,10 +377,10 @@
 <h4 id="u603B_u7ED3_u4E00_u4E0B_uFF1A"><a href="#u603B_u7ED3_u4E00_u4E0B_uFF1A" class="headerlink" title="总结一下："></a>总结一下：</h4><p>SSH 是一个<strong>用于连接和数据交换</strong>的安全协议，主要用于<strong>远程登录和用户验证</strong>。<br>SSH 的优点是：<strong>传输的数据可以加密和压缩。</strong>  </p>
 <p>现在使用的基本是开源的 OpenSSH。  </p>
 <p>SSH协议框架中最主要的部分是三个协议：  </p>
-<ol>
-<li><span style="color:#be2532">传输层协议</span>（The Transport Layer Protocol）：传输层协议提供<strong>服务器认证，数据机密性，信息完整性等</strong>的支持。  </li>
-<li><span style="color:#be2532">用户认证协议（The User Authentication Protocol）</span>：用户认证协议为服务器提供客户端的身份鉴别。  </li>
-<li><span style="color:#be2532">连接协议（The Connection Protocol）</span>：连接协议将加密的信息隧道复用成若干个逻辑通道，提供给更高层的应用协议使用。<br>同时还有为许多高层的网络安全应用协议提供扩展的支持。<br>各种高层应用协议可以相对地独立于SSH基本体系之外，并依靠这个基本框架，通过连接协议使用SSH的安全机制。  </li>
+<pre><code>1. &lt;span style=&quot;color:#be2532&quot;&gt;传输层协议&lt;/span&gt;（The Transport Layer Protocol）：传输层协议提供&lt;u&gt;**服务器认证，数据机密性，信息完整性等**&lt;/u&gt;的支持。  
+</code></pre><ol>
+<li><span style="color:#be2532">用户认证协议（The User Authentication Protocol）</span>：用户认证协议为<strong><u>服务器提供客户端的身份鉴别</u></strong>。  </li>
+<li><span style="color:#be2532">连接协议（The Connection Protocol）</span>：连接协议<u><strong>将加密的信息隧道复用成若干个逻辑通道，提供给更高层的应用协议使用</strong></u>。<br>同时还有为许多高层的网络安全应用协议提供扩展的支持。<br>各种高层应用协议可以相对地独立于SSH基本体系之外，并依靠这个基本框架，通过连接协议使用SSH的安全机制。  </li>
 </ol>
 <h3 id="u5B9E_u9645_u5E94_u7528"><a href="#u5B9E_u9645_u5E94_u7528" class="headerlink" title="实际应用"></a>实际应用</h3><p>公钥加密机制用的地方非常多，这里就拿熟悉的 Git 来说一下。</p>
 <p>在 Git 当中，</p>
