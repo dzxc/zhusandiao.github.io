@@ -1,0 +1,926 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="碎碎念," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="最近打算将旋元佑老师的那本口碑特别好的语法书–《文法俱乐部》，又称《语法俱乐部》电子化，这本书网上有三个版本，怎么会有三个版本呢？可以先来看看知乎上有关这个问题的解答。  
+具体的写作平台，我选择的是Gitbook，其实李笑来老师与别人合作做了一个本土化的Gitbook–知笔墨，但是现在已经暂时无法使用了，等知笔墨能够使用了，再迁移上去。  
+项目地址
+语法俱乐部–在线阅读  
+GitBook–项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《语法俱乐部》GitBook 版的成书过程">
+<meta property="og:url" content="http://yoursite.com/2016/02/25/Gitbook/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="最近打算将旋元佑老师的那本口碑特别好的语法书–《文法俱乐部》，又称《语法俱乐部》电子化，这本书网上有三个版本，怎么会有三个版本呢？可以先来看看知乎上有关这个问题的解答。  
+具体的写作平台，我选择的是Gitbook，其实李笑来老师与别人合作做了一个本土化的Gitbook–知笔墨，但是现在已经暂时无法使用了，等知笔墨能够使用了，再迁移上去。  
+项目地址
+语法俱乐部–在线阅读  
+GitBook–项">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/cover.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/92c4e634gw1f1bzna9p18j20px0p6n5x.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/92c4e634gw1f1bzofdbhjj20px0p6wkz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/92c4e634gw1f1bzr1ek0dj20px0p60xd.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/92c4e634gw1f1bzre38juj20px0p67b9.jpg">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/GitBookgitbook-bug.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/GitBookPlugins.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/pay_for_me.jpg">
+<meta property="og:updated_time" content="2016-03-16T21:29:04.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《语法俱乐部》GitBook 版的成书过程">
+<meta name="twitter:description" content="最近打算将旋元佑老师的那本口碑特别好的语法书–《文法俱乐部》，又称《语法俱乐部》电子化，这本书网上有三个版本，怎么会有三个版本呢？可以先来看看知乎上有关这个问题的解答。  
+具体的写作平台，我选择的是Gitbook，其实李笑来老师与别人合作做了一个本土化的Gitbook–知笔墨，但是现在已经暂时无法使用了，等知笔墨能够使用了，再迁移上去。  
+项目地址
+语法俱乐部–在线阅读  
+GitBook–项">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+  .pace .pace-progress {
+      background: #be2532; /*进度条颜色*/
+      height: 3px;
+  }
+  .pace .pace-progress-inner {
+       box-shadow: 0 0 10px #be2532, 0 0 5px     #be2532; /*阴影颜色*/
+  }
+  .pace .pace-activity {
+      border-top-color: #be2532;    /*上边框颜色*/
+      border-left-color: #be2532;    /*左边框颜色*/
+  }
+</style>
+<!--   <title> 《语法俱乐部》GitBook 版的成书过程 | zhusandiao </title>
+  <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
+  <script type="text/javascript">
+      var host = "zhusandiao.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:"))
+          window.location.protocol = "https";
+  </script> -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57541500";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhusandiao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I`m angry sometimes naive</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《语法俱乐部》GitBook 版的成书过程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-25T22:56:16+09:00" content="2016-02-25">
+              2016-02-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/02/25/Gitbook/" class="leancloud_visitors" data-flag-title="《语法俱乐部》GitBook 版的成书过程">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近打算将<a href="http://www.sense-english.com/" target="_blank" rel="external"><strong>旋元佑老师</strong></a>的那本口碑特别好的语法书–<strong><a href="https://book.douban.com/subject/6432399/" target="_blank" rel="external">《文法俱乐部》</a>，又称《语法俱乐部》</strong>电子化，这本书网上有三个版本，怎么会有三个版本呢？可以先来看看知乎上有关这个问题的<a href="https://www.zhihu.com/question/22756041" target="_blank" rel="external">解答</a>。  </p>
+<p>具体的写作平台，我选择的是<a href="https://www.gitbook.com/explore" target="_blank" rel="external">Gitbook</a>，其实李笑来老师与别人合作做了一个本土化的Gitbook–<a href="http://zhibimo.com/" target="_blank" rel="external">知笔墨</a>，但是现在已经暂时无法使用了，等知笔墨能够使用了，再迁移上去。  </p>
+<h4 id="u9879_u76EE_u5730_u5740"><a href="#u9879_u76EE_u5730_u5740" class="headerlink" title="项目地址"></a>项目地址</h4><ul>
+<li><a href="https://zhusandiao.gitbooks.io/grammar-club/content/" target="_blank" rel="external">语法俱乐部–在线阅读</a>  </li>
+<li><a href="https://www.gitbook.com/book/zhusandiao/grammar-club/details" target="_blank" rel="external">GitBook–项目地址</a>  </li>
+</ul>
+<h4 id="u4E66_u7C4D_u5C01_u9762_u56FE_uFF1A"><a href="#u4E66_u7C4D_u5C01_u9762_u56FE_uFF1A" class="headerlink" title="书籍封面图："></a>书籍封面图：</h4><p><img src="http://7fva1q.com1.z0.glb.clouddn.com/cover.jpg" alt="语法俱乐部--旋元佑">  </p>
+<a id="more"></a>
+<h4 id="u4E00_u4E9B_u9875_u9762_u622A_u56FE"><a href="#u4E00_u4E9B_u9875_u9762_u622A_u56FE" class="headerlink" title="一些页面截图"></a>一些页面截图</h4><p><img src="http://ww3.sinaimg.cn/large/92c4e634gw1f1bzna9p18j20px0p6n5x.jpg" alt="五种简单的基本句型"><br><img src="http://ww4.sinaimg.cn/large/92c4e634gw1f1bzofdbhjj20px0p6wkz.jpg" alt="不必翻译的动词"><br><img src="http://ww1.sinaimg.cn/large/92c4e634gw1f1bzr1ek0dj20px0p60xd.jpg" alt="Test 22"><br><img src="http://ww4.sinaimg.cn/large/92c4e634gw1f1bzre38juj20px0p67b9.jpg" alt="形容词从句简化的结果">  </p>
+<h4 id="GitBook__u7684_u76F8_u5173_u6559_u7A0B"><a href="#GitBook__u7684_u76F8_u5173_u6559_u7A0B" class="headerlink" title="GitBook 的相关教程"></a>GitBook 的相关教程</h4><p>GitBook 比较详细的使用方法网上讨论的很多啦，我就不重复叙述了，在这贴几个，有兴趣的自己跳过去看看。  </p>
+<ul>
+<li><a href="http://colobu.com/2014/10/09/gitbook-quickstart/" target="_blank" rel="external">Gitbook简明教程| 鸟窝</a>  </li>
+<li><a href="http://www.chengweiyang.cn/gitbook/basic-usage/README.html" target="_blank" rel="external">使用| GitBook 简明教程</a>  </li>
+<li><a href="http://www.ituring.com.cn/article/127645" target="_blank" rel="external">使用Gitbook制作电子书| 图灵社区</a>  </li>
+</ul>
+<h4 id="u300A_u8BED_u6CD5_u4FF1_u4E50_u90E8_u300B_u7684_u6210_u4E66"><a href="#u300A_u8BED_u6CD5_u4FF1_u4E50_u90E8_u300B_u7684_u6210_u4E66" class="headerlink" title="《语法俱乐部》的成书"></a>《语法俱乐部》的成书</h4><h5 id="u53C2_u8003_u7684_u7248_u672C"><a href="#u53C2_u8003_u7684_u7248_u672C" class="headerlink" title="参考的版本"></a>参考的版本</h5><p>我参考的版本是<a href="http://www.kindle114.com/thread-1302-1-1.html" target="_blank" rel="external">Kindle114 论坛</a>  的二十二章节版本。想下载的自己点进去看看，或者找相关的知乎答案–里面提供了三个版本的下载。  </p>
+<h5 id="u5BA2_u6237_u7AEF_u7684_bug"><a href="#u5BA2_u6237_u7AEF_u7684_bug" class="headerlink" title="客户端的 bug"></a>客户端的 bug</h5><p>为了编辑的便利，我是下载了 GitBook 的最新的 <a href="https://www.gitbook.com/blog/releases/editor-5-beta" target="_blank" rel="external">桌面客户端5.0beta版</a><br>遇到了一些问题，比如编辑比较卡顿，编辑过程会冲突，后来遇到了<strong>类似于图上</strong>的<img src="http://7fva1q.com1.z0.glb.clouddn.com/GitBookgitbook-bug.png" alt="客户端的这个 bug ">这个问题导致彻底无法同步，经过搜索确定是客户端 bug，Github 的相关 issue 在<a href="https://github.com/GitbookIO/gitbook/issues/1117" target="_blank" rel="external">这里</a>，索性就只使用网页版进行编辑。  </p>
+<h5 id="u4F7F_u7528_u5230_u7684_u63D2_u4EF6"><a href="#u4F7F_u7528_u5230_u7684_u63D2_u4EF6" class="headerlink" title="使用到的插件"></a>使用到的插件</h5><p>共使用了5个插件，如图：<img src="http://7fva1q.com1.z0.glb.clouddn.com/GitBookPlugins.png" alt="Plugiins">  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">插件名</th>
+<th>作用介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="https://plugins.gitbook.com/plugin/betterchinese" target="_blank" rel="external">betterchinese</a></td>
+<td>优化中文显示</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://plugins.gitbook.com/plugin/emphasize" target="_blank" rel="external">emphasize</a></td>
+<td>给相关文字加背景色</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://plugins.gitbook.com/plugin/hide-published-with" target="_blank" rel="external">hide-published-with</a></td>
+<td>隐藏目录页下面的那行 <strong>published using GitBook</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://plugins.gitbook.com/plugin/ungrey" target="_blank" rel="external">ungrey</a></td>
+<td>当章节页本身没有内容时，不让它显示灰色不可点击的状态，直接显示下一页的内容，这个插件，实际没有使用，因为我想到了更好的处理办法。</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://plugins.gitbook.com/plugin/word-count" target="_blank" rel="external">word-count</a></td>
+<td>不用说，计数的</td>
+</tr>
+</tbody>
+</table>
+<h5 id="u51E0_u4E2A_CSS__u6587_u4EF6"><a href="#u51E0_u4E2A_CSS__u6587_u4EF6" class="headerlink" title="几个 CSS 文件"></a>几个 CSS 文件</h5><p>GitBook 可以针对网页版，epub,mobi,pdf 不同的版本自定义 CSS ，我统一使用了如下的CSS：  </p>
+<pre><code class="css"><span class="selector-tag">strong</span> {
+    <span class="attribute">color</span>: brown;
+}  
+<span class="comment">/* 使着重标记的文字显示成棕色 */</span> 
+
+<span class="selector-tag">em</span> {
+    <span class="attribute">color</span>: brown;
+}  
+<span class="comment">/* 使文字倾斜并且显示成棕色 */</span>
+</code></pre>
+<h4 id="u4E66_u7C4D_bug__u7684_u63D0_u4EA4"><a href="#u4E66_u7C4D_bug__u7684_u63D0_u4EA4" class="headerlink" title="书籍 bug 的提交"></a>书籍 bug 的提交</h4><p>发现书籍的问题，请直接发邮件到：zhusandiao@gmail.com<br>最好是截图并带有相关描述，以便我更快修复 </p>
+<h4 id="u76F8_u5173_u8D44_u6E90_u7684_u4E0B_u8F7D"><a href="#u76F8_u5173_u8D44_u6E90_u7684_u4E0B_u8F7D" class="headerlink" title="相关资源的下载"></a>相关资源的下载</h4><h5 id="u4E66_u7C4D_u81EA_u5B9A_u4E49_u5C01_u9762"><a href="#u4E66_u7C4D_u81EA_u5B9A_u4E49_u5C01_u9762" class="headerlink" title="书籍自定义封面"></a>书籍自定义封面</h5><p>我自己制作的封面如博文开头所见，原图大小为 1.13M ，下载地址：<a href="http://7fva1q.com1.z0.glb.clouddn.com/cover.jpg" target="_blank" rel="external">Cover.jpg</a>  </p>
+<p>制作过程呢，主要利用了这个<a href="http://www.wordclouds.com/" target="_blank" rel="external">字体云</a>网站做了字体云的效果，然后再用图片编辑软件加上书籍标题和作者，就OK了。 </p>
+<h5 id="u7EAF_u51C0_u7248_epub__u683C_u5F0F_u4E0B_u8F7D"><a href="#u7EAF_u51C0_u7248_epub__u683C_u5F0F_u4E0B_u8F7D" class="headerlink" title="纯净版 epub 格式下载"></a>纯净版 epub 格式下载</h5><p>GitBook 上虽然提供了下载，但是速度很慢，这里提供一个去除了最后打赏章节的 epub 格式的下载：<a href="http://7teahp.com1.z0.glb.clouddn.com/%E3%80%8A%E8%AF%AD%E6%B3%95%E4%BF%B1%E4%B9%90%E9%83%A8%E3%80%8B.epub" target="_blank" rel="external">语法俱乐部.epub</a> </p>
+<h4 id="u6700_u540E_uFF0C_u6C42_u6253_u8D4F"><a href="#u6700_u540E_uFF0C_u6C42_u6253_u8D4F" class="headerlink" title="最后，求打赏"></a>最后，求打赏</h4><p>做这本书，我自认为是很用心的，看起来好像不难，但是为了优化内容的显示，还是花了相当的心思的（如果直接复制原电子书的内容，整个文字会混作一团，非常难以辨别，需要进行<strong>文字的着重，变色和加下划线</strong>），整个制作过程用了超过100个小时，希望大家可以打赏杯咖啡钱，3、5块不嫌少，当然多多益善。可以扫码，或者直接转到：<br><strong>zhusandiao@gmail.com </strong>   </p>
+<p><img src="http://7fva1q.com1.z0.glb.clouddn.com/pay_for_me.jpg" alt="打赏">  </p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/碎碎念/" rel="tag">#碎碎念</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/31/something-about-zhis-blog/" rel="next" title="something about zhis blog">
+                <i class="fa fa-chevron-left"></i> something about zhis blog
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/10/nginx-note/" rel="prev" title="nginx笔记">
+                nginx笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <div class="page-footer">
+      
+        <div id="eof" class="print-invisible">
+          <hr class="eof">
+        </div>
+
+        <div class="copyright" style="clear:both;">
+           <p><span>本文标题:</span><a href="/2016/02/25/Gitbook/">《语法俱乐部》GitBook 版的成书过程</a></p>
+           <p><span>发布时间:</span>2016年2月25日 - 22时02分</p>
+           <p><span>最后更新:</span>2016年3月17日 - 06时03分</p>
+           <p><span>本文链接:</span><a href="/2016/02/25/Gitbook/" title="《语法俱乐部》GitBook 版的成书过程">zhusandiao.com/2016/02/25/Gitbook/</a></p>
+        </div>
+      
+
+      
+
+    </div>
+
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7fva1q.com1.z0.glb.clouddn.com/avatar-icon.png"
+               alt="zhusandiao" />
+          <p class="site-author-name" itemprop="name">zhusandiao</p>
+          <p class="site-description motion-element" itemprop="description">mail@zhusandiao.com</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://git.zhusandiao.com/" target="_blank">
+                  
+                    <i class="fa fa-code"></i> Code
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u9879_u76EE_u5730_u5740"><span class="nav-number">1.</span> <span class="nav-text">项目地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E66_u7C4D_u5C01_u9762_u56FE_uFF1A"><span class="nav-number">2.</span> <span class="nav-text">书籍封面图：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E00_u4E9B_u9875_u9762_u622A_u56FE"><span class="nav-number">3.</span> <span class="nav-text">一些页面截图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GitBook__u7684_u76F8_u5173_u6559_u7A0B"><span class="nav-number">4.</span> <span class="nav-text">GitBook 的相关教程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u300A_u8BED_u6CD5_u4FF1_u4E50_u90E8_u300B_u7684_u6210_u4E66"><span class="nav-number">5.</span> <span class="nav-text">《语法俱乐部》的成书</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u53C2_u8003_u7684_u7248_u672C"><span class="nav-number">5.1.</span> <span class="nav-text">参考的版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u5BA2_u6237_u7AEF_u7684_bug"><span class="nav-number">5.2.</span> <span class="nav-text">客户端的 bug</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F7F_u7528_u5230_u7684_u63D2_u4EF6"><span class="nav-number">5.3.</span> <span class="nav-text">使用到的插件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u51E0_u4E2A_CSS__u6587_u4EF6"><span class="nav-number">5.4.</span> <span class="nav-text">几个 CSS 文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E66_u7C4D_bug__u7684_u63D0_u4EA4"><span class="nav-number">6.</span> <span class="nav-text">书籍 bug 的提交</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u76F8_u5173_u8D44_u6E90_u7684_u4E0B_u8F7D"><span class="nav-number">7.</span> <span class="nav-text">相关资源的下载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u4E66_u7C4D_u81EA_u5B9A_u4E49_u5C01_u9762"><span class="nav-number">7.1.</span> <span class="nav-text">书籍自定义封面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u7EAF_u51C0_u7248_epub__u683C_u5F0F_u4E0B_u8F7D"><span class="nav-number">7.2.</span> <span class="nav-text">纯净版 epub 格式下载</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6700_u540E_uFF0C_u6C42_u6253_u8D4F"><span class="nav-number">8.</span> <span class="nav-text">最后，求打赏</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhusandiao</span>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("zAO7wxrPwdbe1Uf9GF8LWn5p-gzGzoHsz", "QoOwa22txP7hyaq8BtmAy3HT");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+</body>
+</html>

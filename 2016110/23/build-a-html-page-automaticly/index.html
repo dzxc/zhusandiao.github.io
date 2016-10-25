@@ -1,0 +1,897 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git,前端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="部署一个二级域名的静态页面的大致过程Git钩子的使用和自动部署
+大致步骤简述如下：  
+
+定好子域名 形如：xxx.zhusandiao.com  
+设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
+服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
+在 Gogs 上建立要部署的页面的裸仓库 这点要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次静态页面的上线过程">
+<meta property="og:url" content="http://yoursite.com/2016/10/23/build-a-html-page-automaticly/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="部署一个二级域名的静态页面的大致过程Git钩子的使用和自动部署
+大致步骤简述如下：  
+
+定好子域名 形如：xxx.zhusandiao.com  
+设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
+服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
+在 Gogs 上建立要部署的页面的裸仓库 这点要">
+<meta property="og:image" content="http://picdrop.qiniudn.com/static/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png">
+<meta property="og:image" content="http://picdrop.qiniudn.com/static/nginx.jpg">
+<meta property="og:image" content="http://picdrop.qiniudn.com/static/%E4%BB%93%E5%BA%93.png">
+<meta property="og:image" content="http://picdrop.qiniudn.com/static/Git%E9%92%A9%E5%AD%90.png">
+<meta property="og:image" content="http://picdrop.qiniudn.com/static/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
+<meta property="og:updated_time" content="2016-10-23T17:40:26.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次静态页面的上线过程">
+<meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程Git钩子的使用和自动部署
+大致步骤简述如下：  
+
+定好子域名 形如：xxx.zhusandiao.com  
+设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
+服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
+在 Gogs 上建立要部署的页面的裸仓库 这点要">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+  .pace .pace-progress {
+      background: #be2532; /*进度条颜色*/
+      height: 3px;
+  }
+  .pace .pace-progress-inner {
+       box-shadow: 0 0 10px #be2532, 0 0 5px     #be2532; /*阴影颜色*/
+  }
+  .pace .pace-activity {
+      border-top-color: #be2532;    /*上边框颜色*/
+      border-left-color: #be2532;    /*左边框颜色*/
+  }
+</style>
+<!--   <title> 记一次静态页面的上线过程 | zhusandiao </title>
+  <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
+  <script type="text/javascript">
+      var host = "zhusandiao.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:"))
+          window.location.protocol = "https";
+  </script> -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57541500";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhusandiao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I`m angry sometimes naive</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                记一次静态页面的上线过程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T20:45:02+09:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/23/build-a-html-page-automaticly/" class="leancloud_visitors" data-flag-title="记一次静态页面的上线过程">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><a href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B" class="headerlink" title="部署一个二级域名的静态页面的大致过程"></a>部署一个二级域名的静态页面的大致过程</h3><p><span style="color:#be2532"><strong>Git钩子的使用</strong></span>和<span style="color:#be2532"><strong>自动部署</strong></span></p>
+<p><strong>大致步骤简述如下：</strong>  </p>
+<ol>
+<li>定好子域名<br> 形如：xxx.zhusandiao.com  </li>
+<li>设置好 DNS 解析<br> 在 Dnspod 里直接设置一个 A 记录  </li>
+<li>服务器上配置好 nginx<br> 还是在 80 端口，通过 <code>server_name xxx.zhusandiao.com;</code> 来区分。  </li>
+<li>在 Gogs 上建立要部署的页面的裸仓库<br> 这点要说明的是：我一开始不知道，直接在 Gogs 上建立的仓库是裸仓库，而且一开始没有裸仓库和普通仓库的概念，在这上面浪费了挺长时间（下面重点说明一下）  </li>
+<li>在服务器的另一个目录下，建立 clone 自刚才那个裸仓库的普通仓库<br> 该目录最好自己事先规划好，今后可能要部署多个仓库，最好在同一个大目录下  </li>
+<li>从裸仓库 clone 一份到本地<br> 建立一份本地仓库，这个就是开发环境了  </li>
+<li>在 Gogs 里，设置好 Git钩子，用来自动部署<br> Git钩子，我之前也没有接触过，下面也稍微强调一下  </li>
+</ol>
+<a id="more"></a>
+<h4 id="u4E00_u3001_u5148_u914D_u7F6E_u597D_u5B50_u57DF_u540D_u7684_DNS__u89E3_u6790"><a href="#u4E00_u3001_u5148_u914D_u7F6E_u597D_u5B50_u57DF_u540D_u7684_DNS__u89E3_u6790" class="headerlink" title="一、先配置好子域名的 DNS 解析"></a>一、先配置好子域名的 DNS 解析</h4><p>根据预先想好的子域名，在 Dnspod 里设置一个该子域名的 A 记录：  </p>
+<p><img src="http://picdrop.qiniudn.com/static/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png" alt="子域名 DNS 解析"></p>
+<p>关于 DNS 解析，可以看我上一篇博文 <a href="http://zhusandiao.com/2016/10/18/dns-gogs/" target="_blank" rel="external">DNS 解析和私人代码仓库( Gogs 搭建)</a>  </p>
+<h4 id="u4E8C_u3001_u914D_u7F6E_nginx"><a href="#u4E8C_u3001_u914D_u7F6E_nginx" class="headerlink" title="二、配置 nginx"></a>二、配置 nginx</h4><p>登录到服务器，配置 nginx，还是监听默认的 80 端口，通过 server_name 来区分：  </p>
+<p><img src="http://picdrop.qiniudn.com/static/nginx.jpg" alt="nginx 配置"></p>
+<h4 id="u4E09_u3001_u5728_Gogs__u4E0A_u5EFA_u7ACB_u88F8_u4ED3_u5E93"><a href="#u4E09_u3001_u5728_Gogs__u4E0A_u5EFA_u7ACB_u88F8_u4ED3_u5E93" class="headerlink" title="三、在 Gogs 上建立裸仓库"></a>三、在 Gogs 上建立裸仓库</h4><p>通过 web 页面，直接建立裸仓库（TODO： 关于为什么是建立的裸仓库，还需要再查看下 gogs 的说明）。  </p>
+<p><img src="http://picdrop.qiniudn.com/static/%E4%BB%93%E5%BA%93.png" alt="裸仓库">  </p>
+<h4 id="u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93"><a href="#u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93" class="headerlink" title="四、在另一个目录下，建立普通仓库"></a>四、在另一个目录下，建立普通仓库</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init xxx&#10;git clone /home/xxx/xxx (&#35064;&#20179;&#24211;&#22320;&#22336;)</span><br></pre></td></tr></table></figure>
+<h4 id="u4E94_u3001_u672C_u5730_u73AF_u5883_u7684_u642D_u5EFA_uFF0C_u514B_u9686_u4ED3_u5E93_u5230_u672C_u5730"><a href="#u4E94_u3001_u672C_u5730_u73AF_u5883_u7684_u642D_u5EFA_uFF0C_u514B_u9686_u4ED3_u5E93_u5230_u672C_u5730" class="headerlink" title="五、本地环境的搭建，克隆仓库到本地"></a>五、本地环境的搭建，克隆仓库到本地</h4><p>建立一份本地仓库，就是开发环境，之后用这个仓库推送代码</p>
+<h4 id="u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50"><a href="#u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50" class="headerlink" title="六、配置 Git钩子"></a>六、配置 Git钩子</h4><p><img src="http://picdrop.qiniudn.com/static/Git%E9%92%A9%E5%AD%90.png" alt="Git钩子"></p>
+<p>仓库设置里面，找到 Git钩子，然后点击修改 post-receive ，输入以下内容（需要根据实际情况自行修改 site=为普通仓库目录）：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/sh</span></span><br><span class="line">site=/home/xxx/xxx  </span><br><span class="line"><span class="built_in">export</span> GIT_WORK_TREE=<span class="variable">$site</span></span><br><span class="line">git checkout <span class="operator">-f</span></span><br></pre></td></tr></table></figure>
+<h3 id="u63A8_u9001_u5373_u66F4_u65B0"><a href="#u63A8_u9001_u5373_u66F4_u65B0" class="headerlink" title="推送即更新"></a>推送即更新</h3><p>以上步骤完成之后，只要你本地代码推送到远程仓库，就会立即生效。马上能够看到改动</p>
+<p><img src="http://picdrop.qiniudn.com/static/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png" alt="完成的页面"></p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><p>本篇文章，还需要补充的是：  </p>
+<ol>
+<li>Git 当中的<span style="color:#be2532">裸仓库和普通仓库的使用</span></li>
+<li><span style="color:#be2532">Git 钩子的使用</span></li>
+</ol>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag">#Git</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/18/dns-gogs/" rel="next" title="DNS 解析和私人代码仓库( Gogs 搭建)">
+                <i class="fa fa-chevron-left"></i> DNS 解析和私人代码仓库( Gogs 搭建)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/25/ssh/" rel="prev" title="公钥、密钥以及 SSH">
+                公钥、密钥以及 SSH <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <div class="page-footer">
+      
+        <div id="eof" class="print-invisible">
+          <hr class="eof">
+        </div>
+
+        <div class="copyright" style="clear:both;">
+           <p><span>本文标题:</span><a href="/2016/10/23/build-a-html-page-automaticly/">记一次静态页面的上线过程</a></p>
+           <p><span>发布时间:</span>2016年10月23日 - 20时10分</p>
+           <p><span>最后更新:</span>2016年10月24日 - 02时10分</p>
+           <p><span>本文链接:</span><a href="/2016/10/23/build-a-html-page-automaticly/" title="记一次静态页面的上线过程">zhusandiao.com/2016/10/23/build-a-html-page-automaticly/</a></p>
+        </div>
+      
+
+      
+
+    </div>
+
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7fva1q.com1.z0.glb.clouddn.com/avatar-icon.png"
+               alt="zhusandiao" />
+          <p class="site-author-name" itemprop="name">zhusandiao</p>
+          <p class="site-description motion-element" itemprop="description">mail@zhusandiao.com</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://git.zhusandiao.com/" target="_blank">
+                  
+                    <i class="fa fa-code"></i> Code
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u90E8_u7F72_u4E00_u4E2A_u4E8C_u7EA7_u57DF_u540D_u7684_u9759_u6001_u9875_u9762_u7684_u5927_u81F4_u8FC7_u7A0B"><span class="nav-number">1.</span> <span class="nav-text">部署一个二级域名的静态页面的大致过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E00_u3001_u5148_u914D_u7F6E_u597D_u5B50_u57DF_u540D_u7684_DNS__u89E3_u6790"><span class="nav-number">1.1.</span> <span class="nav-text">一、先配置好子域名的 DNS 解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E8C_u3001_u914D_u7F6E_nginx"><span class="nav-number">1.2.</span> <span class="nav-text">二、配置 nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E09_u3001_u5728_Gogs__u4E0A_u5EFA_u7ACB_u88F8_u4ED3_u5E93"><span class="nav-number">1.3.</span> <span class="nav-text">三、在 Gogs 上建立裸仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93"><span class="nav-number">1.4.</span> <span class="nav-text">四、在另一个目录下，建立普通仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E94_u3001_u672C_u5730_u73AF_u5883_u7684_u642D_u5EFA_uFF0C_u514B_u9686_u4ED3_u5E93_u5230_u672C_u5730"><span class="nav-number">1.5.</span> <span class="nav-text">五、本地环境的搭建，克隆仓库到本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50"><span class="nav-number">1.6.</span> <span class="nav-text">六、配置 Git钩子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u63A8_u9001_u5373_u66F4_u65B0"><span class="nav-number">2.</span> <span class="nav-text">推送即更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TODO"><span class="nav-number">3.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhusandiao</span>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("zAO7wxrPwdbe1Uf9GF8LWn5p-gzGzoHsz", "QoOwa22txP7hyaq8BtmAy3HT");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+</body>
+</html>

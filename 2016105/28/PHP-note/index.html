@@ -1,0 +1,1160 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="PHP基础是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
+
+PHP文件能够包含文本、HTML、CSS、PHP 代码  
+
+PHP代码在服务器中执行，而结果以纯文本返回浏览器  
+
+跨平台，兼容各种服务器，支持多种数据库
+
+
+能做什么？
+生成动态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP笔记">
+<meta property="og:url" content="http://yoursite.com/2016/05/28/PHP-note/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="PHP基础是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
+
+PHP文件能够包含文本、HTML、CSS、PHP 代码  
+
+PHP代码在服务器中执行，而结果以纯文本返回浏览器  
+
+跨平台，兼容各种服务器，支持多种数据库
+
+
+能做什么？
+生成动态">
+<meta property="og:updated_time" content="2016-05-28T17:15:20.947Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP笔记">
+<meta name="twitter:description" content="PHP基础是什么？服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。
+
+PHP文件能够包含文本、HTML、CSS、PHP 代码  
+
+PHP代码在服务器中执行，而结果以纯文本返回浏览器  
+
+跨平台，兼容各种服务器，支持多种数据库
+
+
+能做什么？
+生成动态">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+  .pace .pace-progress {
+      background: #be2532; /*进度条颜色*/
+      height: 3px;
+  }
+  .pace .pace-progress-inner {
+       box-shadow: 0 0 10px #be2532, 0 0 5px     #be2532; /*阴影颜色*/
+  }
+  .pace .pace-activity {
+      border-top-color: #be2532;    /*上边框颜色*/
+      border-left-color: #be2532;    /*左边框颜色*/
+  }
+</style>
+<!--   <title> PHP笔记 | zhusandiao </title>
+  <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
+  <script type="text/javascript">
+      var host = "zhusandiao.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:"))
+          window.location.protocol = "https";
+  </script> -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57541500";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhusandiao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I`m angry sometimes naive</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHP笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-28T23:44:49+09:00" content="2016-05-28">
+              2016-05-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/28/PHP-note/" class="leancloud_visitors" data-flag-title="PHP笔记">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="PHP_u57FA_u7840"><a href="#PHP_u57FA_u7840" class="headerlink" title="PHP基础"></a>PHP基础</h3><h4 id="u662F_u4EC0_u4E48_uFF1F"><a href="#u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="是什么？"></a>是什么？</h4><p>服务端脚本语言，专门为 web 而设计，在 HTML 页面中，可以嵌入 PHP 代码，代码在每次页面被访问时执行，PHP代码将在web服务器中被解释并且生成 HTML 或者访问者看到的其他输出。</p>
+<ul>
+<li><p>PHP文件能够包含文本、HTML、CSS、PHP 代码  </p>
+</li>
+<li><p>PHP代码在服务器中执行，而结果以纯文本返回浏览器  </p>
+</li>
+<li><p>跨平台，兼容各种服务器，支持多种数据库</p>
+</li>
+</ul>
+<h4 id="u80FD_u505A_u4EC0_u4E48_uFF1F"><a href="#u80FD_u505A_u4EC0_u4E48_uFF1F" class="headerlink" title="能做什么？"></a>能做什么？</h4><ol>
+<li>生成动态页面  </li>
+<li>操作服务器上的文件  </li>
+<li>操作数据库  </li>
+<li>接收表单数据  </li>
+<li>数据加密  </li>
+<li>输出多种内容，HTML，图像，PDF。  </li>
+</ol>
+<h4 id="u4F7F_u7528"><a href="#u4F7F_u7528" class="headerlink" title="使用"></a>使用</h4><ul>
+<li>服务器端<br>  创建.php文件，长传到web目录中，服务器会自动解析。  </li>
+</ul>
+<h4 id="u5199_u6CD5"><a href="#u5199_u6CD5" class="headerlink" title="写法"></a>写法</h4><ul>
+<li>以 &lt;?php开头，以？&gt;结尾</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span>  </span><br><span class="line"><span class="comment">//PHP代码</span></span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>PHP语句以分号结尾  </li>
+<li>PHP代码块的关闭标签<code>?&gt;</code>自动表明分号，所以PHP代码块的最后一行不必用分号  </li>
+</ul>
+<h4 id="u6CE8_u91CA"><a href="#u6CE8_u91CA" class="headerlink" title="注释"></a>注释</h4><p>三种：两种单行，一种多行</p>
+<ol>
+<li><code>//单行注释</code>  </li>
+<li><code># 单行注释</code>  </li>
+<li><code>/*多行注释*/</code>  </li>
+</ol>
+<h4 id="u5927_u5C0F_u5199_u654F_u611F_uFF1F"><a href="#u5927_u5C0F_u5199_u654F_u611F_uFF1F" class="headerlink" title="大小写敏感？"></a>大小写敏感？</h4><p><strong>除了变量，其他的都不敏感</strong></p>
+<h4 id="u5E38_u91CF"><a href="#u5E38_u91CF" class="headerlink" title="常量"></a>常量</h4><ol>
+<li>无法改变</li>
+<li>以字符或下划线开头（没有$）</li>
+<li><strong>自动全局</strong></li>
+<li>定义：<ul>
+<li>define(参数1, 参数2, 参数3(可选))；</li>
+<li>参数1–&gt;常量名，参数2–&gt;常量的值，参数3–&gt;可选，是否对大小写敏感，默认false–即对大小写敏感</li>
+</ul>
+</li>
+</ol>
+<h4 id="u53D8_u91CF"><a href="#u53D8_u91CF" class="headerlink" title="变量"></a>变量</h4><ol>
+<li>以$开头，后面是变量名  </li>
+<li>变量名以字母或下划线开头（不能用数字开头）  </li>
+<li>只能包含字母、数字、下划线（A-z，0-9，_）  </li>
+<li><p><strong>变量大小写敏感</strong>  </p>
+</li>
+<li><p>创建变量</p>
+<ul>
+<li><strong>没有专门的语句创建变量</strong></li>
+<li><strong>首次赋值时被创建</strong></li>
+<li>不必声明变量的类型（PHP类型比较松散）</li>
+<li>PHP会根据变量的值自动转换为正确的数据类型</li>
+</ul>
+</li>
+<li><p>变量作用域</p>
+<ul>
+<li>变量能够被引用或者使用的那部分脚本</li>
+<li>三种<ul>
+<li>local（局部）</li>
+<li>global（全局）</li>
+<li>static（静态）</li>
+</ul>
+</li>
+<li>global作用域（函数外声明，只能在函数外访问）</li>
+<li>local作用域（函数内声明，只能在函数内访问）</li>
+<li>注：<strong>可以在不同的函数中创建同名的局部变量</strong>，因为局部变量只在创建它的函数中有效</li>
+<li></li>
+<li>函数内访问全局变量（变量前加关键词 global）：<ul>
+<li>global $x</li>
+<li>原理：<br><strong>PHP在名为$GLOBALS[index]的数组中存储了所有的全局变量，下标为变量名，</strong><u>这个数组在函数内也可以访问</u>，并且<strong>能够直接更新全局变量</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用 static 关键字保留函数内的局部变量<ul>
+<li>为了防止函数内的局部标量在函数执行后被销毁</li>
+<li>用 static 保留该变量</li>
+</ul>
+</li>
+</ol>
+<h4 id="u8F93_u51FA_u8BED_u53E5"><a href="#u8F93_u51FA_u8BED_u53E5" class="headerlink" title="输出语句"></a>输出语句</h4><p><code>echo</code> 和<code>print</code></p>
+<ul>
+<li>两者差异：<ul>
+<li>echo 能够输出一个以上字符</li>
+<li>print 只能输出一个字符串，并且始终返回 1</li>
+</ul>
+</li>
+</ul>
+<h4 id="u6570_u636E_u7C7B_u578B"><a href="#u6570_u636E_u7C7B_u578B" class="headerlink" title="数据类型"></a>数据类型</h4><ol>
+<li>查看变量的数据类型<ul>
+<li>var_dump();</li>
+<li>var_dump($x);</li>
+</ul>
+</li>
+<li>字符串<ul>
+<li>引号内的任何文本，单引号或者双引号</li>
+</ul>
+</li>
+<li>整数<ul>
+<li>三种格式：十进制，十六进制（0x），八进制（0）</li>
+</ul>
+</li>
+<li>浮点数<ul>
+<li>小数点或者指数形式的数字</li>
+<li>$x = 10.3;</li>
+<li>$y = 2.4e3;</li>
+</ul>
+</li>
+<li>逻辑<ul>
+<li>true</li>
+<li>false</li>
+<li>常用于条件测试</li>
+</ul>
+</li>
+<li><p>数组</p>
+<ul>
+<li>$cars = array(“Volvo”, “BMW”, “SAAB”);</li>
+</ul>
+</li>
+<li><p>对象</p>
+<ul>
+<li>存储数据和如何处理数据的数据类型</li>
+<li>先声明对象的类(包含属性和方法的结构)</li>
+<li>对象类中定义数据类型，然后在该类的实例中使用此数据类型</li>
+</ul>
+</li>
+<li>Null<ul>
+<li>Null 数据类型的唯一可能的值是 null</li>
+<li>可以通过把变量设置成 null ，来清空变量</li>
+</ul>
+</li>
+</ol>
+<h4 id="u5B57_u7B26_u4E32_u51FD_u6570"><a href="#u5B57_u7B26_u4E32_u51FD_u6570" class="headerlink" title="字符串函数"></a>字符串函数</h4><ol>
+<li>字符串长度<ul>
+<li>strlen(“hello world”);</li>
+</ul>
+</li>
+<li>检索指定字符和文本<ul>
+<li>匹配的话，返回首个匹配的字符串位置</li>
+<li>没有匹配的话，返回 false</li>
+<li>strpos(“hello world”, “world”);</li>
+</ul>
+</li>
+</ol>
+<h4 id="u8FD0_u7B97_u7B26"><a href="#u8FD0_u7B97_u7B26" class="headerlink" title="运算符"></a>运算符</h4><ul>
+<li>算术</li>
+<li>赋值</li>
+<li>字符串<ul>
+<li>串接<br><code>.</code></li>
+<li>串接赋值<br><code>.=</code></li>
+</ul>
+</li>
+<li>递增递减</li>
+<li>比较</li>
+<li>逻辑</li>
+<li>数组运算（用于比较数组）</li>
+<li>if/else</li>
+<li>switch</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch </span>(expression)</span><br><span class="line">&#123;</span><br><span class="line"><span class="label">case</span> label1:</span><br><span class="line">  <span class="preprocessor">code</span> to <span class="keyword">be </span>executed <span class="preprocessor">if</span> expression = label1<span class="comment">;</span></span><br><span class="line">  <span class="keyword">break; </span> </span><br><span class="line"><span class="label">case</span> label2:</span><br><span class="line">  <span class="preprocessor">code</span> to <span class="keyword">be </span>executed <span class="preprocessor">if</span> expression = label2<span class="comment">;</span></span><br><span class="line">  <span class="keyword">break;</span><br><span class="line"></span><span class="label">default</span>:</span><br><span class="line">  <span class="preprocessor">code</span> to <span class="keyword">be </span>executed</span><br><span class="line">  <span class="preprocessor">if</span> expression is different </span><br><span class="line">  from <span class="keyword">both </span>label1 <span class="keyword">and </span>label2<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>1. 对表达式运算
+2. 将表达式的值与 case 进行比较
+3. 匹配的话，执行
+4. 都没有匹配，执行 default 
+</code></pre><ul>
+<li>while循环</li>
+<li><p>for 和 foreach</p>
+<ul>
+<li>foreach:  </li>
+<li><p>只用于循环数组，并且遍历数组的每个键/值对  </p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foreach (<span class="variable">$array</span> <span class="keyword">as</span> <span class="variable">$value</span>) &#123;</span><br><span class="line">  code to be executed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每进行一次循环迭代，<strong>当前数组元素的值就会被赋值给 $value 变量</strong>，并且数组指针会逐一地移动，直到到达最后一个数组元素。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="u51FD_u6570"><a href="#u51FD_u6570" class="headerlink" title="函数"></a>函数</h4><ul>
+<li><p>PHP有超过 1000 个内建的函数</p>
+</li>
+<li><p>自定义函数</p>
+  <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">functionName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  被执行的代码;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>函数名以字母和下划线</strong>开头  </li>
+<li>函数名大小写不敏感</li>
+<li>函数参数：任意多个，逗号隔开</li>
+<li>默认参数值（调用有参函数却没有传参数时使用）</li>
+<li>return 返回函数值</li>
+</ul>
+</li>
+</ul>
+<h4 id="u6570_u7EC4"><a href="#u6570_u7EC4" class="headerlink" title="数组"></a>数组</h4><ul>
+<li>创建数组：<code>array()</code></li>
+<li>三种数据类型：<ul>
+<li>索引数组：带有数字索引</li>
+<li>关联数组：指定键的数组</li>
+<li>多维数组</li>
+</ul>
+</li>
+<li><p>数组长度：count();</p>
+<ul>
+<li>count($arrayName);</li>
+</ul>
+</li>
+<li><p>索引数组</p>
+<ul>
+<li>创建方法(两种)：  </li>
+<li></li>
+<li>自动分配：<code>$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;SAAB&quot;);</code>  </li>
+<li>手动指定：<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$cars[1]=&#34;BMW&#34;;&#10;$cars[2]=&#34;SAAB&#34;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>关联数组：</p>
+<ul>
+<li>使用分配给数组的指定键的数组</li>
+<li>创建方法(两种)：</li>
+<li></li>
+<li><code>$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);</code></li>
+<li><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$age</span>[<span class="string">'Peter'</span>]=<span class="string">"35"</span>;</span><br><span class="line"><span class="variable">$age</span>[<span class="string">'Ben'</span>]=<span class="string">"37"</span>;</span><br><span class="line"><span class="variable">$age</span>[<span class="string">'Joe'</span>]=<span class="string">"43"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>遍历数组：</p>
+<ul>
+<li>遍历索引数组<br>for 方法</li>
+<li>遍历关联数组<br>foreach 方法</li>
+</ul>
+</li>
+<li>数组排序<ul>
+<li>升序：<code>sort();</code></li>
+<li>降序：<code>resort()</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="u8D85_u5168_u5C40_u53D8_u91CF"><a href="#u8D85_u5168_u5C40_u53D8_u91CF" class="headerlink" title="超全局变量"></a>超全局变量</h4><p><strong>在全部作用域内始终可用的内置变量</strong></p>
+<p>PHP中有<strong>许多超全局的预定义变量</strong></p>
+<ul>
+<li>$GLOBALS</li>
+<li>$_SERVER</li>
+<li>$_REQUEST</li>
+<li>$_POST</li>
+<li>$_GET</li>
+<li>$_FILES</li>
+<li>$_ENV</li>
+<li>$_COOKIE</li>
+<li><p>$_SESSION</p>
+</li>
+<li><p>$GLOBALS — 引用全局作用域中可用的全部变量</p>
+<ul>
+<li>$GLOBALS[index] 的数组中存储了所有全局变量。变量的名字就是数组的键</li>
+<li>$GLOBALS 这种全局变量用于在 PHP 脚本中的任意位置访问全局变量</li>
+</ul>
+</li>
+<li>$_SERVER<ul>
+<li>保存关于报头、路径和脚本位置的信息</li>
+</ul>
+</li>
+<li>$_REQUEST<ul>
+<li>用于收集 HTML 表单提交的数据</li>
+</ul>
+</li>
+</ul>
+<h4 id="include__u548C_require"><a href="#include__u548C_require" class="headerlink" title="include 和 require"></a>include 和 require</h4><p>include （或 require）语句会<strong>获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中</strong>。</p>
+<ul>
+<li><p>include 和 require 语句是相同的，<strong>除了错误处理</strong>方面：</p>
+<ul>
+<li>require 会生成致命错误（E_COMPILE_ERROR）并停止脚本</li>
+<li>include 只生成警告（E_WARNING），并且脚本会继续</li>
+</ul>
+</li>
+<li><p><code>include(_once)</code>与<code>require(_once)</code></p>
+<ul>
+<li>使用带_once的函数，那么php就会检查你的代码有没有重复包含，避免出现函数或变量重复定义</li>
+</ul>
+</li>
+</ul>
+<h3 id="PHP_u64CD_u4F5CMySQL"><a href="#PHP_u64CD_u4F5CMySQL" class="headerlink" title="PHP操作MySQL"></a>PHP操作MySQL</h3><h4 id="u8FDE_u63A5MySQL"><a href="#u8FDE_u63A5MySQL" class="headerlink" title="连接MySQL"></a>连接MySQL</h4><p>通过 <code>mysql_connect();</code>函数<br><code>mysql_connect(servername,username,password);</code>  </p>
+<pre><code>- 一般只需要这三个参数：  
+- servername  可选。规定要连接的服务器。默认是 &quot;localhost:3306&quot;。
+- username    可选。规定登录所使用的用户名。默认值是拥有服务器进程的用户的名称。
+- password    可选。规定登录所用的密码。默认是 &quot;&quot;。
+</code></pre><h4 id="u7ED3_u675F_u8FDE_u63A5"><a href="#u7ED3_u675F_u8FDE_u63A5" class="headerlink" title="结束连接"></a>结束连接</h4><p>脚本一结束，就会关闭连接。<br>如需提前关闭连接，请使用<code>mysql_close()</code>函数。  </p>
+<p><code>$con = mysql_connect(&quot;localhost&quot;,&quot;peter&quot;,&quot;abc123&quot;);</code><br><code>mysql_close($con);</code>  </p>
+<h4 id="mysql_query"><a href="#mysql_query" class="headerlink" title="mysql_query"></a>mysql_query</h4><p><code>mysql_query(query,connection)</code>:执行一条 MySQL 查询</p>
+<ul>
+<li>query    必需。规定<strong>要发送的 SQL 查询</strong>。注释：<strong>查询字符串不应以分号结束</strong>。</li>
+<li>connection 可选。规定 SQL 连接标识符。如果未规定，则使用上一个打开的连接。</li>
+<li>注：如果没有打开的连接，本函数会尝试无参数调用 <code>mysql_connect()</code> 函数来建立一个连接并使用之。</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/27/php-api-2/" rel="next" title="php-api笔记（二）">
+                <i class="fa fa-chevron-left"></i> php-api笔记（二）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/01/sql-note/" rel="prev" title="sql笔记">
+                sql笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <div class="page-footer">
+      
+        <div id="eof" class="print-invisible">
+          <hr class="eof">
+        </div>
+
+        <div class="copyright" style="clear:both;">
+           <p><span>本文标题:</span><a href="/2016/05/28/PHP-note/">PHP笔记</a></p>
+           <p><span>发布时间:</span>2016年5月28日 - 23时05分</p>
+           <p><span>最后更新:</span>2016年5月29日 - 02时05分</p>
+           <p><span>本文链接:</span><a href="/2016/05/28/PHP-note/" title="PHP笔记">zhusandiao.com/2016/05/28/PHP-note/</a></p>
+        </div>
+      
+
+      
+
+    </div>
+
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7fva1q.com1.z0.glb.clouddn.com/avatar-icon.png"
+               alt="zhusandiao" />
+          <p class="site-author-name" itemprop="name">zhusandiao</p>
+          <p class="site-description motion-element" itemprop="description">mail@zhusandiao.com</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://git.zhusandiao.com/" target="_blank">
+                  
+                    <i class="fa fa-code"></i> Code
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP_u57FA_u7840"><span class="nav-number">1.</span> <span class="nav-text">PHP基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u662F_u4EC0_u4E48_uFF1F"><span class="nav-number">1.1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u80FD_u505A_u4EC0_u4E48_uFF1F"><span class="nav-number">1.2.</span> <span class="nav-text">能做什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4F7F_u7528"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5199_u6CD5"><span class="nav-number">1.4.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u91CA"><span class="nav-number">1.5.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5927_u5C0F_u5199_u654F_u611F_uFF1F"><span class="nav-number">1.6.</span> <span class="nav-text">大小写敏感？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5E38_u91CF"><span class="nav-number">1.7.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u53D8_u91CF"><span class="nav-number">1.8.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8F93_u51FA_u8BED_u53E5"><span class="nav-number">1.9.</span> <span class="nav-text">输出语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6570_u636E_u7C7B_u578B"><span class="nav-number">1.10.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5B57_u7B26_u4E32_u51FD_u6570"><span class="nav-number">1.11.</span> <span class="nav-text">字符串函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8FD0_u7B97_u7B26"><span class="nav-number">1.12.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u51FD_u6570"><span class="nav-number">1.13.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6570_u7EC4"><span class="nav-number">1.14.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8D85_u5168_u5C40_u53D8_u91CF"><span class="nav-number">1.15.</span> <span class="nav-text">超全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#include__u548C_require"><span class="nav-number">1.16.</span> <span class="nav-text">include 和 require</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP_u64CD_u4F5CMySQL"><span class="nav-number">2.</span> <span class="nav-text">PHP操作MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u8FDE_u63A5MySQL"><span class="nav-number">2.1.</span> <span class="nav-text">连接MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7ED3_u675F_u8FDE_u63A5"><span class="nav-number">2.2.</span> <span class="nav-text">结束连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql_query"><span class="nav-number">2.3.</span> <span class="nav-text">mysql_query</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhusandiao</span>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("zAO7wxrPwdbe1Uf9GF8LWn5p-gzGzoHsz", "QoOwa22txP7hyaq8BtmAy3HT");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,920 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="nginx,后端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="简介Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault-tolerant configurat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx官网文档翻译-负载均衡">
+<meta property="og:url" content="http://yoursite.com/2016/07/20/nginx官网文档翻译-负载均衡/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="简介Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault-tolerant configurat">
+<meta property="og:updated_time" content="2016-08-14T01:36:21.566Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx官网文档翻译-负载均衡">
+<meta name="twitter:description" content="简介Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault-tolerant configurat">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+  .pace .pace-progress {
+      background: #be2532; /*进度条颜色*/
+      height: 3px;
+  }
+  .pace .pace-progress-inner {
+       box-shadow: 0 0 10px #be2532, 0 0 5px     #be2532; /*阴影颜色*/
+  }
+  .pace .pace-activity {
+      border-top-color: #be2532;    /*上边框颜色*/
+      border-left-color: #be2532;    /*左边框颜色*/
+  }
+</style>
+<!--   <title> nginx官网文档翻译-负载均衡 | zhusandiao </title>
+  <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
+  <script type="text/javascript">
+      var host = "zhusandiao.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:"))
+          window.location.protocol = "https";
+  </script> -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57541500";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhusandiao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I`m angry sometimes naive</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                nginx官网文档翻译-负载均衡
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T23:20:40+09:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/20/nginx官网文档翻译-负载均衡/" class="leancloud_visitors" data-flag-title="nginx官网文档翻译-负载均衡">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="u7B80_u4ECB"><a href="#u7B80_u4ECB" class="headerlink" title="简介"></a>简介</h4><p>Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault-tolerant configurations.</p>
+<p>It is possible to use nginx as a very efficient HTTP load balancer to distribute traffic to several application servers and to improve performance, scalability and reliability of web applications with nginx.</p>
+<p>跨应用的负载均衡是一项广泛使用的技术，这个技术用来优化资源利用，最大化吞吐，减少等待时间，保证容错配置。  </p>
+<p>可以将 nginx 作为一个非常有效的 HTTP 负载均衡来向多个应用服务器分发流量，以此来提高性能，可扩展性和可靠性。  </p>
+<h4 id="u8D1F_u8F7D_u5747_u8861_u65B9_u6CD5"><a href="#u8D1F_u8F7D_u5747_u8861_u65B9_u6CD5" class="headerlink" title="负载均衡方法"></a>负载均衡方法</h4><p>The following load balancing mechanisms (or methods) are supported in nginx:</p>
+<ul>
+<li>round-robin — requests to the application servers are distributed in a round-robin fashion,</li>
+<li>least-connected — next request is assigned to the server with the least number of active connections,</li>
+<li>ip-hash — a hash-function is used to determine what server should be selected for the next request (based on the client’s IP address).</li>
+</ul>
+<p>以下是 nginx 支持的一些负载均衡机制（方法）：  </p>
+<a id="more"></a>
+<ul>
+<li>轮循——请求通过轮循的方式分发  </li>
+<li>最小连接数——下一次请求会被分配给当前活跃连接数最小的服务器  </li>
+<li><code>ip-hash</code>——用哈希函数来决定哪台服务器处理下一次的请求（基于客户端的 IP 地址）  </li>
+</ul>
+<h4 id="u9ED8_u8BA4_u7684_u8D1F_u8F7D_u5747_u8861_u914D_u7F6E"><a href="#u9ED8_u8BA4_u7684_u8D1F_u8F7D_u5747_u8861_u914D_u7F6E" class="headerlink" title="默认的负载均衡配置"></a>默认的负载均衡配置</h4><p>The simplest configuration for load balancing with nginx may look like the following:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">http</span> &#123;</span><br><span class="line">    <span class="title">upstream</span> myapp1 &#123;</span><br><span class="line">        <span class="title">server</span> srv1.example.com;</span><br><span class="line">        <span class="title">server</span> srv2.example.com;</span><br><span class="line">        <span class="title">server</span> srv3.example.com;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title">server</span> &#123;</span><br><span class="line">        <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title">location</span> / &#123;</span><br><span class="line">            <span class="title">proxy_pass</span> <span class="url">http://myapp1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>nginx 负载均衡的最简单的配置就像下面这样：  </p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">http</span> &#123;</span><br><span class="line">    <span class="title">upstream</span> myapp1 &#123;</span><br><span class="line">        <span class="title">server</span> srv1.example.com;</span><br><span class="line">        <span class="title">server</span> srv2.example.com;</span><br><span class="line">        <span class="title">server</span> srv3.example.com;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title">server</span> &#123;</span><br><span class="line">        <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title">location</span> / &#123;</span><br><span class="line">            <span class="title">proxy_pass</span> <span class="url">http://myapp1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In the example above, there are 3 instances of the same application running on srv1-srv3. When the load balancing method is not specifically configured, it defaults to round-robin. All requests are proxied to the server group myapp1, and nginx applies HTTP load balancing to distribute the requests.</p>
+<p>Reverse proxy implementation in nginx includes load balancing for HTTP, HTTPS, FastCGI, uwsgi, SCGI, and memcached.</p>
+<p>To configure load balancing for HTTPS instead of HTTP, just use “https” as the protocol.</p>
+<p>When setting up load balancing for FastCGI, uwsgi, SCGI, or memcached, use fastcgi_pass, uwsgi_pass, scgi_pass, and memcached_pass directives respectively.</p>
+<p>在上面的这个例子里，同一个应用的三个实例分别运行在srv1，srv2，srv3上，当配置文件中没有特别指定时，默认会以轮循的方式来实现负载均衡。所有的请求都会被代理到服务器组 myapp1 上，并且 nginx 应用负载均衡来分发这些请求。  </p>
+<p>在 nginx 中反向代理工具包括 HTTP, HTTPS, FastCGI, uwsgi, SCGI, 和 memcached 的负载均衡。  </p>
+<p>配置 HTTPS 负载均衡取代 HTTP，仅仅需要使用 <code>https</code>作为协议。  </p>
+<p>而当为 FastCGI, uwsgi, SCGI, 或是 memcached 设置负载均衡时，需要分别使用对应的 fastcgi_pass, uwsgi_pass, scgi_pass, 和 memcached_pass 指令。  </p>
+<h4 id="u6700_u5C0F_u8FDE_u63A5_u6570_u8D1F_u8F7D_u5747_u8861"><a href="#u6700_u5C0F_u8FDE_u63A5_u6570_u8D1F_u8F7D_u5747_u8861" class="headerlink" title="最小连接数负载均衡"></a>最小连接数负载均衡</h4><p>Another load balancing discipline is least-connected. Least-connected allows controlling the load on application instances more fairly in a situation when some of the requests take longer to complete.</p>
+<p>With the least-connected load balancing, nginx will try not to overload a busy application server with excessive requests, distributing the new requests to a less busy server instead.</p>
+<p>Least-connected load balancing in nginx is activated when the least_conn directive is used as part of the server group configuration:</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream myapp1 &#123;</span><br><span class="line">    least_conn<span class="comment">;</span></span><br><span class="line">    server srv1.example.com<span class="comment">;</span></span><br><span class="line">    server srv2.example.com<span class="comment">;</span></span><br><span class="line">    server srv3.example.com<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一个负载均衡规则是最小连接数。最小连接数对于（某些请求需要很长时间去处理的这种情况）能够更为合理的控制负载。  </p>
+<p>使用最小连接数负载均衡这种方式，nginx 会尽量不让一个已经有大量请求的繁忙服务器过载，nginx 会将新的请求分发给一个不那么繁忙的服务器。  </p>
+<p>当 least_conn 指令作为 服务器组（server group）配置中的一部分时，最小连接数负载均衡方法会被使用。  </p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream myapp1 &#123;</span><br><span class="line">    least_conn<span class="comment">;</span></span><br><span class="line">    server srv1.example.com<span class="comment">;</span></span><br><span class="line">    server srv2.example.com<span class="comment">;</span></span><br><span class="line">    server srv3.example.com<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="u4F1A_u8BDD_u6301_u4E45_u6027"><a href="#u4F1A_u8BDD_u6301_u4E45_u6027" class="headerlink" title="会话持久性"></a>会话持久性</h4><p>注：  </p>
+<blockquote>
+<p>上面说了轮询和最小连接数两种负载均衡方式，那么这两种方式有什么弊端呢？  </p>
+</blockquote>
+<p>Please note that with round-robin or least-connected load balancing, each subsequent client’s request can be potentially distributed to a different server. There is no guarantee that the same client will be always directed to the same server.  </p>
+<p>If there is the need to tie a client to a particular application server — in other words, make the client’s session “sticky” or “persistent” in terms of always trying to select a particular server — the ip-hash load balancing mechanism can be used.  </p>
+<p>我们注意到使用轮询和最小连接数两种负载均衡方式，后续的每一个客户端请求都有（被分发到一个不同服务器的）潜在的可能性，不能保证同一个客户端指向同一个服务器。  </p>
+<p>如果需要将客户端和一个指定的服务器『捆绑』在一起——换句话说，就是使客户端的会话保持持久，ip-hash 负载均衡可以总是指定同一个服务器。  </p>
+<p>To configure ip-hash load balancing, just add the ip_hash directive to the server (upstream) group configuration:</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream myapp1 &#123;</span><br><span class="line">    ip_hash<span class="comment">;</span></span><br><span class="line">    server srv1.example.com<span class="comment">;</span></span><br><span class="line">    server srv2.example.com<span class="comment">;</span></span><br><span class="line">    server srv3.example.com<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置 ip-hash 负载均衡，仅仅需要将 <code>ip_hash</code> 添加为服务器组（server group ）的一部分：  </p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream myapp1 &#123;</span><br><span class="line">    ip_hash<span class="comment">;</span></span><br><span class="line">    server srv1.example.com<span class="comment">;</span></span><br><span class="line">    server srv2.example.com<span class="comment">;</span></span><br><span class="line">    server srv3.example.com<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="u6743_u91CD_u8D1F_u8F7D_u5747_u8861"><a href="#u6743_u91CD_u8D1F_u8F7D_u5747_u8861" class="headerlink" title="权重负载均衡"></a>权重负载均衡</h4><p>It is also possible to influence nginx load balancing algorithms even further by using server weights.</p>
+<p>In the examples above, the server weights are not configured which means that all specified servers are treated as equally qualified for a particular load balancing method.</p>
+<p>With the round-robin in particular it also means a more or less equal distribution of requests across the servers — provided there are enough requests, and when the requests are processed in a uniform manner and completed fast enough.</p>
+<p>可以通过分配服务器权重的方式来进一步地影响 nginx 负载均衡算法。  </p>
+<p>在上面的例子中，服务器权重都没有配置，这意味着，每一个负载均衡方式所指定的那些服务器拥有相同的权重。  </p>
+<p>当特别指定轮循的方式，这意味着，一个在不同服务器之间的或多或少相同的请求的分发————当提供了足够的请求时，并且当请求被以统一的方式足够快的处理完成。  </p>
+<p>注：<br>（上面这段需要重新翻译、理解）  </p>
+<p>When the weight parameter is specified for a server, the weight is accounted as part of the load balancing decision.</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">upstream</span> myapp1 &#123;</span><br><span class="line">    <span class="title">server</span> srv1.example.com weight=<span class="number">3</span>;</span><br><span class="line">    <span class="title">server</span> srv2.example.com;</span><br><span class="line">    <span class="title">server</span> srv3.example.com;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>With this configuration, every 5 new requests will be distributed across the application instances as the following: 3 requests will be directed to srv1, one request will go to srv2, and another one — to srv3.</p>
+<p>It is similarly possible to use weights with the least-connected and ip-hash load balancing in the recent versions of nginx.</p>
+<p>当为一个服务器指定权重参数时，权重会被作为负载均衡决定的一部分来考虑。  </p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">upstream</span> myapp1 &#123;</span><br><span class="line">    <span class="title">server</span> srv1.example.com weight=<span class="number">3</span>;</span><br><span class="line">    <span class="title">server</span> srv2.example.com;</span><br><span class="line">    <span class="title">server</span> srv3.example.com;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果是上面这个配置，每5个新的请求会被以下面的方式分发：<br>3个会被指向 srv1，1个会被指向 srv2 ,另外一个指向 srv3。  </p>
+<p>在最近一些版本的 nginx 中同样可以在使用 最小连接数和 ip-hash 时使用权重参数。  </p>
+<h4 id="u5065_u5EB7_u68C0_u67E5"><a href="#u5065_u5EB7_u68C0_u67E5" class="headerlink" title="健康检查"></a>健康检查</h4><p>Reverse proxy implementation in nginx includes in-band (or passive) server health checks. If the response from a particular server fails with an error, nginx will mark this server as failed, and will try to avoid selecting this server for subsequent inbound requests for a while.</p>
+<p>The <code>max_fails</code> directive sets the number of consecutive unsuccessful attempts to communicate with the server that should happen during <code>fail_timeout</code>. By default, <code>max_fails</code> is set to 1. When it is set to 0, health checks are disabled for this server. The <code>fail_timeout</code> parameter also defines how long the server will be marked as failed. After <code>fail_timeout</code> interval following the server failure, nginx will start to gracefully probe the server with the live client’s requests. If the probes have been successful, the server is marked as a live one.  </p>
+<p>nginx 中的反响代理包含带内（或是被动）服务器健康检查。<br>如果一个服务器返回了一个错误响应。nginx 将会标记这个服务器错误，并且暂时性的避免后续请求发送到这个服务器。  </p>
+<p><code>max_fails</code> 指令设置了（在 <code>fail_timeout</code> 时间内与服务器通信过程中）连续的不成功的尝试数量。  </p>
+<p>默认情况下，<code>max_fails</code> 被设置成了 1 。当被设置成 0 的时候，这个服务器的健康检查就不会启用了。<code>fail_timeout</code>参数<br>同时也定义了多长时间这个服务器才会被定义成失败。  </p>
+<p>在紧接着服务器失败的 <code>fail_timeout</code> 间隔之后，nginx 会启动对这个（有着活动客户端请求的）服务器的调查。如果调查是成功的，这个服务器会被标记为存活。  </p>
+<h4 id="u66F4_u591A"><a href="#u66F4_u591A" class="headerlink" title="更多"></a>更多</h4><p>In addition, there are more directives and parameters that control server load balancing in nginx, e.g. proxy_next_upstream, backup, down, and keepalive. For more information please check our reference documentation.</p>
+<p>Last but not least, application load balancing, application health checks, activity monitoring and on-the-fly reconfiguration of server groups are available as part of our paid NGINX Plus subscriptions.</p>
+<p>The following articles describe load balancing with NGINX Plus in more detail:</p>
+<ul>
+<li>Load Balancing with NGINX and NGINX Plus</li>
+<li>Load Balancing with NGINX and NGINX Plus part 2</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
+          
+            <a href="/tags/后端/" rel="tag">#后端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/20/nginx官网文档翻译-入门/" rel="next" title="nginx官网文档翻译--入门">
+                <i class="fa fa-chevron-left"></i> nginx官网文档翻译--入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/20/nginx官网文档翻译-重定向/" rel="prev" title="nginx官网文档翻译-重定向">
+                nginx官网文档翻译-重定向 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <div class="page-footer">
+      
+        <div id="eof" class="print-invisible">
+          <hr class="eof">
+        </div>
+
+        <div class="copyright" style="clear:both;">
+           <p><span>本文标题:</span><a href="/2016/07/20/nginx官网文档翻译-负载均衡/">nginx官网文档翻译-负载均衡</a></p>
+           <p><span>发布时间:</span>2016年7月20日 - 23时07分</p>
+           <p><span>最后更新:</span>2016年8月14日 - 10时08分</p>
+           <p><span>本文链接:</span><a href="/2016/07/20/nginx官网文档翻译-负载均衡/" title="nginx官网文档翻译-负载均衡">zhusandiao.com/2016/07/20/nginx官网文档翻译-负载均衡/</a></p>
+        </div>
+      
+
+      
+
+    </div>
+
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7fva1q.com1.z0.glb.clouddn.com/avatar-icon.png"
+               alt="zhusandiao" />
+          <p class="site-author-name" itemprop="name">zhusandiao</p>
+          <p class="site-description motion-element" itemprop="description">mail@zhusandiao.com</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://git.zhusandiao.com/" target="_blank">
+                  
+                    <i class="fa fa-code"></i> Code
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u7B80_u4ECB"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8D1F_u8F7D_u5747_u8861_u65B9_u6CD5"><span class="nav-number">2.</span> <span class="nav-text">负载均衡方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u9ED8_u8BA4_u7684_u8D1F_u8F7D_u5747_u8861_u914D_u7F6E"><span class="nav-number">3.</span> <span class="nav-text">默认的负载均衡配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6700_u5C0F_u8FDE_u63A5_u6570_u8D1F_u8F7D_u5747_u8861"><span class="nav-number">4.</span> <span class="nav-text">最小连接数负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4F1A_u8BDD_u6301_u4E45_u6027"><span class="nav-number">5.</span> <span class="nav-text">会话持久性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6743_u91CD_u8D1F_u8F7D_u5747_u8861"><span class="nav-number">6.</span> <span class="nav-text">权重负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5065_u5EB7_u68C0_u67E5"><span class="nav-number">7.</span> <span class="nav-text">健康检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u66F4_u591A"><span class="nav-number">8.</span> <span class="nav-text">更多</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhusandiao</span>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("zAO7wxrPwdbe1Uf9GF8LWn5p-gzGzoHsz", "QoOwa22txP7hyaq8BtmAy3HT");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+</body>
+</html>

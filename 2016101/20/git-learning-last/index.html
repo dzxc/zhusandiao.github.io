@@ -1,0 +1,872 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="之前两篇通过githug游戏学习git（上）通过githug游戏学习git（中）  
+最后的36~54关- 36. delete_branch删除某个分支git  branch -d [branch_name]  
+- 37. push_branch推送指定分支到远程仓库中git push &amp;lt;远程主机名&amp;gt; &amp;lt;本地分支名&amp;gt;:&amp;lt;远程分支名&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过githug游戏学习git（下）">
+<meta property="og:url" content="http://yoursite.com/2016/01/20/git-learning-last/index.html">
+<meta property="og:site_name" content="zhusandiao">
+<meta property="og:description" content="之前两篇通过githug游戏学习git（上）通过githug游戏学习git（中）  
+最后的36~54关- 36. delete_branch删除某个分支git  branch -d [branch_name]  
+- 37. push_branch推送指定分支到远程仓库中git push &amp;lt;远程主机名&amp;gt; &amp;lt;本地分支名&amp;gt;:&amp;lt;远程分支名&amp;gt;">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2336-delete_brach.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2337-push_branch.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2338-merge.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2339-fetch.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-master-log.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-feature-log.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-afater.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2341-repack.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-log.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-set.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2343-grep.png">
+<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/githug%2344-rename_commit.png">
+<meta property="og:updated_time" content="2016-01-29T04:53:14.433Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过githug游戏学习git（下）">
+<meta name="twitter:description" content="之前两篇通过githug游戏学习git（上）通过githug游戏学习git（中）  
+最后的36~54关- 36. delete_branch删除某个分支git  branch -d [branch_name]  
+- 37. push_branch推送指定分支到远程仓库中git push &amp;lt;远程主机名&amp;gt; &amp;lt;本地分支名&amp;gt;:&amp;lt;远程分支名&amp;gt;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+  .pace .pace-progress {
+      background: #be2532; /*进度条颜色*/
+      height: 3px;
+  }
+  .pace .pace-progress-inner {
+       box-shadow: 0 0 10px #be2532, 0 0 5px     #be2532; /*阴影颜色*/
+  }
+  .pace .pace-activity {
+      border-top-color: #be2532;    /*上边框颜色*/
+      border-left-color: #be2532;    /*左边框颜色*/
+  }
+</style>
+<!--   <title> 通过githug游戏学习git（下） | zhusandiao </title>
+  <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
+  <script type="text/javascript">
+      var host = "zhusandiao.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:"))
+          window.location.protocol = "https";
+  </script> -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57541500";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhusandiao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I`m angry sometimes naive</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                通过githug游戏学习git（下）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-20T20:27:37+09:00" content="2016-01-20">
+              2016-01-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/01/20/git-learning-last/" class="leancloud_visitors" data-flag-title="通过githug游戏学习git（下）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="u4E4B_u524D_u4E24_u7BC7"><a href="#u4E4B_u524D_u4E24_u7BC7" class="headerlink" title="之前两篇"></a>之前两篇</h4><p><a href="http://zhusandiao.com/2016/01/15/git-learning/" target="_blank" rel="external">通过githug游戏学习git（上）</a><br><a href="http://zhusandiao.com/2016/01/20/git-learning-next/" target="_blank" rel="external">通过githug游戏学习git（中）</a>  </p>
+<h4 id="u6700_u540E_u768436_7E54_u5173"><a href="#u6700_u540E_u768436_7E54_u5173" class="headerlink" title="最后的36~54关"></a>最后的36~54关</h4><h5 id="36-_delete_branch"><a href="#36-_delete_branch" class="headerlink" title="- 36. delete_branch"></a>- 36. delete_branch</h5><p><strong>删除某个分支</strong><br><strong><code>git  branch -d [branch_name]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2336-delete_brach.png" alt="delete_branch">  </p>
+<h5 id="37-_push_branch"><a href="#37-_push_branch" class="headerlink" title="- 37. push_branch"></a>- 37. push_branch</h5><p><strong>推送指定分支到远程仓库中</strong><br><strong><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code></strong><br><a id="more"></a></p>
+<p>该关卡中远程主机名为 origin 因为不想合并到主分支中，直接推送到 test_branch 中 ，<br>所以<code>git push origin test_branch:test_branch</code><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2337-push_branch.png" alt="push_branch">  </p>
+<h5 id="38-_merge"><a href="#38-_merge" class="headerlink" title="- 38. merge"></a>- 38. merge</h5><p><strong>合并指定分支内容到当前分支</strong><br><strong><code>git merge [branch_name]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2338-merge.png" alt="merge">  </p>
+<h5 id="39-_fetch"><a href="#39-_fetch" class="headerlink" title="- 39. fetch"></a>- 39. fetch</h5><p><strong>获取远程仓库的修改，但是不合并到当前分支</strong><br><strong><code>git fetch [远程主机名]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2339-fetch.png" alt="fetch">  </p>
+<h5 id="40-_rebase"><a href="#40-_rebase" class="headerlink" title="- 40. rebase"></a>- 40. rebase</h5><p><strong>这个命令，我还不怎么理解</strong>，本关卡中，有两个分支 master 和 feature 。<br>先查看 master 的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-master-log.png" alt="rebase-master-log"><br>然后查看 feature 的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-feature-log.png" alt="rebase-feature-log"><br><!--more--></p>
+<p>接着<strong><code>git rebase master feature</code></strong><br>再查看 master 分支的提交记录<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2340-rebase-afater.png" alt="rebase-after"><br>似乎是将 feature 分支的提交记录合并了  </p>
+<h5 id="41-_repack"><a href="#41-_repack" class="headerlink" title="- 41. repack"></a>- 41. repack</h5><p><strong>将仓库中冗余的打包文件移除</strong><br><strong><code>git repack</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2341-repack.png" alt="repack"><br>查看<a href="http://gitbook.liuhui998.com/7_1.html" target="_blank" rel="external">Git 是如何存储对象的</a>  </p>
+<h5 id="42-_cherry-pick"><a href="#42-_cherry-pick" class="headerlink" title="- 42. cherry-pick"></a>- 42. cherry-pick</h5><p><strong>cherry-pick命令”复制”一个提交节点并在当前分支做一次完全一样的新提交</strong><br><strong><code>git checkout-pick [某个commit的hash值]</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick.png" alt="cherry-pick"><br>在本关卡中，先查看所有的提交记录 <code>git log -all</code><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-log.png" alt="checkout-pick-log"><br>记录 <code>Filled in REASME.md with proper input</code> 这次 commit 的 hash 值<br>接着 <strong><code>git checkout-pick ca3236</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2342-cherry_pick-set.png" alt="cherry-pick-set">  </p>
+<h5 id="43-_grep"><a href="#43-_grep" class="headerlink" title="- 43. grep"></a>- 43. grep</h5><p><strong>grep 在 linux 中就是一个强大的搜索命令，支持文本、正则等方式</strong><br>本关卡中<strong><code>git grep TODO</code></strong><br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2343-grep.png" alt="grep">  </p>
+<h5 id="44-_rename_commit"><a href="#44-_rename_commit" class="headerlink" title="- 44. rename_commit"></a>- 44. rename_commit</h5><p><strong>重命名某次提交</strong><br>先<strong><code>git log</code></strong>，查看提交信息，记录有输入错误的 commit 的前一次 commit 的 hash 值<br>然后<strong><code>git rebase -i hash值</code></strong><br>接着会出现两次默认编辑器窗口，第一次是修改 .git/rebase-merge/git-rebase-todo ，将出错的那行 pick 改成 reword ，同时修改后面的错误，保存之后<br>又会出来一个窗口，这次修改的是 .git/COMMIT_EDITMSG 手动修改提交信息中的错误，再保存就可以了<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/githug%2344-rename_commit.png" alt="rename_commit">  </p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag">#Git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/20/git-learning-next/" rel="next" title="通过githug游戏学习git（中）">
+                <i class="fa fa-chevron-left"></i> 通过githug游戏学习git（中）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/22/android-develop-tips/" rel="prev" title="android 开发 Tips">
+                android 开发 Tips <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <div class="page-footer">
+      
+        <div id="eof" class="print-invisible">
+          <hr class="eof">
+        </div>
+
+        <div class="copyright" style="clear:both;">
+           <p><span>本文标题:</span><a href="/2016/01/20/git-learning-last/">通过githug游戏学习git（下）</a></p>
+           <p><span>发布时间:</span>2016年1月20日 - 20时01分</p>
+           <p><span>最后更新:</span>2016年1月29日 - 13时01分</p>
+           <p><span>本文链接:</span><a href="/2016/01/20/git-learning-last/" title="通过githug游戏学习git（下）">zhusandiao.com/2016/01/20/git-learning-last/</a></p>
+        </div>
+      
+
+      
+
+    </div>
+
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7fva1q.com1.z0.glb.clouddn.com/avatar-icon.png"
+               alt="zhusandiao" />
+          <p class="site-author-name" itemprop="name">zhusandiao</p>
+          <p class="site-description motion-element" itemprop="description">mail@zhusandiao.com</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i> Twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/zhusandiao" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://git.zhusandiao.com/" target="_blank">
+                  
+                    <i class="fa fa-code"></i> Code
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E4B_u524D_u4E24_u7BC7"><span class="nav-number">1.</span> <span class="nav-text">之前两篇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6700_u540E_u768436_7E54_u5173"><span class="nav-number">2.</span> <span class="nav-text">最后的36~54关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#36-_delete_branch"><span class="nav-number">2.1.</span> <span class="nav-text">- 36. delete_branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#37-_push_branch"><span class="nav-number">2.2.</span> <span class="nav-text">- 37. push_branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#38-_merge"><span class="nav-number">2.3.</span> <span class="nav-text">- 38. merge</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#39-_fetch"><span class="nav-number">2.4.</span> <span class="nav-text">- 39. fetch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#40-_rebase"><span class="nav-number">2.5.</span> <span class="nav-text">- 40. rebase</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#41-_repack"><span class="nav-number">2.6.</span> <span class="nav-text">- 41. repack</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#42-_cherry-pick"><span class="nav-number">2.7.</span> <span class="nav-text">- 42. cherry-pick</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#43-_grep"><span class="nav-number">2.8.</span> <span class="nav-text">- 43. grep</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#44-_rename_commit"><span class="nav-number">2.9.</span> <span class="nav-text">- 44. rename_commit</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhusandiao</span>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("zAO7wxrPwdbe1Uf9GF8LWn5p-gzGzoHsz", "QoOwa22txP7hyaq8BtmAy3HT");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+</body>
+</html>
