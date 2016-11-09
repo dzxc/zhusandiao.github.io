@@ -65,8 +65,8 @@
 <meta property="og:site_name" content="zhusandiao">
 <meta property="og:description" content="React.createClassReact.createClass，创建 React 组件对应的类，描述你将要创建组件的各种行为，其中只有当组件被渲染时需要输出的内容的 render 方法是必须实现的，（该方法返回一棵 React 组件树，这棵树最终将会渲染成 HTML ），其他方法如 componentWillMount、componentDidMount 都是可选的：
 12345678910">
-<meta property="og:image" content="http://7fva1q.com1.z0.glb.clouddn.com/React%E4%BC%A0%E5%80%BC%E7%A4%BA%E4%BE%8B.png">
-<meta property="og:updated_time" content="2016-05-22T14:52:41.354Z">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/React/parameters.png">
+<meta property="og:updated_time" content="2016-11-09T15:03:55.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React.js梳理">
 <meta name="twitter:description" content="React.createClassReact.createClass，创建 React 组件对应的类，描述你将要创建组件的各种行为，其中只有当组件被渲染时需要输出的内容的 render 方法是必须实现的，（该方法返回一棵 React 组件树，这棵树最终将会渲染成 HTML ），其他方法如 componentWillMount、componentDidMount 都是可选的：
@@ -307,7 +307,7 @@
 <h4 id="u4F7F_u7528_u5C5E_u6027_uFF08_props__uFF09_u4F20_u503C"><a href="#u4F7F_u7528_u5C5E_u6027_uFF08_props__uFF09_u4F20_u503C" class="headerlink" title="使用属性（ props ）传值"></a>使用属性（ props ）传值</h4><p>注意：<br>下面的传值理解中，父子组件的说法，其实不太准确，本质上是组件类获取组件属性值的过程。</p>
 <p>有时候，我们构建组件时，需要依赖父组件传入的数据<code>xxx=???</code>，这些从父组件传入的数据会做为子组件的 <code>属性（ property ）</code>，而这些属性（ properties ），子组件可以通过 <code>this.props.xxx</code> 访问到。具体来看下面两段代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件 XYT_nameL1.js，是一个标题组件，里面通过 this.props.title 获取父组件传入的数据。</span></span><br><span class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> XYT_nameL1 = React.createClass(&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="xml"><span class="tag">&lt;<span class="title">div</span> &gt;</span></span><br><span class="line">	            &#123;this.props.title&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        )</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">module</span>.exports = XYT_nameL1;</span><br><span class="line"></span><br><span class="line"><span class="comment">//父组件 Main.jsx 中的一部分代码，通过，title = '请选择挂号医院：',把数据传给了子组件 XYT_nameL1</span></span><br><span class="line"><span class="keyword">var</span> Main = React.createClass(&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">XYT_nameL1</span> <span class="attribute">title</span>=<span class="value">'请选择挂号医院：'</span> /&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">        )</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>React 父子组件通过 <code>this.props</code>传值示意图<br><img src="http://7fva1q.com1.z0.glb.clouddn.com/React%E4%BC%A0%E5%80%BC%E7%A4%BA%E4%BE%8B.png" alt="React传值">  </p>
+<p>React 父子组件通过 <code>this.props</code>传值示意图<br><img src="https://ogcqmo3an.qnssl.com/React/parameters.png" alt="React传值">  </p>
 <h5 id="this-props-children_u5C5E_u6027"><a href="#this-props-children_u5C5E_u6027" class="headerlink" title="this.props.children属性"></a>this.props.children属性</h5><ol>
 <li>this.props 对象的属性与组件的属性一一对应，但是有一个例外，就是 this.props.children 属性。它表示组件的所有子节点。</li>
 <li>this.props.children 的值有三种可能：<br>如果当前组件没有子节点，它就是 undefined ;<br>如果有一个子节点，数据类型是 object ；<br>如果有多个子节点，数据类型就是 array 。</li>
@@ -405,7 +405,7 @@
         <div class="copyright" style="clear:both;">
            <p><span>本文标题:</span><a href="/2016/05/20/React-js/">React.js梳理</a></p>
            <p><span>发布时间:</span>2016年5月20日 - 20时05分</p>
-           <p><span>最后更新:</span>2016年5月22日 - 22时05分</p>
+           <p><span>最后更新:</span>2016年11月9日 - 23时11分</p>
            <p><span>本文链接:</span><a href="/2016/05/20/React-js/" title="React.js梳理">zhusandiao.com/2016/05/20/React-js/</a></p>
         </div>
       
