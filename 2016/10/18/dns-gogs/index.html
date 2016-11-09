@@ -67,16 +67,16 @@
 <meta property="og:description" content="DNS域名就像一个代号，我们必须找到其背后的 ip 地址，才能访问到具体的资源。而域名和 ip 就是通过 DNS (Domain Name System 域名系统联系起来的)  
 以我的域名：zhusandiao.com 为例：  
 首先 zhusandiao.com，实际上网站是通过 Github Pages 搭建的，原始域名是：zhusandiao.github.io, 这个原始域名，一点都不">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dnsCNAME.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dns%E7%AC%AC%E4%B8%89%E6%96%B9%EF%BC%A4%EF%BC%AE%EF%BC%B3.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dnsDNSPOD.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dnsDNS.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dns/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dnsDomain.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dns/Gogs%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dns/Gogs%E4%BB%93%E5%BA%93%E9%A1%B5%E9%9D%A2.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/dns/Gogs%E4%B8%AA%E4%BA%BA%E9%A1%B5%E9%9D%A2.png">
-<meta property="og:updated_time" content="2016-10-18T03:22:33.930Z">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/CNAME.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/%E7%AC%AC%E4%B8%89%E6%96%B9%EF%BC%A4%EF%BC%AE%EF%BC%B3.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/DNSPOD.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/DNS.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/Domain.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/Gogs%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/Gogs%E4%BB%93%E5%BA%93%E9%A1%B5%E9%9D%A2.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/dns/Gogs%E4%B8%AA%E4%BA%BA%E9%A1%B5%E9%9D%A2.png">
+<meta property="og:updated_time" content="2016-11-09T14:05:25.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS 解析和私人代码仓库( Gogs 搭建)">
 <meta name="twitter:description" content="DNS域名就像一个代号，我们必须找到其背后的 ip 地址，才能访问到具体的资源。而域名和 ip 就是通过 DNS (Domain Name System 域名系统联系起来的)  
@@ -310,14 +310,14 @@
         <h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>域名就像一个代号，我们必须找到其背后的 ip 地址，才能访问到具体的资源。而域名和 ip 就是通过 DNS (Domain Name System 域名系统联系起来的)  </p>
 <p>以我的域名：zhusandiao.com 为例：  </p>
 <p>首先 <a href="http://zhusandiao.com" target="_blank" rel="external">zhusandiao.com</a>，实际上网站是通过 Github Pages 搭建的，原始域名是：<a href="https://zhusandiao.github.io" target="_blank" rel="external">zhusandiao.github.io</a>, 这个原始域名，一点都不好记忆，而且没有个性。   所以，第一个需求是，当访问 <a href="https://zhusandiao.github.io" target="_blank" rel="external">zhusandiao.github.io</a> 时，全部重定向到 <a href="http://zhusandiao.com" target="_blank" rel="external">zhusandiao.com</a>。  </p>
-<p>在 github 的该博客仓库，添加 CNAME 文件，填上要重定向的域名，例如我的 zhusandiao.com<br><img src="http://picdrop.qiniudn.com/dnsCNAME.png" alt="CNAME"></p>
+<p>在 github 的该博客仓库，添加 CNAME 文件，填上要重定向的域名，例如我的 zhusandiao.com<br><img src="https://ogcqmo3an.qnssl.com/dns/CNAME.png" alt="CNAME"></p>
 <p>我选择第三方的免费 DNS 解析服务：<a href="https://dnspod.cn" target="_blank" rel="external">Dnspod</a>  </p>
 <a id="more"></a>
 <h4 id="DNS__u89E3_u6790_u6B65_u9AA4"><a href="#DNS__u89E3_u6790_u6B65_u9AA4" class="headerlink" title="DNS 解析步骤"></a>DNS 解析步骤</h4><ol>
-<li>先到域名注册商那里，将 DNS 解析设置成 DNSpod 解析<br><img src="http://picdrop.qiniudn.com/dns%E7%AC%AC%E4%B8%89%E6%96%B9%EF%BC%A4%EF%BC%AE%EF%BC%B3.png" alt="Godaddy 设置第三方 DNS 解析"></li>
-<li>然后，再到 DNS 解析服务商那里设置 A 记录 为 github 的两个 ip<br><img src="http://picdrop.qiniudn.com/dnsDNSPOD.png" alt="dnspod"><br>另外有两个 NS 记录，是默认添加的，不用管。</li>
+<li>先到域名注册商那里，将 DNS 解析设置成 DNSpod 解析<br><img src="https://ogcqmo3an.qnssl.com/dns/%E7%AC%AC%E4%B8%89%E6%96%B9%EF%BC%A4%EF%BC%AE%EF%BC%B3.png" alt="Godaddy 设置第三方 DNS 解析"></li>
+<li>然后，再到 DNS 解析服务商那里设置 A 记录 为 github 的两个 ip<br><img src="https://ogcqmo3an.qnssl.com/dns/DNSPOD.png" alt="dnspod"><br>另外有两个 NS 记录，是默认添加的，不用管。</li>
 </ol>
-<h3 id="DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55"><a href="#DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55" class="headerlink" title="DNS 解析的几种记录"></a>DNS 解析的几种记录</h3><p>有关 DNS 解析的几种记录的作用，在下面这张图里：<br><img src="http://picdrop.qiniudn.com/dnsDNS.png" alt="dns几种记录的作用"></p>
+<h3 id="DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55"><a href="#DNS__u89E3_u6790_u7684_u51E0_u79CD_u8BB0_u5F55" class="headerlink" title="DNS 解析的几种记录"></a>DNS 解析的几种记录</h3><p>有关 DNS 解析的几种记录的作用，在下面这张图里：<br><img src="https://ogcqmo3an.qnssl.com/dns/DNS.png" alt="dns几种记录的作用"></p>
 <h3 id="u5229_u7528_gogs__u642D_u5EFA_u79C1_u4EBA_u4EE3_u7801_u4ED3_u5E93"><a href="#u5229_u7528_gogs__u642D_u5EFA_u79C1_u4EBA_u4EE3_u7801_u4ED3_u5E93" class="headerlink" title="利用 gogs 搭建私人代码仓库"></a>利用 gogs 搭建私人代码仓库</h3><h4 id="Gogs__u4ECB_u7ECD"><a href="#Gogs__u4ECB_u7ECD" class="headerlink" title="Gogs 介绍"></a>Gogs 介绍</h4><p><a href="https://gogs.io/" target="_blank" rel="external">Gogs</a>是更为轻量级的自助 Git 服务。相对而言，人们可能更为熟悉 Gitlab，两者相比较的话，Gitlab 更为成熟，开发时间更长，稳定性更好，而 Gogs 更为轻量，可以在更低配置的 vps 上运行，搭建更方便。  </p>
 <p>安装过程直接看官网，都有介绍，这里再给几篇相关的文章，以供参考：  </p>
 <ol>
@@ -332,12 +332,12 @@
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> git.crystalnetwork.us;</span><br><span class="line"></span><br><span class="line">    <span class="title">location</span> /gogs/ &#123;</span><br><span class="line">        <span class="title">proxy_pass</span> <span class="url">http://localhost:3000/</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>记得还有一步：<strong>在配置文件中设置 [server] ROOT_URL</strong> = <a href="http://git.crystalnetwork.us/gogs/。" target="_blank" rel="external">http://git.crystalnetwork.us/gogs/。</a>  </p>
 <p>注：<strong>配置当中的端口可能需要修改</strong>，通常不会设置成 3000。</p>
-<h4 id="u5B50_u57DF_u540D__u7684_DNS__u89E3_u6790"><a href="#u5B50_u57DF_u540D__u7684_DNS__u89E3_u6790" class="headerlink" title="子域名 的 DNS 解析"></a>子域名 的 DNS 解析</h4><p>同样还是在 Dnspod 上，配置该子域名的解析，直接设置 A 记录 ，记录值填写你的 ip。<br><img src="http://picdrop.qiniudn.com/dns/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="子域名的DNS解析">  </p>
+<h4 id="u5B50_u57DF_u540D__u7684_DNS__u89E3_u6790"><a href="#u5B50_u57DF_u540D__u7684_DNS__u89E3_u6790" class="headerlink" title="子域名 的 DNS 解析"></a>子域名 的 DNS 解析</h4><p>同样还是在 Dnspod 上，配置该子域名的解析，直接设置 A 记录 ，记录值填写你的 ip。<br><img src="https://ogcqmo3an.qnssl.com/dns/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" alt="子域名的DNS解析">  </p>
 <p>稍作等待，就能通过子域名直接访问了。</p>
-<h4 id="u57DF_u540D_u76F8_u5173_u77E5_u8BC6"><a href="#u57DF_u540D_u76F8_u5173_u77E5_u8BC6" class="headerlink" title="域名相关知识"></a>域名相关知识</h4><p><img src="http://picdrop.qiniudn.com/dnsDomain.png" alt="域名">  </p>
-<h3 id="u5B8C_u6210_u9875_u9762"><a href="#u5B8C_u6210_u9875_u9762" class="headerlink" title="完成页面"></a>完成页面</h3><p>安装完成后，注册的第一个用户就是管理员<br><img src="http://picdrop.qiniudn.com/dns/Gogs%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2.png" alt="Gogs注册页面"></p>
-<p>仓库页面<br><img src="http://picdrop.qiniudn.com/dns/Gogs%E4%BB%93%E5%BA%93%E9%A1%B5%E9%9D%A2.png" alt="仓库页面"></p>
-<p>个人页面<br><img src="http://picdrop.qiniudn.com/dns/Gogs%E4%B8%AA%E4%BA%BA%E9%A1%B5%E9%9D%A2.png" alt="个人页面"></p>
+<h4 id="u57DF_u540D_u76F8_u5173_u77E5_u8BC6"><a href="#u57DF_u540D_u76F8_u5173_u77E5_u8BC6" class="headerlink" title="域名相关知识"></a>域名相关知识</h4><p><img src="https://ogcqmo3an.qnssl.com/dns/Domain.png" alt="域名">  </p>
+<h3 id="u5B8C_u6210_u9875_u9762"><a href="#u5B8C_u6210_u9875_u9762" class="headerlink" title="完成页面"></a>完成页面</h3><p>安装完成后，注册的第一个用户就是管理员<br><img src="https://ogcqmo3an.qnssl.com/dns/Gogs%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2.png" alt="Gogs注册页面"></p>
+<p>仓库页面<br><img src="https://ogcqmo3an.qnssl.com/dns/Gogs%E4%BB%93%E5%BA%93%E9%A1%B5%E9%9D%A2.png" alt="仓库页面"></p>
+<p>个人页面<br><img src="https://ogcqmo3an.qnssl.com/dns/Gogs%E4%B8%AA%E4%BA%BA%E9%A1%B5%E9%9D%A2.png" alt="个人页面"></p>
 <h3 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h3><ol>
 <li><a href="http://winterttr.me/2015/10/23/from-dns-to-github-custom-domain/index.html" target="_blank" rel="external">从DNS到github pages自定义域名 – 漫谈域名那些事</a></li>
 <li><a href="http://www.ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="external">DNS 原理入门</a></li>
@@ -400,7 +400,7 @@
         <div class="copyright" style="clear:both;">
            <p><span>本文标题:</span><a href="/2016/10/18/dns-gogs/">DNS 解析和私人代码仓库( Gogs 搭建)</a></p>
            <p><span>发布时间:</span>2016年10月18日 - 09时10分</p>
-           <p><span>最后更新:</span>2016年10月18日 - 11时10分</p>
+           <p><span>最后更新:</span>2016年11月9日 - 22时11分</p>
            <p><span>本文链接:</span><a href="/2016/10/18/dns-gogs/" title="DNS 解析和私人代码仓库( Gogs 搭建)">zhusandiao.com/2016/10/18/dns-gogs/</a></p>
         </div>
       
