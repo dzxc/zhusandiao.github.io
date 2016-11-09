@@ -75,12 +75,12 @@
 设置好 DNS 解析 在 Dnspod 里直接设置一个 A 记录  
 服务器上配置好 nginx 还是在 80 端口，通过 server_name xxx.zhusandiao.com; 来区分。  
 在 Gogs 上建立要部署的页面的裸仓库 这点要">
-<meta property="og:image" content="http://picdrop.qiniudn.com/static/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/static/nginx.jpg">
-<meta property="og:image" content="http://picdrop.qiniudn.com/static/%E4%BB%93%E5%BA%93.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/static/Git%E9%92%A9%E5%AD%90.png">
-<meta property="og:image" content="http://picdrop.qiniudn.com/static/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
-<meta property="og:updated_time" content="2016-10-23T17:40:26.049Z">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/staticpage/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/staticpage/nginx.jpg">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/staticpage/%E4%BB%93%E5%BA%93.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/staticpage/Git%E9%92%A9%E5%AD%90.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/staticpage/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png">
+<meta property="og:updated_time" content="2016-11-09T13:57:22.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次静态页面的上线过程">
 <meta name="twitter:description" content="部署一个二级域名的静态页面的大致过程Git钩子的使用和自动部署
@@ -328,19 +328,19 @@
 </ol>
 <a id="more"></a>
 <h4 id="u4E00_u3001_u5148_u914D_u7F6E_u597D_u5B50_u57DF_u540D_u7684_DNS__u89E3_u6790"><a href="#u4E00_u3001_u5148_u914D_u7F6E_u597D_u5B50_u57DF_u540D_u7684_DNS__u89E3_u6790" class="headerlink" title="一、先配置好子域名的 DNS 解析"></a>一、先配置好子域名的 DNS 解析</h4><p>根据预先想好的子域名，在 Dnspod 里设置一个该子域名的 A 记录：  </p>
-<p><img src="http://picdrop.qiniudn.com/static/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png" alt="子域名 DNS 解析"></p>
+<p><img src="https://ogcqmo3an.qnssl.com/staticpage/%E5%AD%90%E5%9F%9F%E5%90%8DDNS%E8%A7%A3%E6%9E%90.png" alt="子域名 DNS 解析"></p>
 <p>关于 DNS 解析，可以看我上一篇博文 <a href="http://zhusandiao.com/2016/10/18/dns-gogs/" target="_blank" rel="external">DNS 解析和私人代码仓库( Gogs 搭建)</a>  </p>
 <h4 id="u4E8C_u3001_u914D_u7F6E_nginx"><a href="#u4E8C_u3001_u914D_u7F6E_nginx" class="headerlink" title="二、配置 nginx"></a>二、配置 nginx</h4><p>登录到服务器，配置 nginx，还是监听默认的 80 端口，通过 server_name 来区分：  </p>
-<p><img src="http://picdrop.qiniudn.com/static/nginx.jpg" alt="nginx 配置"></p>
+<p><img src="https://ogcqmo3an.qnssl.com/staticpage/nginx.jpg" alt="nginx 配置"></p>
 <h4 id="u4E09_u3001_u5728_Gogs__u4E0A_u5EFA_u7ACB_u88F8_u4ED3_u5E93"><a href="#u4E09_u3001_u5728_Gogs__u4E0A_u5EFA_u7ACB_u88F8_u4ED3_u5E93" class="headerlink" title="三、在 Gogs 上建立裸仓库"></a>三、在 Gogs 上建立裸仓库</h4><p>通过 web 页面，直接建立裸仓库（TODO： 关于为什么是建立的裸仓库，还需要再查看下 gogs 的说明）。  </p>
-<p><img src="http://picdrop.qiniudn.com/static/%E4%BB%93%E5%BA%93.png" alt="裸仓库">  </p>
+<p><img src="https://ogcqmo3an.qnssl.com/staticpage/%E4%BB%93%E5%BA%93.png" alt="裸仓库">  </p>
 <h4 id="u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93"><a href="#u56DB_u3001_u5728_u53E6_u4E00_u4E2A_u76EE_u5F55_u4E0B_uFF0C_u5EFA_u7ACB_u666E_u901A_u4ED3_u5E93" class="headerlink" title="四、在另一个目录下，建立普通仓库"></a>四、在另一个目录下，建立普通仓库</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init xxx&#10;git clone /home/xxx/xxx (&#35064;&#20179;&#24211;&#22320;&#22336;)</span><br></pre></td></tr></table></figure>
 <h4 id="u4E94_u3001_u672C_u5730_u73AF_u5883_u7684_u642D_u5EFA_uFF0C_u514B_u9686_u4ED3_u5E93_u5230_u672C_u5730"><a href="#u4E94_u3001_u672C_u5730_u73AF_u5883_u7684_u642D_u5EFA_uFF0C_u514B_u9686_u4ED3_u5E93_u5230_u672C_u5730" class="headerlink" title="五、本地环境的搭建，克隆仓库到本地"></a>五、本地环境的搭建，克隆仓库到本地</h4><p>建立一份本地仓库，就是开发环境，之后用这个仓库推送代码</p>
-<h4 id="u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50"><a href="#u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50" class="headerlink" title="六、配置 Git钩子"></a>六、配置 Git钩子</h4><p><img src="http://picdrop.qiniudn.com/static/Git%E9%92%A9%E5%AD%90.png" alt="Git钩子"></p>
+<h4 id="u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50"><a href="#u516D_u3001_u914D_u7F6E_Git_u94A9_u5B50" class="headerlink" title="六、配置 Git钩子"></a>六、配置 Git钩子</h4><p><img src="https://ogcqmo3an.qnssl.com/staticpage/Git%E9%92%A9%E5%AD%90.png" alt="Git钩子"></p>
 <p>仓库设置里面，找到 Git钩子，然后点击修改 post-receive ，输入以下内容（需要根据实际情况自行修改 site=为普通仓库目录）：  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/sh</span></span><br><span class="line">site=/home/xxx/xxx  </span><br><span class="line"><span class="built_in">export</span> GIT_WORK_TREE=<span class="variable">$site</span></span><br><span class="line">git checkout <span class="operator">-f</span></span><br></pre></td></tr></table></figure>
 <h3 id="u63A8_u9001_u5373_u66F4_u65B0"><a href="#u63A8_u9001_u5373_u66F4_u65B0" class="headerlink" title="推送即更新"></a>推送即更新</h3><p>以上步骤完成之后，只要你本地代码推送到远程仓库，就会立即生效。马上能够看到改动</p>
-<p><img src="http://picdrop.qiniudn.com/static/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png" alt="完成的页面"></p>
+<p><img src="https://ogcqmo3an.qnssl.com/staticpage/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2.png" alt="完成的页面"></p>
 <h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><p>本篇文章，还需要补充的是：  </p>
 <ol>
 <li>Git 当中的<span style="color:#be2532">裸仓库和普通仓库的使用</span></li>
@@ -402,7 +402,7 @@
         <div class="copyright" style="clear:both;">
            <p><span>本文标题:</span><a href="/2016/10/23/build-a-html-page-automaticly/">记一次静态页面的上线过程</a></p>
            <p><span>发布时间:</span>2016年10月23日 - 20时10分</p>
-           <p><span>最后更新:</span>2016年10月24日 - 01时10分</p>
+           <p><span>最后更新:</span>2016年11月9日 - 21时11分</p>
            <p><span>本文链接:</span><a href="/2016/10/23/build-a-html-page-automaticly/" title="记一次静态页面的上线过程">zhusandiao.com/2016/10/23/build-a-html-page-automaticly/</a></p>
         </div>
       
