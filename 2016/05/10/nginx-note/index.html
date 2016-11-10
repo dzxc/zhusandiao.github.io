@@ -79,11 +79,11 @@
 安装brew install nginx
 查看版本nginx -v ：查看版本nginx -V ：查看版本和配置信息  
 运行nginx -s reload    #重新加载配置nginx -s reopen    #重启nginx -s stop">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/92c4e634gw1f3pjs0g9tjj20su0dlqg1.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/92c4e634gw1f3pjuis73xj20sx0b5ajo.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/92c4e634gw1f3pjfcs5rmj20760213yc.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/92c4e634gw1f3pji3mvp7j20hz01mwf1.jpg">
-<meta property="og:updated_time" content="2016-05-10T10:18:22.908Z">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/nginx/access.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/nginx/error.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/nginx/pid.png">
+<meta property="og:image" content="https://ogcqmo3an.qnssl.com/nginx/process.png">
+<meta property="og:updated_time" content="2016-11-10T03:03:02.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx笔记">
 <meta name="twitter:description" content="nginx高性能的HTTP和反向代理服务器  
@@ -355,16 +355,16 @@
 </ul>
 <p>nginx日志文件下有三个文件：  </p>
 <ul>
-<li>access.log:<br>ngingx 的访问日志，记录客户端访问 nginx 的每一个请求。<br><img src="http://ww4.sinaimg.cn/large/92c4e634gw1f3pjs0g9tjj20su0dlqg1.jpg" alt="本机nginx-access_log"><br>其中一条：</li>
+<li>access.log:<br>ngingx 的访问日志，记录客户端访问 nginx 的每一个请求。<br><img src="https://ogcqmo3an.qnssl.com/nginx/access.png" alt="本机nginx-access_log"><br>其中一条：</li>
 </ul>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0.0.1</span> - - <span class="string">[09/May/2016:22:24:13 +0800]</span> <span class="string">"<span class="keyword">GET</span> /src/js/browser.min.js HTTP/1.1"</span> <span class="number">200</span> <span class="number">1333640</span> <span class="string">"http://localhost:8091/src/index.html"</span> <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36"</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>erros.log：<br>错误日志，记录客户端访问 nginx 出错时的信息。<br><img src="http://ww3.sinaimg.cn/large/92c4e634gw1f3pjuis73xj20sx0b5ajo.jpg" alt="nginx-erros_log"><br>其中一条：  </li>
+<li>erros.log：<br>错误日志，记录客户端访问 nginx 出错时的信息。<br><img src="https://ogcqmo3an.qnssl.com/nginx/error.png" alt="nginx-erros_log"><br>其中一条：  </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span>/<span class="number">05</span>/<span class="number">09</span> <span class="number">22</span>:<span class="number">22</span>:<span class="number">10</span> [error] <span class="number">9539</span><span class="preprocessor">#<span class="number">0</span>: *<span class="number">5</span> open() <span class="string">"/Users/abc/project/xyt/50x.html"</span> failed (<span class="number">2</span>: No such file or directory), client: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>, server: localhost, request: <span class="string">"GET / HTTP/1.1"</span>, upstream: <span class="string">"fastcgi://127.0.0.1:9000"</span>, host: <span class="string">"localhost:8088"</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>nginx.pid<br>记录了 nginx 的主进程号，很简单的一行，例如，我本机的 nginx.pid 文件内容为： <code>9538</code>  <blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/92c4e634gw1f3pjfcs5rmj20760213yc.jpg" alt="nginx.pid"><br>终端下，通过命令<code>ps -ef|grep nginx</code>，查看下 nginx 的进程：<br><img src="http://ww2.sinaimg.cn/large/92c4e634gw1f3pji3mvp7j20hz01mwf1.jpg" alt="nginx-master_progress"><br>方便通过 pid文件 <code>kill –QUIT</code>cat nginx.pid文件目录`<br>将nginx 的停止，不用再去查询 nginx 的pid。  </p>
+<p><img src="https://ogcqmo3an.qnssl.com/nginx/pid.png" alt="nginx.pid"><br>终端下，通过命令<code>ps -ef|grep nginx</code>，查看下 nginx 的进程：<br><img src="https://ogcqmo3an.qnssl.com/nginx/process.png" alt="nginx-master_progress"><br>方便通过 pid文件 <code>kill –QUIT</code>cat nginx.pid文件目录`<br>将nginx 的停止，不用再去查询 nginx 的pid。  </p>
 </blockquote>
 </li>
 </ul>
@@ -429,7 +429,7 @@
         <div class="copyright" style="clear:both;">
            <p><span>本文标题:</span><a href="/2016/05/10/nginx-note/">nginx笔记</a></p>
            <p><span>发布时间:</span>2016年5月10日 - 00时05分</p>
-           <p><span>最后更新:</span>2016年5月10日 - 18时05分</p>
+           <p><span>最后更新:</span>2016年11月10日 - 11时11分</p>
            <p><span>本文链接:</span><a href="/2016/05/10/nginx-note/" title="nginx笔记">zhusandiao.com/2016/05/10/nginx-note/</a></p>
         </div>
       
