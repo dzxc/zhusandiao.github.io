@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="工具," />
 
 
 
@@ -57,42 +57,28 @@
 
 
 
-<meta name="description" content="另外两篇通过githug游戏学习git（上）通过githug游戏学习git（下）  
-下面是16~35关- 16. log查看提交日志git log  
-- 17. tag为最近的一次 commit 打上标签git tag 标签名">
+<meta name="description" content="GitGit 是个好工具，首先就装上:  
+sudo apt install git
+LNMP 环境搭建Ubuntu16 之后，LNMP环境的搭建比之前方便很多了，基本都能一步到位，具体可以参考这篇文章：Ubuntu 16.04 快速配置 LNMP(LEMP) 环境  
+shell的加强默认的 bash 不是很顺手，还是使用 zsh，主要是插件，我使用了，z,colored-man-pages
+安">
 <meta property="og:type" content="article">
-<meta property="og:title" content="通过githug游戏学习git（中）">
-<meta property="og:url" content="http://yoursite.com/2016/01/20/git-learning-next/index.html">
+<meta property="og:title" content="安装 Ubuntu16 之后的一些配置">
+<meta property="og:url" content="http://yoursite.com/2016/11/13/After-install-Ubuntu-16/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="另外两篇通过githug游戏学习git（上）通过githug游戏学习git（下）  
-下面是16~35关- 16. log查看提交日志git log  
-- 17. tag为最近的一次 commit 打上标签git tag 标签名">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2316-log.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2317-tag.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2318-push_tags.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2319-commit_amend.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2320-commit_in_future.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2321-reset.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2322-reset_soft.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2323-checkout_file.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2324-remote.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2325-remote_url.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2326-pull.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2327-remote_add.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2328-push.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2329-diff.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2330-blame.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2331-branch.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2332-checkout.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2333-checkout_tags.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2334-checkout_tags_over_branch.png">
-<meta property="og:image" content="https://ogcqmo3an.qnssl.com/Githug/%2335-branch-at.png">
-<meta property="og:updated_time" content="2016-11-09T16:52:17.290Z">
+<meta property="og:description" content="GitGit 是个好工具，首先就装上:  
+sudo apt install git
+LNMP 环境搭建Ubuntu16 之后，LNMP环境的搭建比之前方便很多了，基本都能一步到位，具体可以参考这篇文章：Ubuntu 16.04 快速配置 LNMP(LEMP) 环境  
+shell的加强默认的 bash 不是很顺手，还是使用 zsh，主要是插件，我使用了，z,colored-man-pages
+安">
+<meta property="og:updated_time" content="2016-11-12T20:46:19.314Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="通过githug游戏学习git（中）">
-<meta name="twitter:description" content="另外两篇通过githug游戏学习git（上）通过githug游戏学习git（下）  
-下面是16~35关- 16. log查看提交日志git log  
-- 17. tag为最近的一次 commit 打上标签git tag 标签名">
+<meta name="twitter:title" content="安装 Ubuntu16 之后的一些配置">
+<meta name="twitter:description" content="GitGit 是个好工具，首先就装上:  
+sudo apt install git
+LNMP 环境搭建Ubuntu16 之后，LNMP环境的搭建比之前方便很多了，基本都能一步到位，具体可以参考这篇文章：Ubuntu 16.04 快速配置 LNMP(LEMP) 环境  
+shell的加强默认的 bash 不是很顺手，还是使用 zsh，主要是插件，我使用了，z,colored-man-pages
+安">
 
 
 
@@ -126,7 +112,7 @@
       border-left-color: #be2532;    /*左边框颜色*/
   }
 </style>
-<!--   <title> 通过githug游戏学习git（中） | zhusandiao </title>
+<!--   <title> 安装 Ubuntu16 之后的一些配置 | zhusandiao </title>
   <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
   <script type="text/javascript">
       var host = "zhusandiao.com";
@@ -271,7 +257,7 @@
             
             
               
-                通过githug游戏学习git（中）
+                安装 Ubuntu16 之后的一些配置
               
             
           </h1>
@@ -283,8 +269,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-20T20:23:09+08:00" content="2016-01-20">
-              2016-01-20
+            <time itemprop="dateCreated" datetime="2016-11-13T04:26:37+08:00" content="2016-11-13">
+              2016-11-13
             </time>
           </span>
 
@@ -298,7 +284,7 @@
 
           
           
-             <span id="/2016/01/20/git-learning-next/" class="leancloud_visitors" data-flag-title="通过githug游戏学习git（中）">
+             <span id="/2016/11/13/After-install-Ubuntu-16/" class="leancloud_visitors" data-flag-title="安装 Ubuntu16 之后的一些配置">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -318,29 +304,16 @@
       
 
       
-        <h4 id="u53E6_u5916_u4E24_u7BC7"><a href="#u53E6_u5916_u4E24_u7BC7" class="headerlink" title="另外两篇"></a>另外两篇</h4><p><a href="http://zhusandiao.com/2016/01/15/git-learning/" target="_blank" rel="external">通过githug游戏学习git（上）</a><br><a href="http://zhusandiao.com/2016/01/20/git-learning-last/" target="_blank" rel="external">通过githug游戏学习git（下）</a>  </p>
-<h4 id="u4E0B_u9762_u662F16_7E35_u5173"><a href="#u4E0B_u9762_u662F16_7E35_u5173" class="headerlink" title="下面是16~35关"></a>下面是16~35关</h4><h5 id="16-_log"><a href="#16-_log" class="headerlink" title="- 16. log"></a>- 16. log</h5><p><strong>查看提交日志</strong><br><strong><code>git log</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2316-log.png" alt="log">  </p>
-<h5 id="17-_tag"><a href="#17-_tag" class="headerlink" title="- 17. tag"></a>- 17. tag</h5><p><strong>为最近的一次 commit 打上标签</strong><br><strong><code>git tag 标签名</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2317-tag.png" alt="tag">  </p>
+        <h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>Git 是个好工具，首先就装上:  </p>
+<p><code>sudo apt install git</code></p>
+<h3 id="LNMP__u73AF_u5883_u642D_u5EFA"><a href="#LNMP__u73AF_u5883_u642D_u5EFA" class="headerlink" title="LNMP 环境搭建"></a>LNMP 环境搭建</h3><p>Ubuntu16 之后，LNMP环境的搭建比之前方便很多了，基本都能一步到位，具体可以参考这篇文章：<a href="https://coxxs.me/405" target="_blank" rel="external">Ubuntu 16.04 快速配置 LNMP(LEMP) 环境</a>  </p>
+<h3 id="shell_u7684_u52A0_u5F3A"><a href="#shell_u7684_u52A0_u5F3A" class="headerlink" title="shell的加强"></a>shell的加强</h3><p>默认的 bash 不是很顺手，还是使用 zsh，主要是插件，我使用了，z,colored-man-pages</p>
+<h3 id="u5B89_u88C5_u5B8C_u6210_u7248_u7684vim"><a href="#u5B89_u88C5_u5B8C_u6210_u7248_u7684vim" class="headerlink" title="安装完成版的vim"></a>安装完成版的vim</h3><p>预装的 vim 使用删除键，方向键会有问题，直接卸载掉原来的，然后重新安装</p>
+<h3 id="u5378_u8F7D_u4E00_u4E9B_u9884_u88C5_u8F6F_u4EF6"><a href="#u5378_u8F7D_u4E00_u4E9B_u9884_u88C5_u8F6F_u4EF6" class="headerlink" title="卸载一些预装软件"></a>卸载一些预装软件</h3><p>一些预装的软件，就从来没用过，都卸载掉，节省空间</p>
 <a id="more"></a>
-<h5 id="18-_push_tags"><a href="#18-_push_tags" class="headerlink" title="- 18. push_tags"></a>- 18. push_tags</h5><p><strong>把一些标签推送到远程仓库</strong><br><strong><code>git push tags</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2318-push_tags.png" alt="push_tags">  </p>
-<h5 id="19-_commit_amend"><a href="#19-_commit_amend" class="headerlink" title="- 19. commit_amend"></a>- 19. commit_amend</h5><p><strong>修改上一次的提交，加入一个新的文件</strong><br><strong><code>git add forgotten_file.rb</code></strong> ，先将文件存入暂存区，然后 <strong><code>git commit amend</code></strong> ，使用一次新的提交，替代上一次的提交<br><img src="https://ogcqmo3an.qnssl.com/Githug/%2319-commit_amend.png" alt="commit_amend">  </p>
-<h5 id="20-_commit_in_future"><a href="#20-_commit_in_future" class="headerlink" title="- 20. commit_in_future"></a>- 20. commit_in_future</h5><p><strong>为一次提交指定一个未来的时间</strong><br><strong><code>git commit --date=12.06.2016T15:00:00</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2320-commit_in_future.png" alt="commit_in_future">  </p>
-<h5 id="21-_reset"><a href="#21-_reset" class="headerlink" title="- 21. reset"></a>- 21. reset</h5><p><strong>把某个文件撤出暂存区</strong><br><strong><code>git reset HEAD 要撤出的文件</code></strong><br><strong><code>git reset HEAD to_commit_second.rb</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2321-reset.png" alt="reset">  </p>
-<h5 id="22-_reset_soft"><a href="#22-_reset_soft" class="headerlink" title="- 22. reset_soft"></a>- 22. reset_soft</h5><p><strong>只撤销上次的提交信息，工作区和暂存区内容不变</strong><br><strong><code>git reset --soft HEAD^1</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2322-reset_soft.png" alt="reset_soft">  </p>
-<h5 id="23-_checkout_file"><a href="#23-_checkout_file" class="headerlink" title="- 23. checkout_file"></a>- 23. checkout_file</h5><p><strong>丢弃工作区某个文件的改动，用上次提交覆盖工作区</strong><br><strong><code>git checkout [commit] [file]</code></strong><br><strong><code>git checkou con*</code></strong><br>注：图中的这个实际上是用暂存区的文件覆盖，实际上 checkout 还有几种，以及需要和 git reset 命令进行区分，这些留待以后说<br><img src="https://ogcqmo3an.qnssl.com/Githug/%2323-checkout_file.png" alt="checkout_file">  </p>
-<h5 id="24-_remote"><a href="#24-_remote" class="headerlink" title="- 24. remote"></a>- 24. remote</h5><p><strong>查看远程仓库</strong><br><strong><code>git remote</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2324-remote.png" alt="remote">  </p>
-<h5 id="25-_remote_url"><a href="#25-_remote_url" class="headerlink" title="- 25. remote_url"></a>- 25. remote_url</h5><p><strong>查看远程仓库以及地址</strong><br><strong><code>git remote -v</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2325-remote_url.png" alt="remote_url">  </p>
-<h5 id="26-_pull"><a href="#26-_pull" class="headerlink" title="- 26. pull"></a>- 26. pull</h5><p><strong>从（远程）仓库取回变动，并与本地分支合并</strong><br><strong><code>git pull [remote] [branch]</code></strong><br><strong><code>git pull origin master</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2326-pull.png" alt="pull">  </p>
-<h5 id="27-_remote_add"><a href="#27-_remote_add" class="headerlink" title="- 27. remote_add"></a>- 27. remote_add</h5><p><strong>添加一个远程仓库，同时命名</strong>，<strong>git remote add [shortname] [url]</strong><br><strong><code>git remote add origin https://githug.com/githug/githug</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2327-remote_add.png" alt="remote_add">  </p>
-<h5 id="28-_push"><a href="#28-_push" class="headerlink" title="- 28. push"></a>- 28. push</h5><p><strong>推送本地修改到远程仓库中</strong>，<strong>这个例子里，远程的仓库和分支是 origin/master ，本地主机的分支是master，先 <code>git rebase origin/master</code> ，在当前分支上，合并 origin/master ，然后通过 <code>git push origin master</code> 推送本地修改到这个远程仓库</strong>  </p>
-<p><strong><code>git push [remote] [branch]</code></strong>，上传本地指定分支到远程仓库<br><img src="https://ogcqmo3an.qnssl.com/Githug/%2328-push.png" alt="push">  </p>
-<h5 id="29-_diff"><a href="#29-_diff" class="headerlink" title="- 29. diff"></a>- 29. diff</h5><p><strong>显示暂存区和工作区的差异</strong><br><strong><code>git diff</code></strong>，注：diff信息读取也值得一讲，也留待以后细说<br><img src="https://ogcqmo3an.qnssl.com/Githug/%2329-diff.png" alt="diff">  </p>
-<h5 id="30-_Blame"><a href="#30-_Blame" class="headerlink" title="- 30. Blame"></a>- 30. Blame</h5><p><strong>显示指定文件是什么人在什么时间修改过</strong><br><strong><code>git blame [file]</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2330-blame.png" alt="blame">  </p>
-<h5 id="31-_branch"><a href="#31-_branch" class="headerlink" title="- 31. branch"></a>- 31. branch</h5><p><strong>创建分支</strong><br><strong><code>git  branch [branch_name]</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2331-branch.png" alt="branch">  </p>
-<h5 id="32-_checkout"><a href="#32-_checkout" class="headerlink" title="- 32. checkout"></a>- 32. checkout</h5><p><strong>创建并切换分支</strong><br><strong><code>git  branch my_branch</code></strong> 先创建一个名为 my_branch 的分支，接着 <strong><code>git checkout my_branch</code></strong> ，通过 <code>git checkout</code> 命令切换到该分支<br><strong>实际上，开发中一般直接使用<code>git checkout -b [branch_name]</code>，直接创建分支并且切换过去</strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2332-checkout.png" alt="checkout">  </p>
-<h5 id="33-_checkout_tag"><a href="#33-_checkout_tag" class="headerlink" title="- 33. checkout_tag"></a>- 33. checkout_tag</h5><p><strong>切换到指定 tag </strong><br><strong><code>git checkout tag_name</code></strong>，可以先<code>git tag</code> 查看所有的tag ，发现有 v1.2，然后<code>git checkout v1.2</code>，切换过去<br><img src="https://ogcqmo3an.qnssl.com/Githug/%2333-checkout_tags.png" alt="checkout_tag">  </p>
-<h5 id="34-_checkout_tags_over_branch"><a href="#34-_checkout_tags_over_branch" class="headerlink" title="- 34. checkout_tags_over_branch"></a>- 34. checkout_tags_over_branch</h5><p><strong>切换到指定 tag ，但这个 tag 和 branch 重名了</strong><br><strong><code>git checkout tags/tag_name</code></strong>，还是先<code>git tag</code> 查看所有的tag，接着<code>git checkout tags/v1.2</code>直接切换<br><img src="https://ogcqmo3an.qnssl.com/Githug/%2334-checkout_tags_over_branch.png" alt="checkout_tags_over_branch">  </p>
-<h5 id="35-_branch_at"><a href="#35-_branch_at" class="headerlink" title="- 35. branch_at"></a>- 35. branch_at</h5><p><strong>根据一个特定提交创建一个分支</strong><br>该关卡的要求是在上一次的提交前创建新分支，<strong><code>git branch test_branch HEAD^1</code></strong><br><img src="https://ogcqmo3an.qnssl.com/Githug/%2335-branch-at.png" alt="branch_at">  </p>
+<h3 id="u5B89_u88C5_u4E00_u4E9B_u5F00_u53D1_u5305"><a href="#u5B89_u88C5_u4E00_u4E9B_u5F00_u53D1_u5305" class="headerlink" title="安装一些开发包"></a>安装一些开发包</h3><p>比如，python的包管理器，pip 和 pip3 ，redis-server 等，这个因人而异  </p>
+<h3 id="u5B89_u88C5_u5F00_u53D1_u8F6F_u4EF6"><a href="#u5B89_u88C5_u5F00_u53D1_u8F6F_u4EF6" class="headerlink" title="安装开发软件"></a>安装开发软件</h3><p>比如 Sublime Text3，Atom 等等</p>
+<p>…待续</p>
 
       
     </div>
@@ -349,7 +322,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag">#Git</a>
+            <a href="/tags/工具/" rel="tag">#工具</a>
           
         </div>
       
@@ -358,17 +331,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/15/git-learning/" rel="next" title="通过githug游戏学习git（上）">
-                <i class="fa fa-chevron-left"></i> 通过githug游戏学习git（上）
+              <a href="/2016/10/25/ssh/" rel="next" title="公钥、密钥以及 SSH">
+                <i class="fa fa-chevron-left"></i> 公钥、密钥以及 SSH
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/20/git-learning-last/" rel="prev" title="通过githug游戏学习git（下）">
-                通过githug游戏学习git（下） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -393,10 +362,10 @@
         </div>
 
         <div class="copyright" style="clear:both;">
-           <p><span>本文标题:</span><a href="/2016/01/20/git-learning-next/">通过githug游戏学习git（中）</a></p>
-           <p><span>发布时间:</span>2016年1月20日 - 20时01分</p>
-           <p><span>最后更新:</span>2016年11月10日 - 00时11分</p>
-           <p><span>本文链接:</span><a href="/2016/01/20/git-learning-next/" title="通过githug游戏学习git（中）">zhusandiao.com/2016/01/20/git-learning-next/</a></p>
+           <p><span>本文标题:</span><a href="/2016/11/13/After-install-Ubuntu-16/">安装 Ubuntu16 之后的一些配置</a></p>
+           <p><span>发布时间:</span>2016年11月13日 - 04时11分</p>
+           <p><span>最后更新:</span>2016年11月13日 - 04时11分</p>
+           <p><span>本文链接:</span><a href="/2016/11/13/After-install-Ubuntu-16/" title="安装 Ubuntu16 之后的一些配置">zhusandiao.com/2016/11/13/After-install-Ubuntu-16/</a></p>
         </div>
       
 
@@ -532,7 +501,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u53E6_u5916_u4E24_u7BC7"><span class="nav-number">1.</span> <span class="nav-text">另外两篇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E0B_u9762_u662F16_7E35_u5173"><span class="nav-number">2.</span> <span class="nav-text">下面是16~35关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#16-_log"><span class="nav-number">2.1.</span> <span class="nav-text">- 16. log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#17-_tag"><span class="nav-number">2.2.</span> <span class="nav-text">- 17. tag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#18-_push_tags"><span class="nav-number">2.3.</span> <span class="nav-text">- 18. push_tags</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#19-_commit_amend"><span class="nav-number">2.4.</span> <span class="nav-text">- 19. commit_amend</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#20-_commit_in_future"><span class="nav-number">2.5.</span> <span class="nav-text">- 20. commit_in_future</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#21-_reset"><span class="nav-number">2.6.</span> <span class="nav-text">- 21. reset</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#22-_reset_soft"><span class="nav-number">2.7.</span> <span class="nav-text">- 22. reset_soft</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#23-_checkout_file"><span class="nav-number">2.8.</span> <span class="nav-text">- 23. checkout_file</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#24-_remote"><span class="nav-number">2.9.</span> <span class="nav-text">- 24. remote</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#25-_remote_url"><span class="nav-number">2.10.</span> <span class="nav-text">- 25. remote_url</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#26-_pull"><span class="nav-number">2.11.</span> <span class="nav-text">- 26. pull</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#27-_remote_add"><span class="nav-number">2.12.</span> <span class="nav-text">- 27. remote_add</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#28-_push"><span class="nav-number">2.13.</span> <span class="nav-text">- 28. push</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#29-_diff"><span class="nav-number">2.14.</span> <span class="nav-text">- 29. diff</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#30-_Blame"><span class="nav-number">2.15.</span> <span class="nav-text">- 30. Blame</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#31-_branch"><span class="nav-number">2.16.</span> <span class="nav-text">- 31. branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#32-_checkout"><span class="nav-number">2.17.</span> <span class="nav-text">- 32. checkout</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#33-_checkout_tag"><span class="nav-number">2.18.</span> <span class="nav-text">- 33. checkout_tag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#34-_checkout_tags_over_branch"><span class="nav-number">2.19.</span> <span class="nav-text">- 34. checkout_tags_over_branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#35-_branch_at"><span class="nav-number">2.20.</span> <span class="nav-text">- 35. branch_at</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">1.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LNMP__u73AF_u5883_u642D_u5EFA"><span class="nav-number">2.</span> <span class="nav-text">LNMP 环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell_u7684_u52A0_u5F3A"><span class="nav-number">3.</span> <span class="nav-text">shell的加强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B89_u88C5_u5B8C_u6210_u7248_u7684vim"><span class="nav-number">4.</span> <span class="nav-text">安装完成版的vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5378_u8F7D_u4E00_u4E9B_u9884_u88C5_u8F6F_u4EF6"><span class="nav-number">5.</span> <span class="nav-text">卸载一些预装软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B89_u88C5_u4E00_u4E9B_u5F00_u53D1_u5305"><span class="nav-number">6.</span> <span class="nav-text">安装一些开发包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B89_u88C5_u5F00_u53D1_u8F6F_u4EF6"><span class="nav-number">7.</span> <span class="nav-text">安装开发软件</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
