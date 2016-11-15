@@ -105,7 +105,7 @@ hash（哈希）
 list（列表）
 set（集合）
 zset(sorted">
-<meta property="og:updated_time" content="2016-08-03T11:41:30.799Z">
+<meta property="og:updated_time" content="2016-11-15T00:18:31.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 入门">
 <meta name="twitter:description" content="Redis的简单介绍
@@ -406,7 +406,7 @@ zset(sorted">
 <li>redis 服务上执行命令需要一个 redis 客户端。</li>
 <li>命令：<code>redis-cli</code></li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10140;  ~ redis-cli&#10;127.0.0.1:6379&#62; ping&#10;PONG&#10;127.0.0.1:6379&#62;&#10140;  ~ redis-cli&#10;127.0.0.1:6379&#62; ping&#10;PONG&#10;127.0.0.1:6379&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ redis-cli</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; ping</span><br><span class="line">PONG</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt;➜  ~ redis-cli</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; ping</span><br><span class="line">PONG</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>用 <code>ping</code>命令检测 redis 服务是否启动。</p>
 <ol>
 <li>在远程 redis 服务上执行命令</li>
@@ -621,7 +621,7 @@ zset(sorted">
 <p>序号前面打勾的命令，我觉得比较常用。  </p>
 <h4 id="u64CD_u4F5Chash_u7684_u547D_u4EE4"><a href="#u64CD_u4F5Chash_u7684_u547D_u4EE4" class="headerlink" title="操作hash的命令"></a>操作hash的命令</h4><p>Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。</p>
 <p>示例：存储了一个 class，信息有班级名，开班时间，老师数量，学生数量</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&#62; hmset class name &#34;W3S1&#34;&#10;OK&#10;127.0.0.1:6379&#62; hmset class year 2011&#10;OK&#10;127.0.0.1:6379&#62; hmset class teacherNum 4&#10;OK&#10;127.0.0.1:6379&#62; hmset class studentNum 32&#10;OK&#10;127.0.0.1:6379&#62; hgetall class&#10;1) &#34;name&#34;&#10;2) &#34;W3S1&#34;&#10;3) &#34;year&#34;&#10;4) &#34;2011&#34;&#10;5) &#34;teacherNum&#34;&#10;6) &#34;4&#34;&#10;7) &#34;studentNum&#34;&#10;8) &#34;32&#34;&#10;127.0.0.1:6379&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; hmset class name <span class="string">"W3S1"</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; hmset class year <span class="number">2011</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; hmset class teacherNum <span class="number">4</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; hmset class studentNum <span class="number">32</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; hgetall class</span><br><span class="line"><span class="number">1</span>) <span class="string">"name"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"W3S1"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"year"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"2011"</span></span><br><span class="line"><span class="number">5</span>) <span class="string">"teacherNum"</span></span><br><span class="line"><span class="number">6</span>) <span class="string">"4"</span></span><br><span class="line"><span class="number">7</span>) <span class="string">"studentNum"</span></span><br><span class="line"><span class="number">8</span>) <span class="string">"32"</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt;</span><br></pre></td></tr></table></figure>
 <p><strong>下表列出了 redis hash 基本的相关命令</strong>  </p>
 <table>
 <thead>
@@ -1234,7 +1234,7 @@ zset(sorted">
         <div class="copyright" style="clear:both;">
            <p><span>本文标题:</span><a href="/2016/07/29/Redis-入门/">Redis 入门</a></p>
            <p><span>发布时间:</span>2016年7月29日 - 22时07分</p>
-           <p><span>最后更新:</span>2016年8月3日 - 19时08分</p>
+           <p><span>最后更新:</span>2016年11月15日 - 08时11分</p>
            <p><span>本文链接:</span><a href="/2016/07/29/Redis-入门/" title="Redis 入门">zhusandiao.com/2016/07/29/Redis-入门/</a></p>
         </div>
       
