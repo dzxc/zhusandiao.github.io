@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="zhusandiao">
 <meta property="og:description" content="高级分离术：  （根据条件输出内容）12345&amp;lt;?php if ($expression == true): ?&amp;gt;  This will show if the expression is true.&amp;lt;?php else: ?&amp;gt;  Otherwise this will show.&amp;lt;?php endif; ?&amp;gt;
 根据条件输出指定样式的内容123&amp;lt;html&amp;">
-<meta property="og:updated_time" content="2016-11-18T11:59:06.664Z">
+<meta property="og:updated_time" content="2016-11-18T12:07:35.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP Tips">
 <meta name="twitter:description" content="高级分离术：  （根据条件输出内容）12345&amp;lt;?php if ($expression == true): ?&amp;gt;  This will show if the expression is true.&amp;lt;?php else: ?&amp;gt;  Otherwise this will show.&amp;lt;?php endif; ?&amp;gt;
@@ -288,11 +288,11 @@
 <h4 id="u6839_u636E_u6761_u4EF6_u8F93_u51FA_u6307_u5B9A_u6837_u5F0F_u7684_u5185_u5BB9"><a href="#u6839_u636E_u6761_u4EF6_u8F93_u51FA_u6307_u5B9A_u6837_u5F0F_u7684_u5185_u5BB9" class="headerlink" title="根据条件输出指定样式的内容"></a>根据条件输出指定样式的内容</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">p</span><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">if</span> (<span class="variable">$highlight</span>): <span class="preprocessor">?&gt;</span></span> <span class="attribute">class</span>=<span class="value">"highlight"</span><span class="value">&lt;?php</span> <span class="attribute">endif</span>;?&gt;</span>&gt;This is a paragraph.<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h4 id="u4EE3_u7801_u6CE8_u91CA_u53EF_u80FD_u51FA_u73B0_u7684_u95EE_u9898"><a href="#u4EE3_u7801_u6CE8_u91CA_u53EF_u80FD_u51FA_u73B0_u7684_u95EE_u9898" class="headerlink" title="代码注释可能出现的问题"></a>代码注释可能出现的问题</h4><p>单行注释：  </p>
-<p>仅仅注释到行末或者当前的 PHP 代码块，之后会跳出 PHP 模式，这可能会造成多输出了一些 HTML 代码</p>
+<p>通过 <code>//</code> 或者 <code>#</code>标记的注释，仅仅注释到行末或者当前的 PHP 代码块，之后会跳出 PHP 模式，这可能会造成多输出了一些 HTML 代码</p>
 <p>多行注释；  </p>
 <p>C 风格的多行注释在<strong>碰到第一个 */ 时结束</strong>。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"This is a test"</span>; <span class="comment">// This is a one-line c++ style comment</span></span><br><span class="line">    <span class="comment">/* This is a multi line comment</span><br><span class="line">       yet another line of comment */</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'One Final Test'</span>; <span class="comment"># This is a one-line shell-style comment</span></span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>简单来说，形如<code>/* xxxx */ xxxxx*/</code>，会造成注释与自己的预期不符，部分内容未被正确注释（可以通过编辑器的代码高亮来避免）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"> <span class="comment">/*</span><br><span class="line">    echo "This is a test"; /* This comment will cause a problem */</span></span><br><span class="line"> */</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>简单来说，形如<code>/* xxxx */ xxxxx*/</code>，会造成注释与自己的预期不符，部分内容未被正确注释<br>可以通过<strong>不嵌套使用 C 风格的注释</strong>，或者是<strong>通过编辑器的代码高亮来避免</strong>。</p>
 
       
     </div>
@@ -343,7 +343,7 @@
         <div class="copyright" style="clear:both;">
            <p><span>本文标题:</span><a href="/2016/11/18/php-tips/">PHP Tips</a></p>
            <p><span>发布时间:</span>2016年11月18日 - 19时11分</p>
-           <p><span>最后更新:</span>2016年11月18日 - 19时11分</p>
+           <p><span>最后更新:</span>2016年11月18日 - 20时11分</p>
            <p><span>本文链接:</span><a href="/2016/11/18/php-tips/" title="PHP Tips">zhusandiao.com/2016/11/18/php-tips/</a></p>
         </div>
       
