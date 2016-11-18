@@ -242,6 +242,122 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/20/nginx官网文档翻译-重定向/" itemprop="url">
+                  nginx官网文档翻译-重定向
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T23:24:19+08:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/20/nginx官网文档翻译-重定向/" class="leancloud_visitors" data-flag-title="nginx官网文档翻译-重定向">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="nginx__u91CD_u5B9A_u5411_u6A21_u5757_u7B80_u4ECB"><a href="#nginx__u91CD_u5B9A_u5411_u6A21_u5757_u7B80_u4ECB" class="headerlink" title="nginx 重定向模块简介"></a>nginx 重定向模块简介</h4><p>The <code>ngx_http_rewrite_module</code> module is used to change request URI using PCRE regular expressions, return redirects, and conditionally select configurations.</p>
+<p>The <code>ngx_http_rewrite_module</code> module directives are processed in the following order:</p>
+<ul>
+<li>the directives of this module specified on the server level are executed sequentially;</li>
+<li>repeatedly:<ul>
+<li>a location is searched based on a request URI;</li>
+<li>the directives of this module specified inside the found location are executed sequentially;</li>
+<li>the loop is repeated if a request URI was rewritten, but not more than 10 times.</li>
+</ul>
+</li>
+</ul>
+<p><code>ngx_http_rewrite_module</code>–nginx 的 http 重定向模块通过使用 PCRE(Perl Compatible Regular Expressions) 正则，来改变请求 URI，返回重定向，以及有条件的选择配置。  </p>
+<p>nginx的重定向模块指令按照以下步骤处理：  </p>
+<ul>
+<li>在服务器级别指定的这个模块的指令被连续执行</li>
+<li>不停地：<ul>
+<li>（根据请求URI）搜索一个 location</li>
+<li>在找到的 location 中指定的（这个模块的）指令被连续执行</li>
+<li>如果一个请求 URI 被重写，那么这个循环就重复，但不能超过10次</li>
+</ul>
+</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/20/nginx官网文档翻译-重定向/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/20/nginx官网文档翻译-负载均衡/" itemprop="url">
                   nginx官网文档翻译-负载均衡
                 </a>
@@ -1174,109 +1290,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/10/nginx-note/" itemprop="url">
-                  nginx笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-10T00:18:02+08:00" content="2016-05-10">
-              2016-05-10
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/10/nginx-note/" class="leancloud_visitors" data-flag-title="nginx笔记">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><p>高性能的HTTP和反向代理服务器  </p>
-<h4 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h4><ol>
-<li>配置非常简单（nginx.conf）</li>
-<li>高并发，非阻塞（最高支持50000个并发）</li>
-<li>负载均衡</li>
-</ol>
-<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p><code>brew install nginx</code></p>
-<h4 id="u67E5_u770B_u7248_u672C"><a href="#u67E5_u770B_u7248_u672C" class="headerlink" title="查看版本"></a>查看版本</h4><p><code>nginx -v</code> ：查看版本<br><code>nginx -V</code> ：查看版本和配置信息  </p>
-<h4 id="u8FD0_u884C"><a href="#u8FD0_u884C" class="headerlink" title="运行"></a>运行</h4><p><code>nginx -s reload</code>    #重新加载配置<br><code>nginx -s reopen</code>    #重启<br><code>nginx -s stop</code>    #停止<br><code>nginx -s quit</code>      #退出</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/10/nginx-note/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1323,7 +1336,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

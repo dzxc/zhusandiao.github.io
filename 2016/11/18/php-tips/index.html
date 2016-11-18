@@ -39,7 +39,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="PHP," />
 
 
 
@@ -55,22 +55,19 @@
 
 
 
-<meta name="description" content="Android5.0之后出现的。被认为是ListView和GridView等的替代方案。
-特点
-1.不关心Item是否显示在正确的位置，如何显示（LayoutManager）2.不关心Item间如何间隔，不关心（ItemDecoration）3.不关心Item增加和删除的动画效果（ItemAnimator）4.仅仅关注如何回收和复用View">
+<meta name="description" content="高级分离术：  （根据条件输出内容）12345&amp;lt;?php if ($expression == true): ?&amp;gt;  This will show if the expression is true.&amp;lt;?php else: ?&amp;gt;  Otherwise this will show.&amp;lt;?php endif; ?&amp;gt;
+根据条件输出指定样式的内容123&amp;lt;html&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RecycleView笔记">
-<meta property="og:url" content="http://yoursite.com/2015/12/08/RecycleView-note/index.html">
+<meta property="og:title" content="PHP Tips">
+<meta property="og:url" content="http://yoursite.com/2016/11/18/php-tips/index.html">
 <meta property="og:site_name" content="zhusandiao">
-<meta property="og:description" content="Android5.0之后出现的。被认为是ListView和GridView等的替代方案。
-特点
-1.不关心Item是否显示在正确的位置，如何显示（LayoutManager）2.不关心Item间如何间隔，不关心（ItemDecoration）3.不关心Item增加和删除的动画效果（ItemAnimator）4.仅仅关注如何回收和复用View">
-<meta property="og:updated_time" content="2015-12-08T11:48:57.845Z">
+<meta property="og:description" content="高级分离术：  （根据条件输出内容）12345&amp;lt;?php if ($expression == true): ?&amp;gt;  This will show if the expression is true.&amp;lt;?php else: ?&amp;gt;  Otherwise this will show.&amp;lt;?php endif; ?&amp;gt;
+根据条件输出指定样式的内容123&amp;lt;html&amp;">
+<meta property="og:updated_time" content="2016-11-18T11:59:06.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RecycleView笔记">
-<meta name="twitter:description" content="Android5.0之后出现的。被认为是ListView和GridView等的替代方案。
-特点
-1.不关心Item是否显示在正确的位置，如何显示（LayoutManager）2.不关心Item间如何间隔，不关心（ItemDecoration）3.不关心Item增加和删除的动画效果（ItemAnimator）4.仅仅关注如何回收和复用View">
+<meta name="twitter:title" content="PHP Tips">
+<meta name="twitter:description" content="高级分离术：  （根据条件输出内容）12345&amp;lt;?php if ($expression == true): ?&amp;gt;  This will show if the expression is true.&amp;lt;?php else: ?&amp;gt;  Otherwise this will show.&amp;lt;?php endif; ?&amp;gt;
+根据条件输出指定样式的内容123&amp;lt;html&amp;">
 
 
 
@@ -104,7 +101,7 @@
       border-left-color: #be2532;    /*左边框颜色*/
   }
 </style>
-<!--   <title> RecycleView笔记 | zhusandiao </title>
+<!--   <title> PHP Tips | zhusandiao </title>
   <link rel="canonical" href=" { { site.url } }{ { page.url } }" />
   <script type="text/javascript">
       var host = "zhusandiao.com";
@@ -240,7 +237,7 @@
             
             
               
-                RecycleView笔记
+                PHP Tips
               
             
           </h1>
@@ -252,8 +249,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-08T12:36:40+08:00" content="2015-12-08">
-              2015-12-08
+            <time itemprop="dateCreated" datetime="2016-11-18T19:31:34+08:00" content="2016-11-18">
+              2016-11-18
             </time>
           </span>
 
@@ -267,7 +264,7 @@
 
           
           
-             <span id="/2015/12/08/RecycleView-note/" class="leancloud_visitors" data-flag-title="RecycleView笔记">
+             <span id="/2016/11/18/php-tips/" class="leancloud_visitors" data-flag-title="PHP Tips">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -287,34 +284,15 @@
       
 
       
-        <p>Android5.0之后出现的。被认为是ListView和GridView等的替代方案。</p>
-<h3 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h3><blockquote>
-<p>1.不关心Item是否显示在正确的位置，如何显示<em>（LayoutManager）</em><br>2.不关心Item间如何间隔，不关心<em>（ItemDecoration）</em><br>3.不关心Item增加和删除的动画效果<em>（ItemAnimator）</em><br><strong>4.仅仅关注如何回收和复用View</strong><br><a id="more"></a></p>
-</blockquote>
-<h3 id="u4E3E_u4F8B"><a href="#u4E3E_u4F8B" class="headerlink" title="举例"></a>举例</h3><ul>
-<li>那如何控制具体的显示风格呢？那就是通过RecyclerView的setLayoutManager方法传入LayoutManager的实例来进行</li>
-</ul>
-<pre><code class="java"><span class="function"><span class="keyword">void</span>    <span class="title">setLayoutManager</span><span class="params">(RecyclerView.LayoutManager layout)</span>
-<span class="comment">//Set the RecyclerView.LayoutManager that this RecyclerView will use.</span></span>
-</code></pre>
-<h3 id="RecyclerView_u76F8_u5173_u7C7B"><a href="#RecyclerView_u76F8_u5173_u7C7B" class="headerlink" title="RecyclerView相关类"></a>RecyclerView相关类</h3><blockquote>
-<ul>
-<li>Adapter  </li>
-<li>ViewHolder  </li>
-<li>LayoutManager  </li>
-<li>ItemDecoreation  </li>
-<li>ItemAnimation  </li>
-</ul>
-</blockquote>
-<h3 id="RecyclerView_u5177_u4F53_u80FD_u5E72_u4EC0_u4E48"><a href="#RecyclerView_u5177_u4F53_u80FD_u5E72_u4EC0_u4E48" class="headerlink" title="RecyclerView具体能干什么"></a>RecyclerView具体能干什么</h3><blockquote>
-<p>实现ListView，GridView，并且能设置横向或者纵向显示，可以定制瀑布流，定制Item的增删动画效果</p>
-</blockquote>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><blockquote>
-<p>可以看出来，RecyclerView体现的是一个插件式的架构，通过几个嵌套类，设置Item的<em>显示风格，间隔和增删动画效果</em></p>
-</blockquote>
-<h3 id="u8BFE_u7A0B_u5730_u5740"><a href="#u8BFE_u7A0B_u5730_u5740" class="headerlink" title="课程地址"></a>课程地址</h3><blockquote>
-<p><a href="http://www.imooc.com/learn/424" target="_blank" rel="external">慕课视频课程</a></p>
-</blockquote>
+        <h4 id="u9AD8_u7EA7_u5206_u79BB_u672F_uFF1A__uFF08_u6839_u636E_u6761_u4EF6_u8F93_u51FA_u5185_u5BB9_uFF09"><a href="#u9AD8_u7EA7_u5206_u79BB_u672F_uFF1A__uFF08_u6839_u636E_u6761_u4EF6_u8F93_u51FA_u5185_u5BB9_uFF09" class="headerlink" title="高级分离术：  （根据条件输出内容）"></a>高级分离术：  （根据条件输出内容）</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span> <span class="keyword">if</span> (<span class="variable">$expression</span> == <span class="keyword">true</span>): <span class="preprocessor">?&gt;</span></span><br><span class="line">  This will show <span class="keyword">if</span> the expression is <span class="keyword">true</span>.</span><br><span class="line"><span class="preprocessor">&lt;?php</span> <span class="keyword">else</span>: <span class="preprocessor">?&gt;</span></span><br><span class="line">  Otherwise this will show.</span><br><span class="line"><span class="preprocessor">&lt;?php</span> <span class="keyword">endif</span>; <span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="u6839_u636E_u6761_u4EF6_u8F93_u51FA_u6307_u5B9A_u6837_u5F0F_u7684_u5185_u5BB9"><a href="#u6839_u636E_u6761_u4EF6_u8F93_u51FA_u6307_u5B9A_u6837_u5F0F_u7684_u5185_u5BB9" class="headerlink" title="根据条件输出指定样式的内容"></a>根据条件输出指定样式的内容</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">p</span><span class="php"><span class="preprocessor">&lt;?php</span> <span class="keyword">if</span> (<span class="variable">$highlight</span>): <span class="preprocessor">?&gt;</span></span> <span class="attribute">class</span>=<span class="value">"highlight"</span><span class="value">&lt;?php</span> <span class="attribute">endif</span>;?&gt;</span>&gt;This is a paragraph.<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="u4EE3_u7801_u6CE8_u91CA_u53EF_u80FD_u51FA_u73B0_u7684_u95EE_u9898"><a href="#u4EE3_u7801_u6CE8_u91CA_u53EF_u80FD_u51FA_u73B0_u7684_u95EE_u9898" class="headerlink" title="代码注释可能出现的问题"></a>代码注释可能出现的问题</h4><p>单行注释：  </p>
+<p>仅仅注释到行末或者当前的 PHP 代码块，之后会跳出 PHP 模式，这可能会造成多输出了一些 HTML 代码</p>
+<p>多行注释；  </p>
+<p>C 风格的多行注释在<strong>碰到第一个 */ 时结束</strong>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"This is a test"</span>; <span class="comment">// This is a one-line c++ style comment</span></span><br><span class="line">    <span class="comment">/* This is a multi line comment</span><br><span class="line">       yet another line of comment */</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'One Final Test'</span>; <span class="comment"># This is a one-line shell-style comment</span></span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>简单来说，形如<code>/* xxxx */ xxxxx*/</code>，会造成注释与自己的预期不符，部分内容未被正确注释（可以通过编辑器的代码高亮来避免）</p>
 
       
     </div>
@@ -323,7 +301,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag">#android</a>
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
           
         </div>
       
@@ -332,17 +310,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/08/wifi-app-debug/" rel="next" title="通过wifi连接进行应用调试（Android Studio）">
-                <i class="fa fa-chevron-left"></i> 通过wifi连接进行应用调试（Android Studio）
+              <a href="/2016/11/13/After-install-Ubuntu-16/" rel="next" title="安装 Ubuntu16 之后的一些配置">
+                <i class="fa fa-chevron-left"></i> 安装 Ubuntu16 之后的一些配置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/08/about-great-firewall/" rel="prev" title="关于墙">
-                关于墙 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -367,10 +341,10 @@
         </div>
 
         <div class="copyright" style="clear:both;">
-           <p><span>本文标题:</span><a href="/2015/12/08/RecycleView-note/">RecycleView笔记</a></p>
-           <p><span>发布时间:</span>2015年12月8日 - 12时12分</p>
-           <p><span>最后更新:</span>2015年12月8日 - 19时12分</p>
-           <p><span>本文链接:</span><a href="/2015/12/08/RecycleView-note/" title="RecycleView笔记">zhusandiao.com/2015/12/08/RecycleView-note/</a></p>
+           <p><span>本文标题:</span><a href="/2016/11/18/php-tips/">PHP Tips</a></p>
+           <p><span>发布时间:</span>2016年11月18日 - 19时11分</p>
+           <p><span>最后更新:</span>2016年11月18日 - 19时11分</p>
+           <p><span>本文链接:</span><a href="/2016/11/18/php-tips/" title="PHP Tips">zhusandiao.com/2016/11/18/php-tips/</a></p>
         </div>
       
 
@@ -506,7 +480,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u7279_u70B9"><span class="nav-number">1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E3E_u4F8B"><span class="nav-number">2.</span> <span class="nav-text">举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RecyclerView_u76F8_u5173_u7C7B"><span class="nav-number">3.</span> <span class="nav-text">RecyclerView相关类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RecyclerView_u5177_u4F53_u80FD_u5E72_u4EC0_u4E48"><span class="nav-number">4.</span> <span class="nav-text">RecyclerView具体能干什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BFE_u7A0B_u5730_u5740"><span class="nav-number">6.</span> <span class="nav-text">课程地址</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u9AD8_u7EA7_u5206_u79BB_u672F_uFF1A__uFF08_u6839_u636E_u6761_u4EF6_u8F93_u51FA_u5185_u5BB9_uFF09"><span class="nav-number">1.</span> <span class="nav-text">高级分离术：  （根据条件输出内容）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6839_u636E_u6761_u4EF6_u8F93_u51FA_u6307_u5B9A_u6837_u5F0F_u7684_u5185_u5BB9"><span class="nav-number">2.</span> <span class="nav-text">根据条件输出指定样式的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4EE3_u7801_u6CE8_u91CA_u53EF_u80FD_u51FA_u73B0_u7684_u95EE_u9898"><span class="nav-number">3.</span> <span class="nav-text">代码注释可能出现的问题</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
