@@ -1,3 +1,4 @@
+```perl
 server {
     listen 80;
     listen [::]:80 default_server;
@@ -94,3 +95,4 @@ server {
         index index.html index.htm index.php;
     }
 }
+```
